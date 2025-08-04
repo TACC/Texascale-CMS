@@ -1,5 +1,5 @@
 {% extends "./article.html" %}
-{% load cms_tags %}
+{% load cms_tags is_design %}
 
 {% block content %}
   <article>{% placeholder "content" %}</article>
@@ -8,6 +8,8 @@
 {% block js %}
   {{ block.super }}
 
+  {% is_design_legacy as is_legacy %}
+  {% if is_legacy %}
   {# Add social media share links to sidebar column dynamically #}
   {# WARNING: Relies on specific markup (that is unlikely to change) #}
   <template id="share-links-template">
@@ -20,4 +22,5 @@
 
     sidebar.appendChild(links);
   </script>
+  {% endif %}
 {% endblock js %}

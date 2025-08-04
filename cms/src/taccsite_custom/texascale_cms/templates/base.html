@@ -1,13 +1,23 @@
 {% extends "base.html" %}
-{% load cms_tags static %}
+{% load cms_tags static is_design %}
 
-{% block assets_font %}
-  <link rel="stylesheet" href="https://use.typekit.net/xnr7bof.css">
-{% endblock assets_font %}
+{% block assets %}
+  {% is_design_legacy as is_legacy %}
+  {% if is_legacy %}
+    {% include 'assets_site.html' %}
+  {% else %}
+    {% include 'assets_core.html' %}
+    {% include 'assets_core_cms.html' %}
+  {% endif %}
+{% endblock assets %}
 
 {% block assets_custom %}
   {{ block.super }}
 
+  {% is_design_legacy as is_legacy %}
+  {% if is_legacy %}
+  <link rel="stylesheet" href="https://use.typekit.net/xnr7bof.css">
   <link rel="stylesheet" href="{% static 'texascale_cms/css/site.css' %}">
   <link rel="stylesheet" href="{% static 'texascale_cms/css/site.header.css' %}">
+  {% endif %}
 {% endblock assets_custom %}

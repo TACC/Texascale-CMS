@@ -1,10 +1,13 @@
 {% extends "./article.html" %}
-{% load cms_tags static %}
+{% load cms_tags static is_design %}
 
 {% block assets_custom %}
   {{ block.super }}
 
+  {% is_design_legacy as is_legacy %}
+  {% if is_legacy %}
   <link rel="stylesheet" href="{% static 'texascale_cms/css/template.article.image-map.css' %}">
+  {% endif %}
 {% endblock assets_custom %}
 
 {% block content %}
@@ -37,5 +40,8 @@
 {% block assets_custom_delayed %}
   {{ block.super }}
 
+  {% is_design_legacy as is_legacy %}
+  {% if is_legacy %}
   <script src="{% static 'texascale_cms/js/activateFocusTarget.js' %}" crossorigin="anonymous"></script>
+  {% endif %}
 {% endblock assets_custom_delayed %}
