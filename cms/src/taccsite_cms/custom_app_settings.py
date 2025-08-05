@@ -1,5 +1,9 @@
 CUSTOM_APPS = [
 
+    # TEXASCALE_CUSTOM
+    # !!!: Independent app to customize site cuz texascale_cms did not let me
+    'texascale_custom.apps.TexascaleCustomConfig',
+
     # DJANGOCMS_BLOG
     'parler',
     'taggit',
@@ -10,4 +14,5 @@ CUSTOM_APPS = [
 ]
 
 CUSTOM_MIDDLEWARE = []
+
 STATICFILES_DIRS = ()
