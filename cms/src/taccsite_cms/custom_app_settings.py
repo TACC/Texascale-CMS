@@ -1,3 +1,7 @@
+# import os
+
+# BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 CUSTOM_APPS = [
 
     # TEXASCALE_CUSTOM
@@ -14,4 +18,7 @@ CUSTOM_APPS = [
 ]
 
 CUSTOM_MIDDLEWARE = []
-STATICFILES_DIRS = ()
+
+# STATICFILES_DIRS = (
+#     os.path.join(BASE_DIR, 'texascale_custom', 'static'),
+# )

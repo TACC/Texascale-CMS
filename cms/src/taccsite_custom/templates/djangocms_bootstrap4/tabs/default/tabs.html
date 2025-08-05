@@ -1,0 +1,44 @@
+{# https://github.com/django-cms/djangocms-bootstrap4/blob/3.0.2/djangocms_bootstrap4/contrib/bootstrap4_tabs/templates/djangocms_bootstrap4/tabs/default/tabs.html #}
+{% load cms_tags %}
+
+<{{ instance.tag_type }} {{ instance.attributes_str }}>
+    <ul class="nav {{ instance.tab_type }}
+        {% if instance.tab_alignment %} {{ instance.tab_alignment }}{% endif %}"
+        role="tablist">
+        {% for plugin in instance.child_plugin_instances %}
+            <li class="nav-item">
+                <a href="#tab-{{ plugin.pk }}"
+                    class="nav-link{% if instance.tab_index == forloop.counter %} active{% endif %}"
+                    id="tab-label-{{ plugin.pk }}"
+                    data-toggle="tab"
+                    aria-controls="tab-{{ plugin.pk }}"
+                    aria-selected="{% if instance.tab_index == forloop.counter %}true{% else %}false{% endif %}"
+                    role="tab">
+                    <!--
+                    {{ plugin.tab_title }}
+                    -->
+                    {{ plugin.tab_image }}
+                    {# TACC (support image content): #}
+                    {% if plugin.tab_image %}
+                        <img src="{{ plugin.tab_image.url }}" 
+                             alt="{{ plugin.tab_image.default_alt_text|default:plugin.tab_title }}">
+                    {% endif %}
+                    {# /TACC #}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <div class="tab-content">
+        {% for plugin in instance.child_plugin_instances %}
+            <div class="tab-pane
+                {% if instance.tab_index == forloop.counter %} show active{% endif %}
+                {% if instance.tab_effect %}{{ instance.tab_effect }}{% endif %}"
+                id="tab-{{ plugin.pk }}"
+                aria-labelledby="tab-label-{{ plugin.pk }}"
+                role="tabpanel">
+                {% render_plugin plugin %}
+            </div>
+        {% endfor %}
+    </div>
+</{{ instance.tag_type }}>
