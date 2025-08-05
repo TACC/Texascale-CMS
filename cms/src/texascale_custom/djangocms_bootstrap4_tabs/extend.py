@@ -136,21 +136,21 @@ def extendBootstrap4TabsPlugin():
     class Bootstrap4TabItemPlugin(OriginalBootstrap4TabItemPlugin):
         model = Bootstrap4TabItemModel
         form = Bootstrap4TabItemForm
-        
-        # Add the tab_image field to the fieldsets
+
         fieldsets = [
             (None, {
                 'fields': (
                     'tab_title',
-                    'tag_type',
                     'tab_image',
                 )
             }),
-            (None, {
+            (_('Advanced settings'), {
+                'classes': ('collapse',),
                 'fields': (
+                    'tag_type',
                     'attributes',
                 )
-            })
+            }),
         ]
 
         def get_form(self, request, obj=None, **kwargs):
