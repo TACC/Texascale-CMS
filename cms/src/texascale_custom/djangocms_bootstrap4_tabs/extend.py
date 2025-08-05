@@ -10,6 +10,14 @@ def extendBootstrap4TabsPlugin():
 
     from filer.models import Image
 
+    # djangocms_bootstrap4
+    from djangocms_bootstrap4.contrib.bootstrap4_tabs.cms_plugins import (
+        Bootstrap4TabItemPlugin as OriginalBootstrap4TabItemPlugin
+    )
+    from djangocms_bootstrap4.contrib.bootstrap4_tabs.models import (
+        Bootstrap4TabItem as OriginalBootstrap4TabItem
+    )
+
     def validate_tab_image(instance):
         """Validates that the tab image exists and is valid"""
         from django.core.exceptions import ValidationError
@@ -28,7 +36,7 @@ def extendBootstrap4TabsPlugin():
                     )
                 except (ValueError, TypeError) as e:
                     errors['tab_image'] = _(
-                        f"Please select a valid image or remove the image reference."
+                        f"Please select a valid image or remove the image reference. "
                         f"ERROR: {str(e)}"
                     )
 
@@ -57,22 +65,61 @@ def extendBootstrap4TabsPlugin():
 
         return ' ' + ' '.join(attr_parts) if attr_parts else ""
 
-
-    # djangocms_bootstrap4
-    from djangocms_bootstrap4.contrib.bootstrap4_tabs.cms_plugins import (
-        Bootstrap4TabItemPlugin as OriginalBootstrap4TabItemPlugin
-    )
-    from djangocms_bootstrap4.contrib.bootstrap4_tabs.models import (
-        Bootstrap4TabItem as OriginalBootstrap4TabItem
-    )
-
-    class Bootstrap4TabItemForm(OriginalBootstrap4TabItemPlugin.form):
+    class Bootstrap4TabItemForm(forms.ModelForm):
         tab_image = forms.ModelChoiceField(
             queryset=Image.objects.all(),
             required=False,
             label=_('Tab Image/Thumbnail'),
-            help_text=_('Optional image to display in the tab title for slideshow navigation')
+            help_text=_('Optional image to display in the tab title for slideshow navigation'),
+            widget=forms.Select(attrs={
+                'class': 'filer-image-select',
+                'data-placeholder': _('Select an image...')
+            })
         )
+
+        class Meta:
+            model = OriginalBootstrap4TabItem
+            fields = '__all__'
+
+        def __init__(self, *args, **kwargs):
+            super().__init__(*args, **kwargs)
+
+            if self.instance and self.instance.pk:
+                if hasattr(self.instance, 'attributes') and self.instance.attributes:
+                    image_id = self.instance.attributes.get('data-tab-image-id')
+                    if image_id:
+                        try:
+                            image = Image.objects.get(id=image_id)
+                            self.fields['tab_image'].initial = image
+                            self.initial['tab_image'] = image
+                        except (Image.DoesNotExist, ValueError, TypeError):
+                            # Clean up invalid reference
+                            if hasattr(self.instance, 'attributes') and 'data-tab-image-id' in self.instance.attributes:
+                                del self.instance.attributes['data-tab-image-id']
+
+        def clean(self):
+            cleaned_data = super().clean()
+
+            if hasattr(self.instance, '__dict__'):
+                self.instance._form_data = cleaned_data
+
+            return cleaned_data
+
+        def save(self, commit=True):
+            instance = super().save(commit=False)
+
+            tab_image = self.cleaned_data.get('tab_image')
+            if not hasattr(instance, 'attributes') or instance.attributes is None:
+                instance.attributes = {}
+
+            if tab_image:
+                instance.attributes['data-tab-image-id'] = str(tab_image.id)
+            elif 'data-tab-image-id' in instance.attributes:
+                del instance.attributes['data-tab-image-id']
+
+            if commit:
+                instance.save()
+            return instance
 
     class Bootstrap4TabItemModel(OriginalBootstrap4TabItem):
         class Meta:
@@ -83,51 +130,32 @@ def extendBootstrap4TabsPlugin():
             if not hasattr(self, 'attributes') or self.attributes is None:
                 self.attributes = {}
 
-        def _initialize_tab_image(self):
-            """Initialize the tab_image property from attributes"""
-            if hasattr(self, 'attributes') and self.attributes:
-                image_id = self.attributes.get('data-tab-image-id')
-                if image_id:
-                    self.tab_image = Image.objects.filter(id=image_id).first()
-
         def clean(self):
             cleaned_data = super().clean()
-
-            form_data = getattr(self, '_form_data', {})
-            if 'tab_image' in form_data:
-                tab_image = form_data['tab_image']
-                if tab_image:
-                    self.attributes['data-tab-image-id'] = str(tab_image.id)
-                elif 'data-tab-image-id' in self.attributes:
-                    logger.debug(
-                        "Cleaning up orphaned tab image reference: %s",
-                        self.attributes['data-tab-image-id']
-                    )
-                    del self.attributes['data-tab-image-id']
-
             validate_tab_image(self)
-
-            if not hasattr(self, '_tab_image_initial_set'):
-                self._initialize_tab_image()
-                self._tab_image_initial_set = True
-
             return cleaned_data
 
         @property
         def tab_image(self):
-            if not hasattr(self, '_tab_image'):
-                self._tab_image = None
-                image_id = self.attributes.get('data-tab-image-id')
-                if image_id:
-                    try:
-                        self._tab_image = Image.objects.get(id=image_id)
-                    except (Image.DoesNotExist, ValueError):
-                        pass
-            return self._tab_image
+            """Get the tab image from attributes"""
+            if not hasattr(self, '_tab_image_cache'):
+                self._tab_image_cache = None
+                if hasattr(self, 'attributes') and self.attributes:
+                    image_id = self.attributes.get('data-tab-image-id')
+                    if image_id:
+                        try:
+                            self._tab_image_cache = Image.objects.get(id=image_id)
+                        except (Image.DoesNotExist, ValueError, TypeError):
+                            pass
+            return self._tab_image_cache
 
         @tab_image.setter
         def tab_image(self, value):
-            self._tab_image = value
+            """Set the tab image in attributes"""
+            self._tab_image_cache = value
+            if not hasattr(self, 'attributes') or self.attributes is None:
+                self.attributes = {}
+
             if value:
                 self.attributes['data-tab-image-id'] = str(value.id)
             elif 'data-tab-image-id' in self.attributes:
@@ -153,10 +181,6 @@ def extendBootstrap4TabsPlugin():
             }),
         ]
 
-        def get_form(self, request, obj=None, **kwargs):
-            form = super().get_form(request, obj, **kwargs)
-            return form
-
         def render(self, context, instance, placeholder):
             context = super().render(context, instance, placeholder)
 
@@ -164,7 +188,8 @@ def extendBootstrap4TabsPlugin():
             if instance.attributes and 'data-tab-image-id' in instance.attributes:
                 try:
                     tab_image = Image.objects.get(id=instance.attributes['data-tab-image-id'])
-                except (Image.DoesNotExist, ValueError):
+                except (Image.DoesNotExist, ValueError, TypeError):
+                    # Clean up invalid reference
                     del instance.attributes['data-tab-image-id']
                     instance.save()
 
