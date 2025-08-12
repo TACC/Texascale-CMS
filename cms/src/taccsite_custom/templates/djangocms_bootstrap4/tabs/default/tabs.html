@@ -21,7 +21,7 @@
                     {# TACC (support image content): #}
                     {# {{ plugin.tab_title }} #}
                     {% if plugin.tab_image %}
-                        {% include "./tabs_image.html" with image=plugin.tab_image %}
+                        {% include "./tabs_image.html" with instance=plugin.tab_image %}
                     {% else %}
                         {{ plugin.tab_title }}
                     {# TACC (support image content): #}

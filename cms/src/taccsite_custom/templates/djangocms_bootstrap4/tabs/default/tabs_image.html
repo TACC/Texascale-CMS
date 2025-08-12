@@ -1,15 +1,11 @@
-<img
-    src="{{ image.url }}"
-    srcset="{{ image.url }} {{ image.width }}w"
-    alt="{{ image.default_alt_text|default:plugin.tab_title }}"
+{# https://github.com/django-cms/djangocms-picture/blob/3.0.0/djangocms_picture/templates/djangocms_picture/default/picture.html#L16-L35 #}
 
-    {% if image.subject_location %}
-    data-subject-location="{{ image.subject_location }}"
-    {% endif %}
-
-    {% if image.default_caption %}
-    title="{{ image.default_caption }}"
-    {% endif %}
-
-    loading="lazy"
+<img src="{{ instance.img_src }}"
+    alt="{% if instance.attributes.alt %}{{ instance.attributes.alt }}{% elif instance.picture.default_alt_text %}{{ instance.picture.default_alt_text }}{% endif %}"
+    {% if instance.width %} width="{{ instance.width }}"{% endif %}
+    {% if instance.height %} height="{{ instance.height }}"{% endif %}
+    {# TACC: (no need for responsive image attributes) #}
+    {# ... #}
+    {# /TACC #}
+    {% if instance.attributes_str %}{{ instance.attributes_str }}{% endif %}
 >
