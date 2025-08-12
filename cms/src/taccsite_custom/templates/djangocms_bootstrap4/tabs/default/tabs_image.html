@@ -1,0 +1,15 @@
+<img
+    src="{{ image.url }}"
+    srcset="{{ image.url }} {{ image.width }}w"
+    alt="{{ image.default_alt_text|default:plugin.tab_title }}"
+
+    {% if image.subject_location %}
+    data-subject-location="{{ image.subject_location }}"
+    {% endif %}
+
+    {% if image.default_caption %}
+    title="{{ image.default_caption }}"
+    {% endif %}
+
+    loading="lazy"
+>

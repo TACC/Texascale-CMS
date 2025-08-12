@@ -1,6 +1,10 @@
 {# https://github.com/django-cms/djangocms-bootstrap4/blob/3.0.2/djangocms_bootstrap4/contrib/bootstrap4_tabs/templates/djangocms_bootstrap4/tabs/default/tabs.html #}
 {% load cms_tags %}
 
+{# TACC (support image content): #}
+{% include "./tabs_styles.html" %}
+{# /TACC #}
+
 <{{ instance.tag_type }} {{ instance.attributes_str }}>
     <ul class="nav {{ instance.tab_type }}
         {% if instance.tab_alignment %} {{ instance.tab_alignment }}{% endif %}"
@@ -14,14 +18,13 @@
                     aria-controls="tab-{{ plugin.pk }}"
                     aria-selected="{% if instance.tab_index == forloop.counter %}true{% else %}false{% endif %}"
                     role="tab">
-                    <!--
-                    {{ plugin.tab_title }}
-                    -->
-                    {{ plugin.tab_image }}
                     {# TACC (support image content): #}
+                    {# {{ plugin.tab_title }} #}
                     {% if plugin.tab_image %}
-                        <img src="{{ plugin.tab_image.url }}" 
-                             alt="{{ plugin.tab_image.default_alt_text|default:plugin.tab_title }}">
+                        {% include "./tabs_image.html" with image=plugin.tab_image %}
+                    {% else %}
+                        {{ plugin.tab_title }}
+                    {# TACC (support image content): #}
                     {% endif %}
                     {# /TACC #}
                 </a>
