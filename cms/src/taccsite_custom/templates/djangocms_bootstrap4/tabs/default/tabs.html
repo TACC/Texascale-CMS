@@ -22,6 +22,9 @@
                     {# {{ plugin.tab_title }} #}
                     {% if plugin.tab_image %}
                         {% include "./tabs_image.html" with instance=plugin.tab_image %}
+                        <span class="sr-only">
+                            {{ plugin.tab_title }}
+                        </span>
                     {% else %}
                         {{ plugin.tab_title }}
                     {# TACC (support image content): #}
