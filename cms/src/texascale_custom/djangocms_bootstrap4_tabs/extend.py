@@ -18,20 +18,6 @@ def extendBootstrap4TabsPlugin():
     # Import our custom model
     from .models import Bootstrap4TabItemModel
 
-    def filter_attributes_str(attributes):
-        """
-        Create HTML attributes string from attributes dict.
-        """
-        if not attributes:
-            return ""
-
-        attr_parts = []
-        for key, value in attributes.items():
-            if value is not None and value != '':
-                attr_parts.append(f'{key}="{value}"')
-
-        return ' ' + ' '.join(attr_parts) if attr_parts else ""
-
     class Bootstrap4TabItemForm(forms.ModelForm):
         class Meta:
             model = Bootstrap4TabItemModel
@@ -41,6 +27,7 @@ def extendBootstrap4TabsPlugin():
     class Bootstrap4TabItemPlugin(OriginalBootstrap4TabItemPlugin):
         model = Bootstrap4TabItemModel
         form = Bootstrap4TabItemForm
+        name = "Tab Item (supports Image)"
 
         fieldsets = [
             (None, {
@@ -60,14 +47,22 @@ def extendBootstrap4TabsPlugin():
 
         def render(self, context, instance, placeholder):
             context = super().render(context, instance, placeholder)
+            is_old_plugin_instance = not hasattr(instance, 'tab_image')
+
+            if is_old_plugin_instance:
+                tab_image = None
+            else:
+                tab_image = instance.tab_image
 
             context.update({
-                'tab_image': instance.tab_image,  # Direct field access!
-                'has_tab_image': bool(instance.tab_image),
-                'filtered_attributes_str': filter_attributes_str(instance.attributes or {})
+                'tab_image': tab_image,
             })
 
             return context
 
-    plugin_pool.unregister_plugin(OriginalBootstrap4TabItemPlugin)
+    try:
+        plugin_pool.unregister_plugin(OriginalBootstrap4TabItemPlugin)
+    except Exception as e:
+        logger.warning(f"Could not unregister original plugin: {e}")
+    
     plugin_pool.register_plugin(Bootstrap4TabItemPlugin)
