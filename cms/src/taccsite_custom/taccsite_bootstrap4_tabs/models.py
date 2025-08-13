@@ -19,7 +19,7 @@ class TabImageExtension(models.Model):
         primary_key=True,
     )
     tab_image = FilerImageField(
-        verbose_name=_('Tab Image/Thumbnail'),
+        verbose_name=_('Image/Thumbnail'),
         blank=True,
         null=True,
         on_delete=models.SET_NULL,

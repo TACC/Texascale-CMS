@@ -23,11 +23,11 @@ def extendBootstrap4TabsPlugin():
         """
         model = TabImageExtension
 
-        verbose_name = _("Image")
-        verbose_name_plural = _("Images")
+        verbose_name = _("Image list")
+        verbose_name_plural = _("Images list")
 
         extra = 1 # Show one by default
-        max_num = 1 # Only allow one total
+        # max_num = 1 # Already explicitly limited by model's OneToOneField
         can_delete = False # Don't allow deletion of the extension
 
         # Use all fields from the extension model
@@ -35,7 +35,7 @@ def extendBootstrap4TabsPlugin():
 
     class Bootstrap4TabItemPlugin(OriginalBootstrap4TabItemPlugin):
         model = Bootstrap4TabItem
-        name = "Tab Item (supports Image)"
+        name = "Tab Item (with Image support)"
 
         inlines = [TabImageExtensionInline]
 
