@@ -9,6 +9,9 @@ from djangocms_bootstrap4.contrib.bootstrap4_tabs.models import (
 
 
 class TabImageExtension(models.Model):
+    class Meta:
+        app_label = 'taccsite_bootstrap4_tabs'
+
     bootstrap4_tab_item = models.OneToOneField(
         OriginalBootstrap4TabItem,
         on_delete=models.CASCADE,
@@ -31,7 +34,7 @@ class Bootstrap4TabItem(OriginalBootstrap4TabItem):
     def copy_relations(self, old_instance):
         super().copy_relations(old_instance)
         if hasattr(old_instance, 'image_extension'):
-            # new_extension is not used, but this creates the object
+            # This `new_extension` is not used, but it creates the object
             new_extension = TabImageExtension.objects.create(
                 bootstrap4_tab_item=self,
                 tab_image=old_instance.image_extension.tab_image
@@ -39,6 +42,15 @@ class Bootstrap4TabItem(OriginalBootstrap4TabItem):
 
     @property
     def tab_image(self):
-        if hasattr(self, 'image_extension'):
+        """
+        Get the tab image for this tab item.
+        
+        Returns None for:
+        - Legacy tabs (created before extension)
+        - New tabs where no image was uploaded
+        """
+        try:
             return self.image_extension.tab_image
-        return None
+        except TabImageExtension.DoesNotExist:
+            # This is a legacy tab item created before the extension
+            return None

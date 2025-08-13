@@ -14,8 +14,7 @@ def extendBootstrap4TabsPlugin():
     from djangocms_bootstrap4.contrib.bootstrap4_tabs.cms_plugins import (
         Bootstrap4TabItemPlugin as OriginalBootstrap4TabItemPlugin
     )
-    
-    # Import our custom model
+
     from .models import Bootstrap4TabItem, TabImageExtension
 
     class Bootstrap4TabItemForm(forms.ModelForm):
@@ -30,18 +29,25 @@ def extendBootstrap4TabsPlugin():
 
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
-            if self.instance and hasattr(self.instance, 'image_extension'):
-                self.fields['tab_image'].initial = self.instance.image_extension.tab_image
+            if self.instance and self.instance.pk:
+                try:
+                    extension = getattr(self.instance, 'image_extension', None)
+                    if extension:
+                        self.fields['tab_image'].initial = extension.tab_image
+                except TabImageExtension.DoesNotExist:
+                    # This is a legacy tab item created before the extension
+                    pass
 
         def save(self, commit=True):
             instance = super().save(commit=False)
             if commit:
                 instance.save()
-                extension, _ = TabImageExtension.objects.get_or_create(
-                    bootstrap4_tab_item=instance
-                )
-                extension.tab_image = self.cleaned_data['tab_image']
-                extension.save()
+                if 'tab_image' in self.cleaned_data and self.cleaned_data['tab_image']:
+                    extension, _ = TabImageExtension.objects.get_or_create(
+                        bootstrap4_tab_item=instance
+                    )
+                    extension.tab_image = self.cleaned_data['tab_image']
+                    extension.save()
             return instance
 
     class Bootstrap4TabItemPlugin(OriginalBootstrap4TabItemPlugin):
@@ -55,6 +61,11 @@ def extendBootstrap4TabsPlugin():
                     'tab_title',
                 )
             }),
+            (_('Image'), {
+                'fields': (
+                    'tab_image',
+                )
+            }),
             (_('Advanced settings'), {
                 'classes': ('collapse',),
                 'fields': (
@@ -66,8 +77,9 @@ def extendBootstrap4TabsPlugin():
 
         def render(self, context, instance, placeholder):
             context = super().render(context, instance, placeholder)
+
             context.update({
-                'tab_image': instance.image_extension.tab_image,
+                'tab_image': instance.tab_image,
             })
             return context
 
