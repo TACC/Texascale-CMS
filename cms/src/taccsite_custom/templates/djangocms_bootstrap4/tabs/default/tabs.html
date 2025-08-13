@@ -1,8 +1,11 @@
 {# https://github.com/django-cms/djangocms-bootstrap4/blob/3.0.2/djangocms_bootstrap4/contrib/bootstrap4_tabs/templates/djangocms_bootstrap4/tabs/default/tabs.html #}
-{% load cms_tags %}
+{% load cms_tags static sekizai_tags %}
 
 {# TACC (support image content): #}
-{% include "./tabs_styles.html" %}
+
+{% addtoblock "css" %}
+<link rel="stylesheet" href="{% static 'taccsite_bootstrap4_tabs/css/tabs.css' %}" />
+{% endaddtoblock %}
 {# /TACC #}
 
 <{{ instance.tag_type }} {{ instance.attributes_str }}>
