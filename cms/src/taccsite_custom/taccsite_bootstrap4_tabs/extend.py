@@ -16,27 +16,29 @@ def extendBootstrap4TabsPlugin():
 
     from .models import Bootstrap4TabItem, TabImageExtension
 
-    class TabImageExtensionInline(admin.StackedInline):
+    class TabImageExtensionInline(admin.TabularInline):
         """
         Inline admin for TabImageExtension that appears within the main plugin form.
         This gives us the proper Filer image picker without fieldset validation issues.
         """
         model = TabImageExtension
-        extra = 0  # Don't show extra empty forms
-        max_num = 1  # Only allow one image extension per tab
-        can_delete = False  # Don't allow deletion of the extension
-        
+
+        verbose_name = _("Image")
+        verbose_name_plural = _("Images")
+
+        extra = 1 # Show one by default
+        max_num = 1 # Only allow one total
+        can_delete = False # Don't allow deletion of the extension
+
         # Use all fields from the extension model
         fields = ('tab_image',)
 
     class Bootstrap4TabItemPlugin(OriginalBootstrap4TabItemPlugin):
         model = Bootstrap4TabItem
         name = "Tab Item (supports Image)"
-        
-        # Add the inline for the extension model
+
         inlines = [TabImageExtensionInline]
-        
-        # Only show the main model fields in fieldsets
+
         fieldsets = [
             (None, {
                 'fields': (

@@ -27,6 +27,11 @@ class TabImageExtension(models.Model):
         help_text=_('Optional image to display in the tab title for slideshow navigation')
     )
 
+    def __str__(self):
+        if self.tab_image:
+            return f"Tab image: {self.tab_image.name}"
+        return "Tab image (no image)"
+
 class Bootstrap4TabItem(OriginalBootstrap4TabItem):
     class Meta:
         proxy = True
@@ -49,8 +54,7 @@ class Bootstrap4TabItem(OriginalBootstrap4TabItem):
         - Legacy tabs (created before extension)
         - New tabs where no image was uploaded
         """
-        try:
-            return self.image_extension.tab_image
-        except TabImageExtension.DoesNotExist:
-            # This is a legacy tab item created before the extension
-            return None
+        image_extension = getattr(self, 'image_extension', None)
+        if image_extension:
+            return image_extension.tab_image
+        return None
