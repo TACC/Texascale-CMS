@@ -16,16 +16,36 @@ def extendBootstrap4TabsPlugin():
     )
     
     # Import our custom model
-    from .models import Bootstrap4TabItemModel
+    from .models import Bootstrap4TabItem, TabImageExtension
 
     class Bootstrap4TabItemForm(forms.ModelForm):
+        tab_image = forms.ImageField(
+            label=_('Tab Image/Thumbnail'),
+            required=False,
+        )
+
         class Meta:
-            model = Bootstrap4TabItemModel
-            fields = '__all__'
-            # FilerImageField automatically provides the correct widget!
+            model = Bootstrap4TabItem
+            fields = ('tab_title',)
+
+        def __init__(self, *args, **kwargs):
+            super().__init__(*args, **kwargs)
+            if self.instance and hasattr(self.instance, 'image_extension'):
+                self.fields['tab_image'].initial = self.instance.image_extension.tab_image
+
+        def save(self, commit=True):
+            instance = super().save(commit=False)
+            if commit:
+                instance.save()
+                extension, _ = TabImageExtension.objects.get_or_create(
+                    bootstrap4_tab_item=instance
+                )
+                extension.tab_image = self.cleaned_data['tab_image']
+                extension.save()
+            return instance
 
     class Bootstrap4TabItemPlugin(OriginalBootstrap4TabItemPlugin):
-        model = Bootstrap4TabItemModel
+        model = Bootstrap4TabItem
         form = Bootstrap4TabItemForm
         name = "Tab Item (supports Image)"
 
@@ -33,7 +53,6 @@ def extendBootstrap4TabsPlugin():
             (None, {
                 'fields': (
                     'tab_title',
-                    'tab_image',
                 )
             }),
             (_('Advanced settings'), {
@@ -47,22 +66,10 @@ def extendBootstrap4TabsPlugin():
 
         def render(self, context, instance, placeholder):
             context = super().render(context, instance, placeholder)
-            is_old_plugin_instance = not hasattr(instance, 'tab_image')
-
-            if is_old_plugin_instance:
-                tab_image = None
-            else:
-                tab_image = instance.tab_image
-
             context.update({
-                'tab_image': tab_image,
+                'tab_image': instance.image_extension.tab_image,
             })
-
             return context
 
-    try:
-        plugin_pool.unregister_plugin(OriginalBootstrap4TabItemPlugin)
-    except Exception as e:
-        logger.warning(f"Could not unregister original plugin: {e}")
-    
+    plugin_pool.unregister_plugin(OriginalBootstrap4TabItemPlugin)
     plugin_pool.register_plugin(Bootstrap4TabItemPlugin)
