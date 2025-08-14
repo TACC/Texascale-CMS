@@ -1,4 +1,10 @@
+/* To suggest limit on tab image size */
 .nav-tabs .nav-link img {
     max-width: 200px;
     max-height: 200px;
+}
+
+/* To prevent Core-CMS animations on tab content show */
+.tab-pane:target {
+    animation: unset;
 }

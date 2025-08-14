@@ -2,10 +2,16 @@
 {% load cms_tags static sekizai_tags %}
 
 {# TACC (support image content): #}
-
 {% addtoblock "css" %}
-<link rel="stylesheet" href="{% static 'taccsite_bootstrap4_tabs/css/tabs.css' %}" />
+<link href="{% static 'taccsite_bootstrap4_tabs/css/tabs.css' %}" rel="stylesheet" />
 {% endaddtoblock %}
+{# /TACC #}
+{# TACC (support manual nav links): #}
+{# TACC (so tab click changes URL): #}
+{% addtoblock "js" %}
+<script src="{% static 'taccsite_bootstrap4_tabs/js/tabs.js' %}" type="module"></script>
+{% endaddtoblock %}
+{# /TACC #}
 {# /TACC #}
 
 <{{ instance.tag_type }} {{ instance.attributes_str }}>
@@ -14,11 +20,13 @@
         role="tablist">
         {% for plugin in instance.child_plugin_instances %}
             <li class="nav-item">
-                <a href="#tab-{{ plugin.pk }}"
+                <a href="#tab-{{ forloop.counter }}"
                     class="nav-link{% if instance.tab_index == forloop.counter %} active{% endif %}"
-                    id="tab-label-{{ plugin.pk }}"
-                    data-toggle="tab"
-                    aria-controls="tab-{{ plugin.pk }}"
+                    id="tab-label-{{ forloop.counter }}"
+                    {# TACC (so tab click changes URL): #}
+                    {# data-toggle="tab" #}
+                    {# /TACC #}
+                    aria-controls="tab-{{ forloop.counter }}"
                     aria-selected="{% if instance.tab_index == forloop.counter %}true{% else %}false{% endif %}"
                     role="tab">
                     {# TACC (support image content): #}
@@ -43,8 +51,8 @@
             <div class="tab-pane
                 {% if instance.tab_index == forloop.counter %} show active{% endif %}
                 {% if instance.tab_effect %}{{ instance.tab_effect }}{% endif %}"
-                id="tab-{{ plugin.pk }}"
-                aria-labelledby="tab-label-{{ plugin.pk }}"
+                id="tab-{{ forloop.counter }}"
+                aria-labelledby="tab-label-{{ forloop.counter }}"
                 role="tabpanel">
                 {% render_plugin plugin %}
             </div>
