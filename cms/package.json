@@ -11,15 +11,27 @@
     "node": ">=16",
     "npm": ">=8"
   },
-  "dependencies": {
-    "@tacc/core-styles": "^2.45.0"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/TACC/Texascale-CMS.git"
   },
   "scripts": {
-    "build": "./bin/build-css.js"
+    "build": "./bin/build-css.js",
+    "build:dev": "npm run build -- --quiet && npm run collectstatic",
+    "collectstatic": "docker-compose exec cms python3 manage.py collectstatic --noinput --verbosity=1 2>&1 | grep -v 'Found another file'",
+    "watch": "npm-watch"
   },
-  "homepage": "https://texascale.org"
+  "homepage": "https://texascale.org",
+  "dependencies": {
+    "@tacc/core-styles": "^2.45.0"
+  },
+  "devDependencies": {
+    "npm-watch": "^0.13.0"
+  },
+  "watch": {
+    "build:dev": {
+      "patterns": "src/**/static/**/*",
+      "extensions": "css,postcss"
+    }
+  }
 }
