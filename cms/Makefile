@@ -9,7 +9,7 @@ DOCKER_IMAGE_BRANCH := $(DOCKERHUB_REPO):$(shell git describe --exact-match --ta
 
 #.PHONY: build
 build:
-	$(DOCKER_COMPOSE_CMD) -f docker-compose.dev.yml build
+	$(DOCKER_COMPOSE_CMD) -f docker-compose.yml build
 
 .PHONY: build-full
 build-full:
@@ -28,11 +28,11 @@ publish-latest:
 
 .PHONY: start
 start:
-	$(DOCKER_COMPOSE_CMD) -f docker-compose.dev.yml up $(ARGS)
+	$(DOCKER_COMPOSE_CMD) up $(ARGS)
 
 .PHONY: stop
 stop:
-	$(DOCKER_COMPOSE_CMD) -f docker-compose.dev.yml down $(ARGS)
+	$(DOCKER_COMPOSE_CMD) down $(ARGS)
 
 .PHONY: stop-v
 stop-v:
@@ -40,7 +40,7 @@ stop-v:
 
 .PHONY: clean
 clean:
-	$(DOCKER_COMPOSE_CMD) -f docker-compose.dev.yml down -v --rmi all
+	$(DOCKER_COMPOSE_CMD) down -v --rmi all
 
 .PHONY: setup
 setup:
