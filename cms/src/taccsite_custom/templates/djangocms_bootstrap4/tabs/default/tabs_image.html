@@ -1,0 +1,19 @@
+{# https://github.com/django-cms/djangocms-picture/blob/3.0.0/djangocms_picture/templates/djangocms_picture/default/picture.html#L16-L35 #}
+
+{# TACC: (url available, not img_src) #}
+<img src="{{ instance.url }}"
+{# /TACC #}
+    {# TACC: (tab has attributes, not image) #}
+    {# TACC: (default_alt_text available directly) #}
+    alt="{% if plugin.attributes.alt %}{{ plugin.attributes.alt }}{% elif instance.default_alt_text %}{{ instance.default_alt_text }}{% endif %}"
+    {# /TACC #}
+    {# /TACC #}
+    {% if instance.width %} width="{{ instance.width }}"{% endif %}
+    {% if instance.height %} height="{{ instance.height }}"{% endif %}
+    {# TACC: (no need for responsive image attributes) #}
+    {# ... #}
+    {# /TACC #}
+    {# TACC: (tab has attributes, not image) #}
+    {{ plugin.attributes_str }}
+    {# /TACC #}
+>
