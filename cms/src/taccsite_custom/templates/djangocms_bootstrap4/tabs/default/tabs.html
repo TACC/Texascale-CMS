@@ -7,7 +7,7 @@
 {% endaddtoblock %}
 {# /TACC #}
 {# TACC (support manual nav links): #}
-{# TACC (so tab click changes URL): #}
+{# TACC (so tabs respect URL hash): #}
 {% addtoblock "js" %}
 <script src="{% static 'taccsite_bootstrap4_tabs/js/tabs.js' %}" type="module"></script>
 {% endaddtoblock %}
@@ -23,9 +23,7 @@
                 <a href="#tab-{{ forloop.counter }}"
                     class="nav-link{% if instance.tab_index == forloop.counter %} active{% endif %}"
                     id="tab-label-{{ forloop.counter }}"
-                    {# TACC (so tab click changes URL): #}
-                    {# data-toggle="tab" #}
-                    {# /TACC #}
+                    data-toggle="tab"
                     aria-controls="tab-{{ forloop.counter }}"
                     aria-selected="{% if instance.tab_index == forloop.counter %}true{% else %}false{% endif %}"
                     role="tab">

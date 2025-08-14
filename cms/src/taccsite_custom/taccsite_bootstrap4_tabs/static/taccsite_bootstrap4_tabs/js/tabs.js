@@ -1,15 +1,8 @@
-let _ignoreNextHashChange = false;
-
-/** To custom handle default tab links such that tab click changes URL */
+/** To make tab click change URL */
 function handleDefaultTabLinks() {
     document.querySelectorAll('[id^="tab-label"]').forEach(tabLink => {
-        tabLink.addEventListener('click', (event) => {
-            // To prevent handleTabsFromURL from reacting to the hashchange that a genuine user click will cause. Only set the flag for trusted (user) clicks, so programmatic activations aren't treated the same.
-            if (event && event.isTrusted) {
-                _ignoreNextHashChange = true;
-            }
-
-            $(tabLink).tab('show');
+        tabLink.addEventListener('click', () => {
+            history.replaceState(null, null, tabLink.hash);
         });
     });
 }
@@ -33,12 +26,6 @@ function handleExtraTabLinks() {
 /** To show correct tab when URL has/changes hash */
 function handleTabsFromURL() {
     function showFromHash() {
-        if (_ignoreNextHashChange) {
-            _ignoreNextHashChange = false;
-            console.info('Ignoring hash change');
-            return;
-        }
-
         const id = (window.location.hash || '').replace(/^#tab-/, '');
         if (!id) return;
 
@@ -52,7 +39,7 @@ function handleTabsFromURL() {
     window.addEventListener('hashchange', showFromHash);
 }
 
-/** To call all handling */
+/** To enable all handling */
 function handleTabLinks() {
     handleDefaultTabLinks();
     handleExtraTabLinks();
