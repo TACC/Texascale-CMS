@@ -30,29 +30,13 @@ def extendBootstrap4TabsPlugin():
         # max_num = 1 # Already explicitly limited by model's OneToOneField
         can_delete = False # Don't allow deletion of the extension
 
-        # Use all fields from the extension model
         fields = ('tab_image',)
 
     class Bootstrap4TabItemPlugin(OriginalBootstrap4TabItemPlugin):
         model = Bootstrap4TabItem
-        name = "Tab Item (with Image support)"
+        name = "Tab Item (with Image Tab support)"
 
         inlines = [TabImageExtensionInline]
-
-        fieldsets = [
-            (None, {
-                'fields': (
-                    'tab_title',
-                )
-            }),
-            (_('Advanced settings'), {
-                'classes': ('collapse',),
-                'fields': (
-                    'tag_type',
-                    'attributes',
-                )
-            }),
-        ]
 
         def render(self, context, instance, placeholder):
             context = super().render(context, instance, placeholder)
