@@ -1,7 +1,3 @@
-import logging
-
-logger = logging.getLogger(f"portal.{__name__}")
-
 def extendBootstrap4TabsPlugin():
     from django import forms
     from django.utils.translation import gettext_lazy as _
