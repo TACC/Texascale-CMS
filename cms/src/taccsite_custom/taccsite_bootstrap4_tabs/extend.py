@@ -34,13 +34,5 @@ def extendBootstrap4TabsPlugin():
 
         inlines = [TabImageExtensionInline]
 
-        def render(self, context, instance, placeholder):
-            context = super().render(context, instance, placeholder)
-
-            context.update({
-                'tab_image': instance.tab_image,
-            })
-            return context
-
     plugin_pool.unregister_plugin(OriginalBootstrap4TabItemPlugin)
     plugin_pool.register_plugin(Bootstrap4TabItemPlugin)
