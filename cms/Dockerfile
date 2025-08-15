@@ -1,4 +1,4 @@
-FROM taccwma/core-cms:feat-allow-custom-sites-to-overwrite-app-templates
+FROM taccwma/core-cms:v4.36.3
 
 WORKDIR /code
 
