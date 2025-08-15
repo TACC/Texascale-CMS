@@ -23,7 +23,12 @@ const options = {
 };
 
 buildStylesheets(
-  `${ASSET_PATH}css/*.postcss`,
-  `${ASSET_PATH}css/`,
+  `${ASSET_PATH}css/legacy/*.postcss`,
+  `${ASSET_PATH}css/legacy`,
+  options
+);
+buildStylesheets(
+  `${ASSET_PATH}css/2025/*.postcss`,
+  `${ASSET_PATH}css/2025`,
   options
 );
