@@ -1,0 +1,4 @@
+.nav-tabs .nav-link img + span {
+    color: var(--tx-beige);
+    background-color: var(--tx-black);
+}
