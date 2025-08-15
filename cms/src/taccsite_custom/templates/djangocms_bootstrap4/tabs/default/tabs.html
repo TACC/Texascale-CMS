@@ -30,13 +30,10 @@
                     {# TACC (support image content): #}
                     {% if plugin.tab_image %}
                         {% include "./tabs_image.html" with instance=plugin.tab_image %}
-                        <span class="sr-only">
-                            {{ plugin.tab_title }}
-                        </span>
-                    {% else %}
-                        {{ plugin.tab_title }}
-                    {# TACC (support image content): #}
                     {% endif %}
+                        {# TACC (wrap link text): #}
+                        <span>{{ plugin.tab_title }}</span>
+                        {# /TACC #}
                     {# /TACC #}
                 </a>
             </li>
