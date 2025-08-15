@@ -19,5 +19,7 @@
   <link rel="stylesheet" href="https://use.typekit.net/xnr7bof.css">
   <link rel="stylesheet" href="{% static 'texascale_cms/css/site.css' %}">
   <link rel="stylesheet" href="{% static 'texascale_cms/css/site.header.css' %}">
+  {% else %}
+  <link rel="stylesheet" href="{% static 'texascale_cms/css/cms.2025.css' %}">
   {% endif %}
 {% endblock assets_custom %}
