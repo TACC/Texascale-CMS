@@ -1,0 +1,52 @@
+@import url("@tacc/core-styles/src/lib/_imports/tools/media-queries.css");
+
+@media (--narrow-and-above) {
+    .nav-tabs {
+        display: grid;
+        grid-auto-flow: column;
+        justify-content: start;
+
+        gap: 20px;
+        margin-bottom: 40px;
+    }
+}
+
+@media (--narrow-and-below) {
+    .nav-tabs {
+        display: none;
+    }
+}
+
+.nav-tabs {
+    border: unset;
+}
+.nav-tabs .nav-link {
+    margin: unset;
+    padding: unset;
+    border: unset;
+}
+.nav-tabs .nav-link:not(.active) {
+    opacity: 0.6;
+}
+
+.tab-pane {
+    --buffer: 0;
+
+    border: unset;
+    padding: unset;
+}
+
+.nav-tabs .nav-link {
+    text-align: center;
+}
+.nav-tabs .nav-link img {
+    display: block;
+}
+.nav-tabs .nav-link img + span {
+    display: block;
+    margin-top: -1.5lh;
+    padding-block: 0.25lh;
+
+    position: relative;
+    z-index: 1;
+}
