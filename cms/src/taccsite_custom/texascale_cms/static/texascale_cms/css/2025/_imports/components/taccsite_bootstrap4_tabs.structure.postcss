@@ -20,15 +20,20 @@
     @mixin tabs-grid;
     border: unset;
 }
+
+/* To remove space around tab content */
 .nav-tabs .nav-link {
     margin: unset;
     padding: unset;
     border: unset;
 }
+
+/* To highlight active tab */
 .nav-tabs .nav-link:not(.active) {
     opacity: 0.6;
 }
 
+/* To remove space around tab content */
 .tab-pane {
     --buffer: 0;
 
@@ -36,22 +41,25 @@
     padding: unset;
 }
 
+/* To put tab text atop tab image */
 .nav-tabs .nav-link {
-    text-align: center;
+    position: relative; /* so we can position text */
+    overflow: hidden;   /* so user can see when label is too large */
 }
 .nav-tabs .nav-link img {
     display: block;
 }
 .nav-tabs .nav-link img + span {
-    display: block;
-    margin-top: -1.5lh;
-    padding-block: 0.25lh;
-
-    position: relative;
+    position: absolute;
+    width: 100%;
     z-index: 1;
+    bottom: 0;
+
+    padding-block: 0.25lh;
+    text-align: center;
 }
 
-/* Bootstrap-esque class names to let user define when tab layout is shown */
+/* Bootstrap-style class names let designer define when tab layout is shown */
 /* FAQ: Use `tabs-*` class, tabs hide unless at "*" breakpoint or greater */
 .tabs-xs .nav-tabs,
 .tabs-sm .nav-tabs,
