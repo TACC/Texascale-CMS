@@ -1,6 +1,6 @@
 @import url("@tacc/core-styles/src/lib/_imports/tools/media-queries.css");
 
-/* To show tabs as a grid (only active content is shown) */
+/* To structure tabs (only active content shown) */
 @define-mixin tabs-grid {
     display: grid;
     grid-auto-flow: column;
@@ -12,6 +12,14 @@
 /* To hide tabs but show all content */
 @define-mixin tabs-hide {
     display: none;
+}
+@define-mixin tab-content-show {
+    .tab-pane {
+        display: block;
+    }
+    .nav-tabs-toggle {
+        display: none;
+    }
 }
 
 /* To show tabs unless user adds `tabs-*` class to parent */
@@ -60,17 +68,30 @@
 }
 
 /* Bootstrap-style class names let designer define when tab layout is shown */
-/* FAQ: Use `tabs-*` class, tabs hide unless at "*" breakpoint or greater */
-.tabs-xs .nav-tabs,
-.tabs-sm .nav-tabs,
-.tabs-md .nav-tabs,
-.tabs-lg .nav-tabs,
-.tabs-xl .nav-tabs {
-    @mixin tabs-hide;
-}
-/* FAQ: Use `tabs-*` class, tabs show at "*" breakpoint and greater */
+/* FAQ: At breakpoints and wider: structure tabs (only active content shown) */
 @media (--xx-narrow-and-above) { .tabs-xs .nav-tabs { @mixin tabs-grid; } }
 @media (--x-narrow-and-above) { .tabs-sm .nav-tabs { @mixin tabs-grid; } }
 @media (--narrow-and-above) { .tabs-md .nav-tabs { @mixin tabs-grid; } }
 @media (--medium-and-above) { .tabs-lg .nav-tabs { @mixin tabs-grid; } }
 @media (--wide-and-above) { .tabs-xl .nav-tabs { @mixin tabs-grid; } }
+/* FAQ: At breakpoints and narrower: hide tabs, show all content */
+@media (--xx-narrow-and-below) {
+    .tabs-xs .nav-tabs { @mixin tabs-hide; }
+    .tabs-xs .tab-content { @mixin tab-content-show; }
+}
+@media (--x-narrow-and-below) {
+    .tabs-sm .nav-tabs { @mixin tabs-hide; }
+    .tabs-sm .tab-content { @mixin tab-content-show; }
+}
+@media (--narrow-and-below) {
+    .tabs-md .nav-tabs { @mixin tabs-hide; }
+    .tabs-md .tab-content { @mixin tab-content-show; }
+}
+@media (--medium-and-below) {
+    .tabs-lg .nav-tabs { @mixin tabs-hide; }
+    .tabs-lg .tab-content { @mixin tab-content-show; }
+}
+@media (--wide-and-below) {
+    .tabs-xl .nav-tabs { @mixin tabs-hide; }
+    .tabs-xl .tab-content { @mixin tab-content-show; }
+}
