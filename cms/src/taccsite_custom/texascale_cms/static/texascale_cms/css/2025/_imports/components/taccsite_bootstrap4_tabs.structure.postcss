@@ -1,23 +1,23 @@
 @import url("@tacc/core-styles/src/lib/_imports/tools/media-queries.css");
 
-@media (--narrow-and-above) {
-    .nav-tabs {
-        display: grid;
-        grid-auto-flow: column;
-        justify-content: start;
+/* To show tabs as a grid (only active content is shown) */
+@define-mixin tabs-grid {
+    display: grid;
+    grid-auto-flow: column;
+    justify-content: start;
 
-        gap: 20px;
-        margin-bottom: 40px;
-    }
+    gap: 20px;
+    margin-bottom: 40px;
+}
+/* To hide tabs but show all content */
+@define-mixin tabs-hide {
+    display: none;
 }
 
-@media (--narrow-and-below) {
-    .nav-tabs {
-        display: none;
-    }
-}
-
-.nav-tabs {
+/* To show tabs unless user adds `tabs-*` class to parent */
+/* FAQ: The `:where` allows user styles to override easily */
+.nav-tabs:where(:not([class*="tabs-"])) {
+    @mixin tabs-grid;
     border: unset;
 }
 .nav-tabs .nav-link {
@@ -50,3 +50,19 @@
     position: relative;
     z-index: 1;
 }
+
+/* Bootstrap-esque class names to let user define when tab layout is shown */
+/* FAQ: Use `tabs-*` class, tabs hide unless at "*" breakpoint or greater */
+.tabs-xs .nav-tabs,
+.tabs-sm .nav-tabs,
+.tabs-md .nav-tabs,
+.tabs-lg .nav-tabs,
+.tabs-xl .nav-tabs {
+    @mixin tabs-hide;
+}
+/* FAQ: Use `tabs-*` class, tabs show at "*" breakpoint and greater */
+@media (--xx-narrow-and-above) { .tabs-xs .nav-tabs { @mixin tabs-grid; } }
+@media (--x-narrow-and-above) { .tabs-sm .nav-tabs { @mixin tabs-grid; } }
+@media (--narrow-and-above) { .tabs-md .nav-tabs { @mixin tabs-grid; } }
+@media (--medium-and-above) { .tabs-lg .nav-tabs { @mixin tabs-grid; } }
+@media (--wide-and-above) { .tabs-xl .nav-tabs { @mixin tabs-grid; } }
