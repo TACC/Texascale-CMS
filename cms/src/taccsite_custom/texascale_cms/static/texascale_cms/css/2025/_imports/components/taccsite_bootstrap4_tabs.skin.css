@@ -1,3 +1,4 @@
+/* To style tab-toggle links that are not in `.nav-tabs` */
 .tab-toggle {
     color: var(--tx-beige);
     background: var(--tx-black);
@@ -13,7 +14,16 @@
 a.tab-toggle:hover {
     box-shadow: 0 0 0 0.5ch var(--tx-black);
 }
+a.tab-toggle[disabled] {
+    opacity: 0.6;
+}
 
+/* To highlight active tab */
+.nav-tabs .nav-link:not(.active) {
+    opacity: 0.6;
+}
+
+/* To show tab titles clearly */
 .nav-tabs .nav-link img + span {
     color: var(--tx-beige);
     background-color: var(--tx-black);
