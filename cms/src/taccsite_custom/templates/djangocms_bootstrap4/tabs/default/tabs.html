@@ -43,7 +43,7 @@
     <div class="tab-content">
         {% for plugin in instance.child_plugin_instances %}
             <div class="tab-pane
-                {% if instance.tab_index == forloop.counter %} show active{% endif %}
+                {% if instance.tab_index == forloop.counter %}active{% endif %}
                 {% if instance.tab_effect %}{{ instance.tab_effect }}{% endif %}"
                 id="tab-{{ forloop.counter }}"
                 aria-labelledby="tab-label-{{ forloop.counter }}"
