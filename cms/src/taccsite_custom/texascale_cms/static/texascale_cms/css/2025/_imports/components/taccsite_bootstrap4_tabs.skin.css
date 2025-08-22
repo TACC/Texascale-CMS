@@ -1,4 +1,4 @@
-.nav-tabs-toggle {
+.tab-toggle {
     color: var(--tx-beige);
     background: var(--tx-black);
 
@@ -10,7 +10,7 @@
     box-sizing: content-box;
     text-align: center;
 }
-a.nav-tabs-toggle:hover {
+a.tab-toggle:hover {
     box-shadow: 0 0 0 0.5ch var(--tx-black);
 }
 
