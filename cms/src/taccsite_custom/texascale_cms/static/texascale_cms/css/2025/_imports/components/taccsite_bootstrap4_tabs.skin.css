@@ -1,3 +1,19 @@
+.nav-tabs-toggle {
+    color: var(--tx-beige);
+    background: var(--tx-black);
+
+    /* for fat pill (that becomes a circle if only one character wide) */
+    border-radius: 1lh;
+    padding: 0.25lh;
+    min-width: 1lh;
+    display: inline-block;
+    box-sizing: content-box;
+    text-align: center;
+}
+a.nav-tabs-toggle:hover {
+    box-shadow: 0 0 0 0.5ch var(--tx-black);
+}
+
 .nav-tabs .nav-link img + span {
     color: var(--tx-beige);
     background-color: var(--tx-black);
