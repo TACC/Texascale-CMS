@@ -6,13 +6,17 @@
 
 /* To define tab layout (only active content shown) */
 @define-mixin nav-tabs-layout {
-    display: grid;
-    grid-auto-flow: column;
-    justify-content: start;
+    .nav-tabs {
+        display: grid;
+        grid-auto-flow: column;
+        justify-content: start;
+    }
 }
 /* To hide tabs but show all content */
 @define-mixin nav-tabs-hidden {
-    display: none;
+    .nav-tabs {
+        display: none;
+    }
 }
 @define-mixin tab-content-show {
     .tab-pane {
@@ -97,51 +101,51 @@
 */
 
 @media (--xx-narrow-and-above) {
-    .tabs-xs .nav-tabs { @mixin nav-tabs-layout; }
+    .tabs-xs { @mixin nav-tabs-layout; }
     .tabs-xs { @mixin tab-pane-layout-wide; }
 }
 @media (--xx-narrow-and-below) {
-    .tabs-xs .nav-tabs { @mixin nav-tabs-hidden; }
-    .tabs-xs .tab-content { @mixin tab-content-show; }
+    .tabs-xs { @mixin nav-tabs-hidden; }
+    .tabs-xs { @mixin tab-content-show; }
     .tabs-xs { @mixin tab-pane-layout-narrow; }
 }
 
 @media (--x-narrow-and-above) {
-    .tabs-sm .nav-tabs { @mixin nav-tabs-layout; }
+    .tabs-sm { @mixin nav-tabs-layout; }
     .tabs-sm { @mixin tab-pane-layout-wide; }
 }
 @media (--x-narrow-and-below) {
-    .tabs-sm .nav-tabs { @mixin nav-tabs-hidden; }
-    .tabs-sm .tab-content { @mixin tab-content-show; }
+    .tabs-sm { @mixin nav-tabs-hidden; }
+    .tabs-sm { @mixin tab-content-show; }
     .tabs-sm { @mixin tab-pane-layout-narrow; }
 }
 
 @media (--narrow-and-above) {
-    .tabs-md .nav-tabs { @mixin nav-tabs-layout; }
+    .tabs-md { @mixin nav-tabs-layout; }
     .tabs-md { @mixin tab-pane-layout-wide; }
 }
 @media (--narrow-and-below) {
-    .tabs-md .nav-tabs { @mixin nav-tabs-hidden; }
-    .tabs-md .tab-content { @mixin tab-content-show; }
+    .tabs-md { @mixin nav-tabs-hidden; }
+    .tabs-md { @mixin tab-content-show; }
     .tabs-md { @mixin tab-pane-layout-narrow; }
 }
 
 @media (--medium-and-above) {
-    .tabs-lg .nav-tabs { @mixin nav-tabs-layout; }
+    .tabs-lg { @mixin nav-tabs-layout; }
     .tabs-lg { @mixin tab-pane-layout-wide; }
 }
 @media (--medium-and-below) {
-    .tabs-lg .nav-tabs { @mixin nav-tabs-hidden; }
-    .tabs-lg .tab-content { @mixin tab-content-show; }
+    .tabs-lg { @mixin nav-tabs-hidden; }
+    .tabs-lg { @mixin tab-content-show; }
     .tabs-lg { @mixin tab-pane-layout-narrow; }
 }
 
 @media (--wide-and-above) {
-    .tabs-xl .nav-tabs { @mixin nav-tabs-layout; }
+    .tabs-xl { @mixin nav-tabs-layout; }
     .tabs-xl { @mixin tab-pane-layout-wide; }
 }
 @media (--wide-and-below) {
-    .tabs-xl .nav-tabs { @mixin nav-tabs-hidden; }
-    .tabs-xl .tab-content { @mixin tab-content-show; }
+    .tabs-xl { @mixin nav-tabs-hidden; }
+    .tabs-xl { @mixin tab-content-show; }
     .tabs-xl { @mixin tab-pane-layout-narrow; }
 }
