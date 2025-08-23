@@ -13,7 +13,7 @@
     }
 }
 /* To hide tabs but show all content */
-@define-mixin nav-tabs-hidden {
+@define-mixin nav-tabs-hide {
     .nav-tabs {
         display: none;
     }
@@ -106,7 +106,7 @@
         @mixin tab-pane-layout-wide;
     }
     @media (--xx-narrow-and-below) {
-        @mixin nav-tabs-hidden;
+        @mixin nav-tabs-hide;
         @mixin tab-content-show;
         @mixin tab-pane-layout-narrow;
     }
@@ -117,7 +117,7 @@
         @mixin tab-pane-layout-wide;
     }
     @media (--x-narrow-and-below) {
-        @mixin nav-tabs-hidden;
+        @mixin nav-tabs-hide;
         @mixin tab-content-show;
         @mixin tab-pane-layout-narrow;
     }
@@ -128,7 +128,7 @@
         @mixin tab-pane-layout-wide;
     }
     @media (--narrow-and-below) {
-        @mixin nav-tabs-hidden;
+        @mixin nav-tabs-hide;
         @mixin tab-content-show;
         @mixin tab-pane-layout-narrow;
     }
@@ -139,7 +139,7 @@
         @mixin tab-pane-layout-wide;
     }
     @media (--medium-and-below) {
-        @mixin nav-tabs-hidden;
+        @mixin nav-tabs-hide;
         @mixin tab-content-show;
         @mixin tab-pane-layout-narrow;
     }
@@ -150,7 +150,7 @@
         @mixin tab-pane-layout-wide;
     }
     @media (--wide-and-below) {
-        @mixin nav-tabs-hidden;
+        @mixin nav-tabs-hide;
         @mixin tab-content-show;
         @mixin tab-pane-layout-narrow;
     }
