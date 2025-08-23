@@ -1,0 +1,54 @@
+<style id="2025-css-tabs">
+/* NAV TABS */
+
+.nav-tabs {
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+/* To highlight active tab */
+.nav-tabs .nav-link:not(.active) {
+    opacity: 0.6;
+}
+
+/* To show tab titles clearly */
+.nav-tabs .nav-link img + span {
+    color: var(--tx-beige);
+    background-color: var(--tx-black);
+}
+
+
+
+/* TAB CONTENT */
+
+.tab-pane {
+    --space-above-title--layout-wide: 55px;
+    --space-above-title--layout-narrow: 20px;
+    --space-after-image--layout-wide: 32px;
+    --space-after-image--layout-narrow: 0;
+}
+
+
+
+/* TAB TOGGLE */
+
+/* The tab links that are in content, not in `.nav-tabs` */
+.tab-toggle {
+    color: var(--tx-beige);
+    background: var(--tx-black);
+
+    /* for fat pill (that becomes a circle if only one character wide) */
+    border-radius: 1lh;
+    padding: 0.25lh;
+    min-width: 1lh;
+    display: inline-block;
+    box-sizing: content-box;
+    text-align: center;
+}
+a.tab-toggle:hover {
+    box-shadow: 0 0 0 0.5ch var(--tx-black);
+}
+a.tab-toggle[disabled] {
+    opacity: 0.6;
+}
+</style>
