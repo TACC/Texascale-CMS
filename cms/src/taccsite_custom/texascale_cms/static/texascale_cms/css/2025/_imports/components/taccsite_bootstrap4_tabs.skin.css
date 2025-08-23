@@ -1,12 +1,1 @@
-/*! skin styles also in snippets/2025/css-tabs so designer can tweak in situ */
-
-
-
-/* TAB CONTENT */
-
-.tab-pane {
-    /* to remove space around tab content */
-    --buffer: 0;
-    border: unset;
-    padding: unset;
-}
+/*! skin styles in snippets/2025/css-tabs so designer can tweak in situ */

@@ -4,14 +4,10 @@
 
 /* NAV TABS */
 
-/* To define tab layout (only active content shown) */
-@define-mixin nav-tabs-layout {
-    .nav-tabs {
-        display: grid;
-        grid-auto-flow: column;
-        justify-content: start;
-    }
+.nav-tabs {
+    border: unset;
 }
+
 /* To hide tabs but show all content */
 @define-mixin nav-tabs-hide {
     .nav-tabs {
@@ -25,14 +21,6 @@
     .tab-toggle {
         display: none;
     }
-}
-
-/* To define tab layout (unless user adds `tabs-*` class to parent) */
-/* FAQ: The `:where` allows user styles to override easily */
-.nav-tabs:where(:not([class*="tabs-"])) {
-    @mixin nav-tabs-layout;
-
-    border: unset;
 }
 
 /* To remove space around tab content */
@@ -69,6 +57,12 @@
     --space-above-title--layout-narrow: 0;
     --space-after-image--layout-wide: 0;
     --space-after-image--layout-narrow: 0;
+
+    /* to remove space around tab content */
+    --buffer: 0;
+
+    border: unset;
+    padding: unset;
 }
 
 @define-mixin tab-pane-layout-wide {
@@ -102,56 +96,56 @@
 
 .tabs-xs {
     @media (--xx-narrow-and-above) {
-        @mixin nav-tabs-layout;
         @mixin tab-pane-layout-wide;
     }
     @media (--xx-narrow-and-below) {
+        @mixin tab-pane-layout-narrow;
+
         @mixin nav-tabs-hide;
         @mixin tab-content-show;
-        @mixin tab-pane-layout-narrow;
     }
 }
 .tabs-sm {
     @media (--x-narrow-and-above) {
-        @mixin nav-tabs-layout;
         @mixin tab-pane-layout-wide;
     }
     @media (--x-narrow-and-below) {
+        @mixin tab-pane-layout-narrow;
+
         @mixin nav-tabs-hide;
         @mixin tab-content-show;
-        @mixin tab-pane-layout-narrow;
     }
 }
 .tabs-md {
     @media (--narrow-and-above) {
-        @mixin nav-tabs-layout;
         @mixin tab-pane-layout-wide;
     }
     @media (--narrow-and-below) {
+        @mixin tab-pane-layout-narrow;
+
         @mixin nav-tabs-hide;
         @mixin tab-content-show;
-        @mixin tab-pane-layout-narrow;
     }
 }
 .tabs-lg {
     @media (--medium-and-above) {
-        @mixin nav-tabs-layout;
         @mixin tab-pane-layout-wide;
     }
     @media (--medium-and-below) {
+        @mixin tab-pane-layout-narrow;
+
         @mixin nav-tabs-hide;
         @mixin tab-content-show;
-        @mixin tab-pane-layout-narrow;
     }
 }
 .tabs-xl {
     @media (--wide-and-above) {
-        @mixin nav-tabs-layout;
         @mixin tab-pane-layout-wide;
     }
     @media (--wide-and-below) {
+        @mixin tab-pane-layout-narrow;
+
         @mixin nav-tabs-hide;
         @mixin tab-content-show;
-        @mixin tab-pane-layout-narrow;
     }
 }
