@@ -32,6 +32,7 @@ function handleTabsFromURL() {
         const trigger = document.getElementById(`tab-label-${id}`);
         if (!trigger) return console.info('Tab trigger not found:', id);
 
+        trigger.focus();
         trigger.click();
     };
 
@@ -39,68 +40,82 @@ function handleTabsFromURL() {
     window.addEventListener('hashchange', showFromHash);
 }
 
-/** To add keyboard navigation (←,↑,→,↓,home,end) */
-function handleTabKeyboardNavigation() {
+/**
+ * Support accessibility that Bootstrap 4 lacks:
+ * - keyboard navigation (supports wraparound)
+ * - roving tabindex (kept in sync with activation)
+ */
+function handleA11y() {
+    /* To manage `tabindex` */
+    /* https://www.w3.org/WAI/ARIA/apg/practices/keyboard-interface/#kbd_roving_tabindex */
+    function getTabs(tablist) {
+        return Array.from(tablist.querySelectorAll('[role="tab"]'));
+    }
+    function updateTabindexes(tablist, activeTab) {
+        getTabs(tablist).forEach(t => t.tabIndex = (t === activeTab ? 0 : -1));
+    }
+    function activateTab(tablist, tab) {
+        if (!tab) return;
+        try { tab.focus(); } catch (e) {}
+        if (typeof tab.click === 'function') tab.click();
+        updateTabindexes(tablist, tab);
+    }
+    function seedInitialTabindex(tablist) {
+        const tabs = getTabs(tablist);
+        if (!tabs.length) return;
+        let initialTab = tabs.find(tab => {
+            const isActive = tab.classList.contains('active');
+            const isAriaSelected = (tab.getAttribute('aria-selected') === 'true');
+
+            return isActive || isAriaSelected;
+        }) || tabs[0];
+
+    // updateTabindexes expects (tablist, activeTab)
+    updateTabindexes(tablist, initialTab);
+    }
+
     document.querySelectorAll('[role="tablist"]').forEach(tablist => {
+        /* To add keyboard navigation (←,↑,→,↓,home,end) */
         tablist.addEventListener('keydown', (event) => {
-            const key = event.key;
-            const tabs = Array.from(tablist.querySelectorAll('[role="tab"]'));
+            const tabs = getTabs(tablist);
             if (!tabs.length) return;
 
-            // Try to determine currently focused/active tab
-            let currentIndex = tabs.indexOf(document.activeElement);
-            if (currentIndex === -1) {
-                currentIndex = tabs.findIndex(t => t.getAttribute('aria-selected') === 'true' || t.classList.contains('active'));
+            let current = tabs.indexOf(document.activeElement);
+            if (current === -1) {
+                current = tabs.findIndex(t => t.classList.contains('active') || t.getAttribute('aria-selected') === 'true');
             }
-            if (currentIndex === -1) currentIndex = 0;
+            if (current === -1) current = 0;
 
-            let newIndex = -1;
-            if (key === 'ArrowLeft' || key === 'ArrowUp') {
-                newIndex = (currentIndex > 0) ? currentIndex - 1 : tabs.length - 1;
-            } else if (key === 'ArrowRight' || key === 'ArrowDown') {
-                newIndex = (currentIndex + 1) % tabs.length;
-            } else if (key === 'Home') {
-                newIndex = 0;
-            } else if (key === 'End') {
-                newIndex = tabs.length - 1;
-            } else {
-                return; // ignore other keys
+            let nextIndex = null;
+            switch (event.key) {
+                case 'ArrowLeft':
+                case 'ArrowUp':
+                    nextIndex = (current - 1 + tabs.length) % tabs.length;
+                    break;
+                case 'ArrowRight':
+                case 'ArrowDown':
+                    nextIndex = (current + 1) % tabs.length;
+                    break;
+                case 'Home':
+                    nextIndex = 0;
+                    break;
+                case 'End':
+                    nextIndex = tabs.length - 1;
+                    break;
+                default:
+                    return;
             }
 
             event.preventDefault();
-            const next = tabs[newIndex];
-            if (!next) return;
-
-            // Focus and activate the tab. Using click() keeps behavior consistent with existing handlers.
-            try { next.focus(); } catch (e) { /* ignore focus failures */ }
-            if (typeof next.click === 'function') next.click();
+            activateTab(tablist, tabs[nextIndex]);
         });
-    });
-}
 
-/** To support "roving tabindex" (manage `tabindex` attribute) */
-/* https://www.w3.org/WAI/ARIA/apg/practices/keyboard-interface/#kbd_roving_tabindex */
-function handleRovingTabindex() {
-    document.querySelectorAll('[role="tablist"]').forEach(tablist => {
-        function updateTabindexes(activeTab) {
-            const tabs = Array.from(tablist.querySelectorAll('[role="tab"]'));
-            tabs.forEach(tab => {
-                try {
-                    tab.setAttribute('tabindex', tab === activeTab ? '0' : '-1');
-                } catch (e) { /* ignore */ }
-            });
-        }
-
-        // initialize based on currently active tab (by class or aria-selected)
-        const tabs = Array.from(tablist.querySelectorAll('[role="tab"]'));
-        let active = tabs.find(t => t.classList.contains('active') || t.getAttribute('aria-selected') === 'true');
-        if (!active && tabs.length) active = tabs[0];
-        if (active) updateTabindexes(active);
-
-        // update roving tabindex when a tab is clicked/activated
-        tabs.forEach(tab => {
-            tab.addEventListener('click', () => updateTabindexes(tab));
+        tablist.addEventListener('click', (event) => {
+            const tab = event.target.closest('[role="tab"]');
+            if (tab) updateTabindexes(tablist, tab);
         });
+
+        seedInitialTabindex(tablist);
     });
 }
 
@@ -109,8 +124,7 @@ function handleTabLinks() {
     handleDefaultTabLinks();
     handleExtraTabLinks();
     handleTabsFromURL();
-    handleTabKeyboardNavigation();
-    handleRovingTabindex();
+    handleA11y();
 }
 
 if (document.readyState === 'loading') {
