@@ -100,70 +100,56 @@
     - At breakpoints and narrower: hide tabs, show all content
 */
 
-@media (--xx-narrow-and-above) {
-    .tabs-xs {
+.tabs-xs {
+    @media (--xx-narrow-and-above) {
         @mixin nav-tabs-layout;
         @mixin tab-pane-layout-wide;
     }
-}
-@media (--xx-narrow-and-below) {
-    .tabs-xs {
+    @media (--xx-narrow-and-below) {
         @mixin nav-tabs-hidden;
         @mixin tab-content-show;
         @mixin tab-pane-layout-narrow;
     }
 }
-
-@media (--x-narrow-and-above) {
-    .tabs-sm {
+.tabs-sm {
+    @media (--x-narrow-and-above) {
         @mixin nav-tabs-layout;
         @mixin tab-pane-layout-wide;
     }
-}
-@media (--x-narrow-and-below) {
-    .tabs-sm {
+    @media (--x-narrow-and-below) {
         @mixin nav-tabs-hidden;
         @mixin tab-content-show;
         @mixin tab-pane-layout-narrow;
     }
 }
-
-@media (--narrow-and-above) {
-    .tabs-md {
+.tabs-md {
+    @media (--narrow-and-above) {
         @mixin nav-tabs-layout;
         @mixin tab-pane-layout-wide;
     }
-}
-@media (--narrow-and-below) {
-    .tabs-md {
+    @media (--narrow-and-below) {
         @mixin nav-tabs-hidden;
         @mixin tab-content-show;
         @mixin tab-pane-layout-narrow;
     }
 }
-
-@media (--medium-and-above) {
-    .tabs-lg {
+.tabs-lg {
+    @media (--medium-and-above) {
         @mixin nav-tabs-layout;
         @mixin tab-pane-layout-wide;
     }
-}
-@media (--medium-and-below) {
-    .tabs-lg {
+    @media (--medium-and-below) {
         @mixin nav-tabs-hidden;
         @mixin tab-content-show;
         @mixin tab-pane-layout-narrow;
     }
 }
-
-@media (--wide-and-above) {
-    .tabs-xl {
+.tabs-xl {
+    @media (--wide-and-above) {
         @mixin nav-tabs-layout;
         @mixin tab-pane-layout-wide;
     }
-}
-@media (--wide-and-below) {
-    .tabs-xl {
+    @media (--wide-and-below) {
         @mixin nav-tabs-hidden;
         @mixin tab-content-show;
         @mixin tab-pane-layout-narrow;
