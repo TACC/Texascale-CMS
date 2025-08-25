@@ -1,0 +1,167 @@
+@import url("@tacc/core-styles/src/lib/_imports/tools/media-queries.css");
+
+
+
+/* NAV TABS */
+
+.nav-tabs {
+    border: unset;
+}
+
+/* To hide tabs but show all content */
+@define-mixin nav-tabs-hide {
+    .nav-tabs {
+        display: none;
+    }
+}
+@define-mixin tab-content-show {
+    .tab-pane {
+        display: block;
+    }
+    .tab-toggle {
+        display: none;
+    }
+}
+
+/* To remove space around tab content */
+.nav-tabs .nav-link {
+    margin: unset;
+    padding: unset;
+    border: unset;
+}
+
+/* To put tab text atop tab image */
+.nav-tabs .nav-link {
+    position: relative; /* so we can position text */
+    overflow: hidden;   /* so user can see when label is too large */
+}
+.nav-tabs .nav-link img {
+    display: block;
+}
+.nav-tabs .nav-link img + span {
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+    bottom: 0;
+
+    padding-block: 0.25lh;
+    text-align: center;
+}
+
+
+
+/* TAB CONTENT */
+
+.tab-pane {
+    --space-above-title--layout-wide: 0;
+    --space-above-title--layout-narrow: 0;
+    --space-after-image--layout-wide: 0;
+    --space-after-image--layout-narrow: 0;
+
+    /* to remove space around tab content */
+    --buffer: 0;
+
+    border: unset;
+    padding: unset;
+}
+
+@define-mixin tab-pane-layout-wide {
+    .tab-pane {
+        /* to "clearfix" floated child image */
+        overflow: auto;
+    }
+    .tab-pane img {
+        float: left; /* to allow text wrap e.g. on mobile */
+        padding-right: var(--space-after-image--layout-wide);
+    }
+    .tab-pane-title { padding-top: var(--space-above-title--layout-wide); }
+}
+@define-mixin tab-pane-layout-narrow {
+    .tab-pane img {
+        padding-right: var(--space-after-image--layout-narrow);
+    }
+    .tab-pane-title { padding-top: var(--space-above-title--layout-narrow); }
+}
+
+
+
+/* TAB TOGGLE */
+
+/* To use icon for tab toggles */
+.tab-toggle {
+    font-size: 0;
+    background-size: 11px 18px;
+    background-image: url('/static/texascale_cms/img/tab-toggle-arrow.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.tab-toggle:nth-of-type(2) {
+    transform: scaleX(-1);
+}
+
+
+
+
+/* RESPONSIVE DESIGN */
+
+/* Bootstrap-style class names let designer define when tab layout changes */
+/* FAQ:
+    - At screen widths wider than breakpoint: style tabs, hide inactive content
+    - At screen widths narrower than breakpoint: hide tabs, show all content
+*/
+
+.tabs-xs {
+    @media (--xx-narrow-and-above) {
+        @mixin tab-pane-layout-wide;
+    }
+    @media (--xx-narrow-and-below) {
+        @mixin tab-pane-layout-narrow;
+
+        @mixin nav-tabs-hide;
+        @mixin tab-content-show;
+    }
+}
+.tabs-sm {
+    @media (--x-narrow-and-above) {
+        @mixin tab-pane-layout-wide;
+    }
+    @media (--x-narrow-and-below) {
+        @mixin tab-pane-layout-narrow;
+
+        @mixin nav-tabs-hide;
+        @mixin tab-content-show;
+    }
+}
+.tabs-md {
+    @media (--narrow-and-above) {
+        @mixin tab-pane-layout-wide;
+    }
+    @media (--narrow-and-below) {
+        @mixin tab-pane-layout-narrow;
+
+        @mixin nav-tabs-hide;
+        @mixin tab-content-show;
+    }
+}
+.tabs-lg {
+    @media (--medium-and-above) {
+        @mixin tab-pane-layout-wide;
+    }
+    @media (--medium-and-below) {
+        @mixin tab-pane-layout-narrow;
+
+        @mixin nav-tabs-hide;
+        @mixin tab-content-show;
+    }
+}
+.tabs-xl {
+    @media (--wide-and-above) {
+        @mixin tab-pane-layout-wide;
+    }
+    @media (--wide-and-below) {
+        @mixin tab-pane-layout-narrow;
+
+        @mixin nav-tabs-hide;
+        @mixin tab-content-show;
+    }
+}

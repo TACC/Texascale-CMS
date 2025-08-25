@@ -1,0 +1,59 @@
+<style id="2025-css-tabs">
+/* NAV TABS */
+
+.nav-tabs {
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+/* To highlight active tab */
+.nav-tabs .nav-link:not(.active) {
+    opacity: 0.6;
+}
+
+/* To show tab titles clearly */
+.nav-tabs .nav-link img + span {
+    color: var(--tx-beige);
+    background-color: var(--tx-black);
+}
+
+
+
+/* TAB CONTENT */
+
+.tab-pane {
+    --space-above-title--layout-wide: 255px;
+    --space-above-title--layout-narrow: 20px;
+    --space-after-image--layout-wide: 32px;
+    --space-after-image--layout-narrow: 0;
+}
+
+
+
+/* TAB TOGGLE */
+
+/* The tab links that are in content, not in `.nav-tabs` */
+.tab-toggle {
+    background-color: var(--tx-black);
+    background-image: url('/static/texascale_cms/img/tab-toggle-arrow-beige.svg');
+
+    border-radius: 50%;
+    width: 34px;
+    height: 34px;
+
+    display: inline-block;
+    text-align: center;
+    box-sizing: content-box;
+    border: 3px solid var(--tx-bkgd);
+}
+a.tab-toggle:hover {
+    border-color: var(--tx-black);
+}
+a.tab-toggle:active {
+    background-color: var(--tx-beige);
+    background-image: url('/static/texascale_cms/img/tab-toggle-arrow-black.svg');
+}
+a.tab-toggle[disabled] {
+    opacity: 0.6;
+}
+</style>
