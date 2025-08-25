@@ -34,19 +34,24 @@
 
 /* The tab links that are in content, not in `.nav-tabs` */
 .tab-toggle {
-    color: var(--tx-beige);
-    background: var(--tx-black);
+    background-color: var(--tx-black);
+    background-image: url('/static/texascale_cms/img/tab-toggle-arrow-beige.svg');
 
-    /* for fat pill (that becomes a circle if only one character wide) */
-    border-radius: 1lh;
-    padding: 0.25lh;
-    min-width: 1lh;
+    border-radius: 50%;
+    width: 34px;
+    height: 34px;
+
     display: inline-block;
-    box-sizing: content-box;
     text-align: center;
+    box-sizing: content-box;
+    border: 3px solid var(--tx-bkgd);
 }
 a.tab-toggle:hover {
-    box-shadow: 0 0 0 0.5ch var(--tx-black);
+    border-color: var(--tx-black);
+}
+a.tab-toggle:active {
+    background-color: var(--tx-beige);
+    background-image: url('/static/texascale_cms/img/tab-toggle-arrow-black.svg');
 }
 a.tab-toggle[disabled] {
     opacity: 0.6;

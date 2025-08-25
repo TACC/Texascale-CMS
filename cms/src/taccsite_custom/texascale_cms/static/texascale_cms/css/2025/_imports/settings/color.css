@@ -5,4 +5,6 @@
   --tx-yellow: #FCBF49;   /* Xanthous */
   --tx-beige: #EAE2B7;    /* Vanilla */
   --tx-black: #231F1E;    /* Raisin Black */
+
+  --tx-bkgd: var(--global-color-background--app);
 }
