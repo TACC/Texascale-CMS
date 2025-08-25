@@ -2,7 +2,7 @@ name: Build
 on:
   workflow_dispatch:
   push:
-    branches: [main, feat/bootstrap4-tabs-styles]
+    branches: [main]
 
 jobs:
   build_commit:
