@@ -1,0 +1,17 @@
+<script type="module" id="js-testing-urls-2024-2025">
+if (window.location.href.includes('/2025/')) {
+    const currentPath = window.location.pathname;
+    const pathPrefix = currentPath.substring(0, currentPath.indexOf('/2025/'));
+
+    const links = document.querySelectorAll('a[href*="/2024/"]');
+
+    links.forEach(link => {
+        const linkPath = link.getAttribute('href');
+        const afterYear = linkPath.substring(linkPath.indexOf('/2024/') + 6);
+
+        link.href = `${pathPrefix}/2025/${afterYear}`;
+    });
+
+    console.log(`Updated ${links.length} links to use path: ${pathPrefix}/2025`);
+}
+</script>

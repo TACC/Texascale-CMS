@@ -1,0 +1,35 @@
+/* Remove space between image and title */
+h5 {
+    margin-top: 0; /* override `site.css` */
+}
+
+/* Add border behind section heading */
+h2 {
+    position: relative; /* allow child to `position: absolute` */
+    margin-top: 20px;
+
+    text-align: center;
+}
+h2::before {
+    content: '';
+
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    left: 0;
+
+    border: solid 1px #000;
+}
+h2 > a {
+    /* To be atop fake border */
+    position: relative;
+    display: inline-block;
+    padding-inline: 80px;
+
+    background-color: #fff;
+}
+h2 > a,
+h2 > a:hover {
+    color: #000;
+    text-decoration: none;
+}
