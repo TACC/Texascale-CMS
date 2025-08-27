@@ -1,10 +1,10 @@
 :root {
-  --tx-blue:  #003049;    /* Prussian Blue */
-  --tx-white: #FCFDF3;    /* Ivory */
-  --tx-orange: #BF5700;   /* Texas Orange */
-  --tx-yellow: #FCBF49;   /* Xanthous */
-  --tx-beige: #EAE2B7;    /* Vanilla */
-  --tx-black: #231F1E;    /* Raisin Black */
+  --tc-blue:  #003049;    /* Prussian Blue */
+  --tc-white: #FCFDF3;    /* Ivory */
+  --tc-orange: #BF5700;   /* Texas Orange */
+  --tc-yellow: #FCBF49;   /* Xanthous */
+  --tc-beige: #EAE2B7;    /* Vanilla */
+  --tc-black: #231F1E;    /* Raisin Black */
 
   --tx-bkgd: var(--global-color-background--app);
 }
