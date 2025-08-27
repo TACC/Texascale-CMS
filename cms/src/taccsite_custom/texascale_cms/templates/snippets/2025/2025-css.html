@@ -86,36 +86,6 @@ h4:not(:first-child) {
 
 <!-- COMPONENTS -->
 <style data-design="2025" media="not all">
-/* CORE (New) */
-/* TODO: Add to Core-Styles */
-
-/* Sidebar */
-
-.col-sidebar { border: none; }
-
-/* if full-width rules, remove border */
-.col-sidebar[class*="col-12"] { border: none; }
-@media (max-width: 575.98px) { .col-sidebar { border: none }}
-@media (min-width: 576px) { .col-sidebar[class*="col-sm-12"] { border: none }}
-@media (min-width: 768px) { .col-sidebar[class*="col-md-12"] { border: none }}
-@media (min-width: 992px) { .col-sidebar[class*="col-lg-12"] { border: none }}
-@media (min-width: 1200px) { .col-sidebar[class*="col-xl-12"] { border: none }}
-@media (min-width: 1400px) { .col-sidebar[class*="col-xxl-12"] { border: none }}
-
-/* if not full-width, show border only between adjacent columns */
-.col-sidebar:not(:only-child):first-child {
-	border-right: 1px solid var(--tc-black);
-}
-.col-sidebar:not(:only-child):last-child {
-	border-left: 1px solid var(--tc-black);
-}
-.col-sidebar:not(:only-child, :first-child, :last-child) {
-	border-left: 1px solid var(--tc-black);
-	border-right: 1px solid var(--tc-black);
-}
-
-
-
 /* TEXASCALE / BOOTSTRAP */
 
 /* Col Sidebar */
