@@ -45,6 +45,17 @@ h1, h2, h3, h4, h5, h6 {
 }
 h1 {
 	font-family: var(--texascale-kepler);
+	font-family: "Kepler Std";
+	font-size: 5.5rem;
+	font-style: normal;
+	font-weight: 700;
+	line-height: 110%;
+}
+h2 {
+	font-size: 4.0rem;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 110%;
 }
 h3 {
 	font-size: 3.0rem;
@@ -70,6 +81,10 @@ h6 {
 }
 
 /* Articles */
+[data-page-template*="article"]
+h1, h2 {
+	margin-bottom: 30px;
+}
 [data-page-template*="article"]
 h3, h4 {
 	margin-bottom: 1.8rem;
@@ -113,6 +128,33 @@ h5:not(:first-child) {
 .col-sidebar
 img {
 	display: block; /* to force margin to collapse */
+}
+
+
+
+/* BOOTSTRAP */
+
+/* Jumbotron */
+:is(.jumbotron, .jumbotron--fluid) {
+	background-color: var(--tacc-blue);
+}
+:is(.jumbotron, .jumbotron--fluid)
+:is(h1, h2, h3) {
+	color: var(--tacc-white);
+}
+/* to make hero content narrower */
+.jumbotron
+.container:not(:has(img)) {
+	padding-inline: 100px;
+}
+/* to prevent image from escaping hero */
+:is(.jumbotron, .jumbotron--fluid):has(img.align-right) {
+	overflow: hidden;
+}
+/* to pull image up into hero */
+:is(.jumbotron, .jumbotron--fluid)
++ .container > img {
+	margin-top: -85px;
 }
 </style>
 
