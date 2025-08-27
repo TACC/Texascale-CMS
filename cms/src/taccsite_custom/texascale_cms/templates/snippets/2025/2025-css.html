@@ -1,0 +1,106 @@
+<style id="2025-css" data-design="2025" media="not all">
+/* SETTINGS */
+
+/* Colors: Texascale */
+:root {
+	--tx-gold: #D0B786;
+	--tx-bkgd: var(--global-color-background--app);
+	--tx-kepler: kepler-std, serif;
+}
+/* Colors: TACC/Core v3 (early) */
+:root {
+	--tc-blue:  #003049;    /* Prussian Blue */
+	--tc-white: #FCFDF3;    /* Ivory */
+	--tc-yellow: #FCBF49;   /* Xanthous */
+	--tc-orange: #BF5700;   /* Texas Orange */
+	--tc-beige: #EAE2B7;    /* Vanilla */
+	--tc-black: #231F1E;    /* Raisin Black */
+
+	--tc-color-1: var(--tc-black);
+	--tc-color-2: var(--tx-gold);
+	--tc-color-3: var(--tc-blue);
+}
+
+
+
+/* ELEMENTS */
+
+/* html, body */
+body {
+	color: var(--tc-black);
+
+	font-size: 1.8rem;
+	line-height: 150%;
+	/* letter-spacing: 0.025rem; *//* Core uses 0.025rem */
+}
+
+
+/*
+h1: story titles
+h2: story subtitles
+h3: in-story header 1st-level
+h4: in-story header 2nd-level
+h5: in-story header 3rd-level
+*/
+h1, h2, h3, h4, h5, h6 {
+	color: var(--tc-black);
+}
+h1 {
+	font-family: var(--tx-kepler);
+}
+h3 {
+	font-size: 3.0rem;
+	font-weight: 700;
+	line-height: 150%;
+	margin-bottom: 1.8rem; /* body font-size */
+}
+h4 {
+	font-size: 2.5rem;
+	font-weight: 700;
+	line-height: 130%;
+}
+h5 {
+	font-size: 1.8rem; /* final design */
+	/* font-size: 2.0rem; *//* given design */
+	font-weight: var(--bold);
+	margin-bottom: 0;
+}
+h6 {
+	font-size: 1.8rem;
+	font-weight: var(--medium);
+	margin-bottom: 0;
+}
+/* articles */
+[data-page-template*="article"]
+h3, h4 {
+	margin-bottom: 1.8rem;
+}
+[data-page-template*="article"]
+h4:not(:first-child) {
+	margin-top: 60px;
+}
+
+
+
+/* COMPONENTS */
+
+/* sidebar (in article) */
+[data-page-template*="article"]
+.tx-sidebar
+h4 {
+	font-size: 3.0rem;
+	font-family: var(--tx-kepler);
+
+	text-align: center;
+}
+[data-page-template*="article"]
+.tx-sidebar
+h5:not(:first-child) {
+	margin-top: 20px;
+}
+[data-page-template*="article"]
+.tx-sidebar
+img {
+	display: block;
+}
+</style>
