@@ -1,0 +1,47 @@
+<script id="year-js-toggle-css-per-page" type="module">
+// Minimal year-based toggle using only data-design attributes.
+const yearMatchInURL = window.location.pathname.match(/\/(\d{4})\//);
+const year = yearMatchInURL ? Number(yearMatchInURL[1]) : null;
+const isModern = Boolean(year) && year >= 2025;
+const isLegacy = Boolean(year) && year <= 2024;
+
+const modernEls = [
+    ...(document.querySelectorAll(`
+        [data-design]:is(style,link):not([data-design="legacy"])
+    `))
+].filter(el => {
+    return (/^\d{4}$/.test(el.getAttribute('data-design'))
+            && Number(el.getAttribute('data-design')) >= 2025);
+});
+const legacyEls = [
+    ...(document.querySelectorAll('[data-design="legacy"]:is(style,link)'))
+];
+
+if (isModern) {
+    const targetEls = [
+        ...(document.querySelectorAll(`
+            [data-design="${year}"]:is(style,link)
+        `))
+    ];
+
+    targetEls.forEach(t => t.setAttribute('media', 'all'));
+    modernEls.filter(e => !targetEls.includes(e)).forEach(e => e.setAttribute('media', 'not all'));
+    legacyEls.forEach(e => e.setAttribute('media', 'not all'));
+
+    if (targetEls.length) {
+        console.log(`Enabled any ad-hoc styles for ${year}`, targetEls);
+    } else {
+        console.log(`No ad-hoc yearly styles for ${year}`);
+    }
+} else if (isLegacy) {
+    legacyEls.forEach(e => e.setAttribute('media', 'all'));
+    modernEls.forEach(e => e.setAttribute('media', 'not all'));
+
+    console.log(`Enabled any ad-hoc legacy style for ${year}`, legacyEls);
+} else {
+    [...modernEls, ...legacyEls].forEach(e => e.setAttribute('media', 'not all'));
+
+    console.log('No year recognized.');
+    console.log('Ad-hoc yearly styles disabled (if not already)');
+}
+</script>
