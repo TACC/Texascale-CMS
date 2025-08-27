@@ -2,11 +2,7 @@
 {% load cms_tags is_design %}
 
 {% block content %}
-  {% is_design_legacy as is_legacy %}
-
-  {% if is_legacy %}<article>{% endif %}
-  {% placeholder "content" %}
-  {% if is_legacy %}</article>{% endif %}
+  <article>{% placeholder "content" %}</article>
 {% endblock content %}
 
 {% block js %}
