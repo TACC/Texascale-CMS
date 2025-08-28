@@ -129,12 +129,71 @@ h4:not(:first-child) {
 	font-size: 1.6rem;
 	line-height: normal;
 }
+
 [data-page-template^="article"]
 .texascale-article:has(.col-sidebar)
 .col {
 	padding-top: 40px;
 }
 
+/* Hero */
+.texascale-hero.jumbotron-fluid {
+	padding-block: 0;
+}
+.texascale-hero {
+	background-color: var(--tacc-blue);
+}
+.texascale-hero
+:is(h1, h2, h3) {
+	color: var(--tacc-white);
+}
+.texascale-hero
+.logos--social {
+	color: var(--tacc-white);
+	fill: var(--tacc-white);
+
+	margin-bottom: 50px; /* design is inconsistently inconsistent, so I pick */
+}
+/* Hero: Image Inside */
+.texascale-hero:has(img)
+.logos--social {
+	margin-bottom: unset;
+}
+.texascale-hero:has(img) {
+	margin-bottom: unset;
+}
+.texascale-hero:has(img)
+~ .texascale-article {
+	border-inline: 100px solid transparent;
+}
+/* Hero: No Image Inside */
+.texascale-hero:not(:has(img)) {
+	text-align: center;
+}
+.texascale-hero:not(:has(img))
+h2 {
+	padding-inline: 100px; /* to make hero content narrower */
+}
+.texascale-hero:not(:has(img))
+.logos--social {
+	margin-inline: 65px;
+}
+/* Hero: Image Below */
+.texascale-hero:has(~ .texascale-article > img) {
+	/* to pull image up into hero */
+	--image-vert-offset: 80px;
+	padding-bottom: var(--image-vert-offset);
+	margin-bottom: calc(-1 * var(--image-vert-offset));
+}
+.texascale-hero:has(~ .texascale-article > img)
+~ .texascale-article > img:first-child {
+	margin-bottom: 40px;
+}
+/* Hero: No Image Below */
+.texascale-hero:not(:has(~ .texascale-article > img))
+~ .texascale-article {
+	margin-top: 120px;
+}
 
 
 /* TEXASCALE / BOOTSTRAP */
@@ -157,65 +216,6 @@ h5:not(:first-child) {
 .col-sidebar
 img {
 	display: block; /* to force margin to collapse */
-}
-
-/* Hero / Jumbotron + Article */
-.texascale-hero.jumbotron-fluid {
-	padding-block: 0;
-}
-.texascale-hero {
-	background-color: var(--tacc-blue);
-}
-.texascale-hero
-:is(h1, h2, h3) {
-	color: var(--tacc-white);
-}
-.texascale-hero
-.logos--social {
-	color: var(--tacc-white);
-	fill: var(--tacc-white);
-
-	margin-bottom: 50px; /* design is inconsistently inconsistent, so I pick */
-}
-/* Hero / Jumbotron: Image Inside */
-.texascale-hero:has(img)
-.logos--social {
-	margin-bottom: unset;
-}
-.texascale-hero:has(img) {
-	margin-bottom: unset;
-}
-.texascale-hero:has(img)
-~ .texascale-article {
-	border-inline: 100px solid transparent;
-}
-/* Hero / Jumbotron: No Image Inside */
-.texascale-hero:not(:has(img)) {
-	text-align: center;
-}
-.texascale-hero:not(:has(img))
-h2 {
-	padding-inline: 100px; /* to make hero content narrower */
-}
-.texascale-hero:not(:has(img))
-.logos--social {
-	margin-inline: 65px;
-}
-/* Hero / Jumbotron: Image Below */
-.texascale-hero:has(~ .texascale-article > img) {
-	/* to pull image up into hero */
-	--image-vert-offset: 80px;
-	padding-bottom: var(--image-vert-offset);
-	margin-bottom: calc(-1 * var(--image-vert-offset));
-}
-.texascale-hero:has(~ .texascale-article > img)
-~ .texascale-article > img:first-child {
-	margin-bottom: 40px;
-}
-/* Hero / Jumbotron: No Image Below */
-.texascale-hero:not(:has(~ .texascale-article > img))
-~ .texascale-article {
-	margin-top: 120px;
 }
 </style>
 
