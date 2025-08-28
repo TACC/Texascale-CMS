@@ -129,6 +129,11 @@ h4:not(:first-child) {
 	font-size: 1.6rem;
 	line-height: normal;
 }
+[data-page-template*="article"]
+.texascale-article:has(.col-sidebar)
+.col {
+	padding-top: 40px;
+}
 
 
 
@@ -154,41 +159,63 @@ img {
 	display: block; /* to force margin to collapse */
 }
 
-
-
-/* BOOTSTRAP */
-
-/* Jumbotron */
-[class*="jumbotron"] {
+/* Hero / Jumbotron + Article */
+.texascale-hero.jumbotron-fluid {
+	padding-block: 0;
+}
+.texascale-hero {
 	background-color: var(--tacc-blue);
 }
-[class*="jumbotron"] :is(h1, h2, h3) {
-	text-align: center;
+.texascale-hero
+:is(h1, h2, h3) {
 	color: var(--tacc-white);
 }
-[class*="jumbotron"] .logos--social {
+.texascale-hero
+.logos--social {
 	color: var(--tacc-white);
 	fill: var(--tacc-white);
 
 	margin-bottom: 50px; /* design is inconsistently inconsistent, so I pick */
 }
-/* Jumbotron - Image Inside */
-[class*="jumbotron"]:has(img:is(.align-right, .align-left)) {
-	overflow: hidden; /* to prevent image from escaping hero */
+/* Hero / Jumbotron: Image Inside */
+.texascale-hero:has(img)
+.logos--social {
+	margin-bottom: unset;
 }
-/* Jumbotron - No Image Inside */
-[class*="jumbotron"]:not(:has(img)) h2 {
+.texascale-hero:has(img) {
+	margin-bottom: unset;
+}
+.texascale-hero:has(img)
+~ .texascale-article {
+	border-inline: 100px solid transparent;
+}
+/* Hero / Jumbotron: No Image Inside */
+.texascale-hero:not(:has(img)) {
+	text-align: center;
+}
+.texascale-hero:not(:has(img))
+h2 {
 	padding-inline: 100px; /* to make hero content narrower */
 }
-[class*="jumbotron"]:not(:has(img)) .logos--social {
+.texascale-hero:not(:has(img))
+.logos--social {
 	margin-inline: 65px;
 }
-/* Jumbotron - Image Below */
-[class*="jumbotron"]:has(+ .container > img) {
+/* Hero / Jumbotron: Image Below */
+.texascale-hero:has(~ .texascale-article > img) {
 	/* to pull image up into hero */
 	--image-vert-offset: 80px;
 	padding-bottom: var(--image-vert-offset);
 	margin-bottom: calc(-1 * var(--image-vert-offset));
+}
+.texascale-hero:has(~ .texascale-article > img)
+~ .texascale-article > img:first-child {
+	margin-bottom: 40px;
+}
+/* Hero / Jumbotron: No Image Below */
+.texascale-hero:not(:has(~ .texascale-article > img))
+~ .texascale-article {
+	margin-top: 120px;
 }
 </style>
 
