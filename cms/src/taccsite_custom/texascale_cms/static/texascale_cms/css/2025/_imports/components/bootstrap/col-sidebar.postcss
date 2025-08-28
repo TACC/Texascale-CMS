@@ -1,23 +1,51 @@
 @import url("@tacc/core-styles/src/lib/_imports/tools/media-queries.css");
 
+/* mixins: emit the same per-breakpoint blocks your current build expects */
+@define-mixin no-adjacent-global {
+    .col-sidebar { border: none }
+    .col-sidebar:not(:only-child):first-child { border: none }
+    .col-sidebar:not(:only-child):last-child { border: none }
+    .col-sidebar:not(:only-child):not(:first-child):not(:last-child) { border: none }
+}
+
+@define-mixin adjacent-for-class $cls {
+    .col-sidebar[class*="$cls"] { border: none }
+
+    .col-sidebar:not([class*="$cls"]):not(:only-child):first-child {
+        border-right: 1px solid var(--tacc-black);
+    }
+    .col-sidebar:not([class*="$cls"]):not(:only-child):last-child {
+        border-left: 1px solid var(--tacc-black);
+    }
+    .col-sidebar:not([class*="$cls"], :first-child, :last-child):not(:only-child) {
+        border-left: 1px solid var(--tacc-black);
+        border-right: 1px solid var(--tacc-black);
+    }
+}
+
 /* if full-width rules, remove border */
 .col-sidebar[class*="col-12"] { border: none; }
 
-@media (--xx-narrow-and-below) { .col-sidebar { border: none }}
-@media (--x-narrow-and-above) { .col-sidebar[class*="col-sm-12"] { border: none }}
-@media (--narrow-and-above) { .col-sidebar[class*="col-md-12"] { border: none }}
-@media (--medium-and-above) { .col-sidebar[class*="col-lg-12"] { border: none }}
-@media (--wide-and-above) { .col-sidebar[class*="col-xl-12"] { border: none }}
-@media (--x-wide-and-above) { .col-sidebar[class*="col-xxl-12"] { border: none }}
+@media (--xx-narrow-and-below) { 
+    @mixin no-adjacent-global;
+}
 
-/* if not full-width, show border only between adjacent columns */
-.col-sidebar:not(:only-child):first-child {
-	border-right: 1px solid var(--tacc-black);
+@media (--x-narrow-and-above) { 
+    @mixin adjacent-for-class col-sm-12;
 }
-.col-sidebar:not(:only-child):last-child {
-	border-left: 1px solid var(--tacc-black);
+
+@media (--narrow-and-above) { 
+    @mixin adjacent-for-class col-md-12;
 }
-.col-sidebar:not(:only-child, :first-child, :last-child) {
-	border-left: 1px solid var(--tacc-black);
-	border-right: 1px solid var(--tacc-black);
+
+@media (--medium-and-above) { 
+    @mixin adjacent-for-class col-lg-12;
+}
+
+@media (--wide-and-above) { 
+    @mixin adjacent-for-class col-xl-12;
+}
+
+@media (--x-wide-and-above) { 
+    @mixin adjacent-for-class col-xxl-12;
 }
