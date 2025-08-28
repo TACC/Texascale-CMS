@@ -50,6 +50,7 @@ h1 {
 	font-style: normal;
 	font-weight: 700;
 	line-height: 110%;
+	text-transform: unset;
 }
 h2 {
 	font-size: 4.0rem;
@@ -97,6 +98,25 @@ h4:not(:first-child) {
 
 <!-- COMPONENTS -->
 <style data-design="2025" media="not all">
+/* CORE */
+
+.logos--social {
+	display: grid;
+	gap: 0.5em;
+	grid-auto-flow: column;
+	justify-content: end;
+	align-items: center;
+}
+.logos--social svg {
+	height: 1.5rem;
+	display: block;
+}
+.logos--social .logos__text-before {
+	margin-right: 1rem;
+}
+
+
+
 /* TEXASCALE */
 
 .texascale-byline {
@@ -135,26 +155,36 @@ img {
 /* BOOTSTRAP */
 
 /* Jumbotron */
-:is(.jumbotron, .jumbotron--fluid) {
+[class*="jumbotron"] {
 	background-color: var(--tacc-blue);
 }
-:is(.jumbotron, .jumbotron--fluid)
-:is(h1, h2, h3) {
+[class*="jumbotron"] :is(h1, h2, h3) {
+	text-align: center;
 	color: var(--tacc-white);
 }
-/* to make hero content narrower */
-.jumbotron
-.container:not(:has(img)) {
-	padding-inline: 100px;
+[class*="jumbotron"] .logos--social {
+	color: var(--tacc-white);
+	fill: var(--tacc-white);
+
+	margin-bottom: 50px;
 }
-/* to prevent image from escaping hero */
-:is(.jumbotron, .jumbotron--fluid):has(img.align-right) {
-	overflow: hidden;
+/* Jumbotron - Image Inside */
+[class*="jumbotron"]:has(img:is(.align-right, .align-left)) {
+	overflow: hidden; /* to prevent image from escaping hero */
 }
-/* to pull image up into hero */
-:is(.jumbotron, .jumbotron--fluid)
-+ .container > img {
-	margin-top: -85px;
+/* Jumbotron - No Image Inside */
+[class*="jumbotron"]:not(:has(img)) h2 {
+	padding-inline: 100px; /* to make hero content narrower */
+}
+[class*="jumbotron"]:not(:has(img)) .logos--social {
+	margin-inline: 65px;
+}
+/* Jumbotron - Image Below */
+[class*="jumbotron"]:has(+ .container > img) {
+	/* to pull image up into hero */
+	--image-vert-offset: 85px;
+	padding-bottom: var(--image-vert-offset);
+	margin-bottom: calc(-1 * var(--image-vert-offset));
 }
 </style>
 
