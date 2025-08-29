@@ -130,12 +130,6 @@ h4:not(:first-child) {
 	line-height: normal;
 }
 
-[data-page-template^="article"]
-.texascale-article:has(.col-sidebar)
-.col {
-	padding-top: 40px;
-}
-
 /* Hero */
 .texascale-hero.jumbotron-fluid {
 	padding-block: 0;
@@ -184,15 +178,6 @@ h2 {
 	--image-vert-offset: 80px;
 	padding-bottom: var(--image-vert-offset);
 	margin-bottom: calc(-1 * var(--image-vert-offset));
-}
-.texascale-hero:has(~ .texascale-article > img)
-~ .texascale-article > img:first-child {
-	margin-bottom: 40px;
-}
-/* Hero: No Image Below */
-.texascale-hero:not(:has(~ .texascale-article > img))
-~ .texascale-article {
-	margin-top: 120px;
 }
 
 
