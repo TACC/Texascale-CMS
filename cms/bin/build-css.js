@@ -32,3 +32,8 @@ buildStylesheets(
   `${ASSET_PATH}css/2025`,
   options
 );
+buildStylesheets(
+  `${ASSET_PATH}css/bootstrap/*.postcss`,
+  `${ASSET_PATH}css/bootstrap`,
+  options
+);

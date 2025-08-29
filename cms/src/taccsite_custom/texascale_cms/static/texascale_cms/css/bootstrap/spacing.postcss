@@ -1,0 +1,128 @@
+@import url("@tacc/core-styles/src/lib/_imports/tools/media-queries.css");
+
+/* To "add more sizes" but NOT use "the $spacers Sass map variable" */
+/* getbootstrap.com/docs/4.6/utilities/spacing/ */
+
+:root {
+    --bs-spacer-6: 4.5rem;
+    --bs-spacer-7: 6rem;
+}
+
+@define-mixin spacing-global $n {
+    .p-$(n)  { padding: var(--bs-spacer-$(n)) !important }
+    .pt-$(n) { padding-top: var(--bs-spacer-$(n)) !important }
+    .pr-$(n) { padding-right: var(--bs-spacer-$(n)) !important }
+    .pb-$(n) { padding-bottom: var(--bs-spacer-$(n)) !important }
+    .pl-$(n) { padding-left: var(--bs-spacer-$(n)) !important }
+    .px-$(n) {
+        padding-left: var(--bs-spacer-$(n)) !important;
+        padding-right: var(--bs-spacer-$(n)) !important;
+    }
+    .py-$(n) {
+        padding-top: var(--bs-spacer-$(n)) !important;
+        padding-bottom: var(--bs-spacer-$(n)) !important;
+    }
+
+    .m-$(n)  { margin: var(--bs-spacer-$(n)) !important }
+    .mt-$(n) { margin-top: var(--bs-spacer-$(n)) !important }
+    .mr-$(n) { margin-right: var(--bs-spacer-$(n)) !important }
+    .mb-$(n) { margin-bottom: var(--bs-spacer-$(n)) !important }
+    .ml-$(n) { margin-left: var(--bs-spacer-$(n)) !important }
+    .mx-$(n) {
+        margin-left: var(--bs-spacer-$(n)) !important;
+        margin-right: var(--bs-spacer-$(n)) !important;
+    }
+    .my-$(n) {
+        margin-top: var(--bs-spacer-$(n)) !important;
+        margin-bottom: var(--bs-spacer-$(n)) !important;
+    }
+
+    /* Negative margins (Bootstrap-style e.g. .m-n1, .mt-n1) */
+    .m-n$(n)  { margin: calc(var(--bs-spacer-$(n)) * -1) !important }
+    .mt-n$(n) { margin-top: calc(var(--bs-spacer-$(n)) * -1) !important }
+    .mr-n$(n) { margin-right: calc(var(--bs-spacer-$(n)) * -1) !important }
+    .mb-n$(n) { margin-bottom: calc(var(--bs-spacer-$(n)) * -1) !important }
+    .ml-n$(n) { margin-left: calc(var(--bs-spacer-$(n)) * -1) !important }
+    .mx-n$(n) {
+        margin-left: calc(var(--bs-spacer-$(n)) * -1) !important;
+        margin-right: calc(var(--bs-spacer-$(n)) * -1) !important
+    }
+    .my-n$(n) {
+        margin-top: calc(var(--bs-spacer-$(n)) * -1) !important;
+        margin-bottom: calc(var(--bs-spacer-$(n)) * -1) !important
+    }
+}
+
+/* HELP: I tried to pass a $n for 6 and 7, but it failed */
+@define-mixin spacing-responsive-6 $prefix {
+    .p-$(prefix)-6  { padding: var(--bs-spacer-6) !important }
+    .pt-$(prefix)-6 { padding-top: var(--bs-spacer-6) !important }
+    .px-$(prefix)-6 {
+        padding-left: var(--bs-spacer-6) !important;
+        padding-right: var(--bs-spacer-6) !important
+    }
+
+    .m-$(prefix)-6  { margin: var(--bs-spacer-6) !important }
+    .mt-$(prefix)-6 { margin-top: var(--bs-spacer-6) !important }
+    .mx-$(prefix)-6 {
+        margin-left: var(--bs-spacer-6) !important;
+        margin-right: var(--bs-spacer-6) !important
+    }
+
+    /* Negative responsive margins (Bootstrap-style e.g. .m-sm-n6, .mt-sm-n6) */
+    .m-$(prefix)-n6  { margin: calc(var(--bs-spacer-6) * -1) !important }
+    .mt-$(prefix)-n6 { margin-top: calc(var(--bs-spacer-6) * -1) !important }
+    .mr-$(prefix)-n6 { margin-right: calc(var(--bs-spacer-6) * -1) !important }
+    .mb-$(prefix)-n6 { margin-bottom: calc(var(--bs-spacer-6) * -1) !important }
+    .ml-$(prefix)-n6 { margin-left: calc(var(--bs-spacer-6) * -1) !important }
+    .mx-$(prefix)-n6 {
+        margin-left: calc(var(--bs-spacer-6) * -1) !important;
+        margin-right: calc(var(--bs-spacer-6) * -1) !important
+    }
+    .my-$(prefix)-n6 {
+        margin-top: calc(var(--bs-spacer-6) * -1) !important;
+        margin-bottom: calc(var(--bs-spacer-6) * -1) !important
+    }
+}
+@define-mixin spacing-responsive-7 $prefix {
+    .p-$(prefix)-6  { padding: var(--bs-spacer-6) !important }
+    .pt-$(prefix)-6 { padding-top: var(--bs-spacer-6) !important }
+    .px-$(prefix)-6 {
+        padding-left: var(--bs-spacer-6) !important;
+        padding-right: var(--bs-spacer-6) !important
+    }
+
+    .m-$(prefix)-6  { margin: var(--bs-spacer-6) !important }
+    .mt-$(prefix)-6 { margin-top: var(--bs-spacer-6) !important }
+    .mx-$(prefix)-6 {
+        margin-left: var(--bs-spacer-6) !important;
+        margin-right: var(--bs-spacer-6) !important
+    }
+
+    /* Negative responsive margins (Bootstrap-style e.g. .m-sm-n7, .mt-sm-n7) */
+    .m-$(prefix)-n6  { margin: calc(var(--bs-spacer-6) * -1) !important }
+    .mt-$(prefix)-n6 { margin-top: calc(var(--bs-spacer-6) * -1) !important }
+    .mr-$(prefix)-n6 { margin-right: calc(var(--bs-spacer-6) * -1) !important }
+    .mb-$(prefix)-n6 { margin-bottom: calc(var(--bs-spacer-6) * -1) !important }
+    .ml-$(prefix)-n6 { margin-left: calc(var(--bs-spacer-6) * -1) !important }
+    .mx-$(prefix)-n6 {
+        margin-left: calc(var(--bs-spacer-6) * -1) !important;
+        margin-right: calc(var(--bs-spacer-6) * -1) !important
+    }
+    .my-$(prefix)-n6 {
+        margin-top: calc(var(--bs-spacer-6) * -1) !important;
+        margin-bottom: calc(var(--bs-spacer-6) * -1) !important
+    }
+}
+
+@mixin spacing-global 6;
+@media (--x-narrow-and-above) { @mixin spacing-responsive-6 sm; }
+@media (--narrow-and-above)   { @mixin spacing-responsive-6 md; }
+@media (--medium-and-above)   { @mixin spacing-responsive-6 lg; }
+@media (--wide-and-above)     { @mixin spacing-responsive-6 xl; }
+
+@mixin spacing-global 7;
+@media (--x-narrow-and-above) { @mixin spacing-responsive-7 sm; }
+@media (--narrow-and-above)   { @mixin spacing-responsive-7 md; }
+@media (--medium-and-above)   { @mixin spacing-responsive-7 lg; }
+@media (--wide-and-above)     { @mixin spacing-responsive-7 xl; }
