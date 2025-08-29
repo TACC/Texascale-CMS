@@ -57,16 +57,30 @@
 @define-mixin spacing-responsive-6 $prefix {
     .p-$(prefix)-6  { padding: var(--bs-spacer-6) !important }
     .pt-$(prefix)-6 { padding-top: var(--bs-spacer-6) !important }
+    .pr-$(prefix)-6 { padding-right: var(--bs-spacer-6) !important }
+    .pb-$(prefix)-6 { padding-bottom: var(--bs-spacer-6) !important }
+    .pl-$(prefix)-6 { padding-left: var(--bs-spacer-6) !important }
     .px-$(prefix)-6 {
         padding-left: var(--bs-spacer-6) !important;
-        padding-right: var(--bs-spacer-6) !important
+        padding-right: var(--bs-spacer-6) !important;
+    }
+    .py-$(prefix)-6 {
+        padding-top: var(--bs-spacer-6) !important;
+        padding-bottom: var(--bs-spacer-6) !important;
     }
 
     .m-$(prefix)-6  { margin: var(--bs-spacer-6) !important }
     .mt-$(prefix)-6 { margin-top: var(--bs-spacer-6) !important }
+    .mr-$(prefix)-6 { margin-right: var(--bs-spacer-6) !important }
+    .mb-$(prefix)-6 { margin-bottom: var(--bs-spacer-6) !important }
+    .ml-$(prefix)-6 { margin-left: var(--bs-spacer-6) !important }
     .mx-$(prefix)-6 {
         margin-left: var(--bs-spacer-6) !important;
-        margin-right: var(--bs-spacer-6) !important
+        margin-right: var(--bs-spacer-6) !important;
+    }
+    .my-$(prefix)-6 {
+        margin-top: var(--bs-spacer-6) !important;
+        margin-bottom: var(--bs-spacer-6) !important;
     }
 
     /* Negative responsive margins (Bootstrap-style e.g. .m-sm-n6, .mt-sm-n6) */
@@ -77,41 +91,55 @@
     .ml-$(prefix)-n6 { margin-left: calc(var(--bs-spacer-6) * -1) !important }
     .mx-$(prefix)-n6 {
         margin-left: calc(var(--bs-spacer-6) * -1) !important;
-        margin-right: calc(var(--bs-spacer-6) * -1) !important
+        margin-right: calc(var(--bs-spacer-6) * -1) !important;
     }
     .my-$(prefix)-n6 {
         margin-top: calc(var(--bs-spacer-6) * -1) !important;
-        margin-bottom: calc(var(--bs-spacer-6) * -1) !important
+        margin-bottom: calc(var(--bs-spacer-6) * -1) !important;
     }
 }
 @define-mixin spacing-responsive-7 $prefix {
-    .p-$(prefix)-6  { padding: var(--bs-spacer-6) !important }
-    .pt-$(prefix)-6 { padding-top: var(--bs-spacer-6) !important }
-    .px-$(prefix)-6 {
-        padding-left: var(--bs-spacer-6) !important;
-        padding-right: var(--bs-spacer-6) !important
+    .p-$(prefix)-7  { padding: var(--bs-spacer-7) !important }
+    .pt-$(prefix)-7 { padding-top: var(--bs-spacer-7) !important }
+    .pr-$(prefix)-7 { padding-right: var(--bs-spacer-7) !important }
+    .pb-$(prefix)-7 { padding-bottom: var(--bs-spacer-7) !important }
+    .pl-$(prefix)-7 { padding-left: var(--bs-spacer-7) !important }
+    .px-$(prefix)-7 {
+        padding-left: var(--bs-spacer-7) !important;
+        padding-right: var(--bs-spacer-7) !important;
+    }
+    .py-$(prefix)-7 {
+        padding-top: var(--bs-spacer-7) !important;
+        padding-bottom: var(--bs-spacer-7) !important;
     }
 
-    .m-$(prefix)-6  { margin: var(--bs-spacer-6) !important }
-    .mt-$(prefix)-6 { margin-top: var(--bs-spacer-6) !important }
-    .mx-$(prefix)-6 {
-        margin-left: var(--bs-spacer-6) !important;
-        margin-right: var(--bs-spacer-6) !important
+    .m-$(prefix)-7  { margin: var(--bs-spacer-7) !important }
+    .mt-$(prefix)-7 { margin-top: var(--bs-spacer-7) !important }
+    .mr-$(prefix)-7 { margin-right: var(--bs-spacer-7) !important }
+    .mb-$(prefix)-7 { margin-bottom: var(--bs-spacer-7) !important }
+    .ml-$(prefix)-7 { margin-left: var(--bs-spacer-7) !important }
+    .mx-$(prefix)-7 {
+        margin-left: var(--bs-spacer-7) !important;
+        margin-right: var(--bs-spacer-7) !important;
+    }
+    .my-$(prefix)-7 {
+        margin-top: var(--bs-spacer-7) !important;
+        margin-bottom: var(--bs-spacer-7) !important;
     }
 
     /* Negative responsive margins (Bootstrap-style e.g. .m-sm-n7, .mt-sm-n7) */
-    .m-$(prefix)-n6  { margin: calc(var(--bs-spacer-6) * -1) !important }
-    .mt-$(prefix)-n6 { margin-top: calc(var(--bs-spacer-6) * -1) !important }
-    .mr-$(prefix)-n6 { margin-right: calc(var(--bs-spacer-6) * -1) !important }
-    .mb-$(prefix)-n6 { margin-bottom: calc(var(--bs-spacer-6) * -1) !important }
-    .ml-$(prefix)-n6 { margin-left: calc(var(--bs-spacer-6) * -1) !important }
-    .mx-$(prefix)-n6 {
-        margin-left: calc(var(--bs-spacer-6) * -1) !important;
-        margin-right: calc(var(--bs-spacer-6) * -1) !important
+    .m-$(prefix)-n7  { margin: calc(var(--bs-spacer-7) * -1) !important }
+    .mt-$(prefix)-n7 { margin-top: calc(var(--bs-spacer-7) * -1) !important }
+    .mr-$(prefix)-n7 { margin-right: calc(var(--bs-spacer-7) * -1) !important }
+    .mb-$(prefix)-n7 { margin-bottom: calc(var(--bs-spacer-7) * -1) !important }
+    .ml-$(prefix)-n7 { margin-left: calc(var(--bs-spacer-7) * -1) !important }
+    .mx-$(prefix)-n7 {
+        margin-left: calc(var(--bs-spacer-7) * -1) !important;
+        margin-right: calc(var(--bs-spacer-7) * -1) !important;
     }
-    .my-$(prefix)-n6 {
-        margin-top: calc(var(--bs-spacer-6) * -1) !important;
-        margin-bottom: calc(var(--bs-spacer-6) * -1) !important
+    .my-$(prefix)-n7 {
+        margin-top: calc(var(--bs-spacer-7) * -1) !important;
+        margin-bottom: calc(var(--bs-spacer-7) * -1) !important;
     }
 }
 
