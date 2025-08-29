@@ -108,7 +108,6 @@ h4:not(:first-child) {
 	display: grid;
 	gap: 0.5rem;
 	grid-auto-flow: column;
-	justify-content: end;
 	align-items: center;
 }
 .logos--social svg {
@@ -149,7 +148,7 @@ h4:not(:first-child) {
 
 	padding-bottom: 50px; /* design is inconsistently inconsistent, so I pick */
 }
-/* Hero: Image Inside */
+/* Hero: Has Image Inside */
 .texascale-hero:has(img)
 .logos--social {
 	margin-bottom: unset;
@@ -158,10 +157,14 @@ h4:not(:first-child) {
 	margin-bottom: unset;
 }
 .texascale-hero:has(img)
+.logos--social {
+	justify-content: start;
+}
+.texascale-hero:has(img)
 ~ .texascale-article {
 	border-inline: 100px solid transparent;
 }
-/* Hero: No Image Inside */
+/* Hero: Not Image Inside */
 .texascale-hero:not(:has(img)) {
 	text-align: center;
 }
@@ -171,9 +174,10 @@ h2 {
 }
 .texascale-hero:not(:has(img))
 .logos--social {
-	margin-inline: 65px;
+	margin-right: 65px;
+	justify-content: end;
 }
-/* Hero: Image Below */
+/* Hero: Has Image Below */
 .texascale-hero:has(~ .texascale-article > img) {
 	/* to pull image up into hero */
 	--image-vert-offset: 80px;
