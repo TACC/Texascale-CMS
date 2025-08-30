@@ -162,6 +162,12 @@ h4:not(:first-child) {
 ~ .texascale-article {
 	border-inline: 100px solid transparent;
 }
+.texascale-hero:has(img)
+img {
+	/* to avoid gap beneath image */
+	object-fit: cover;
+	min-height: 100%;
+}
 /* Hero: Not Image Inside */
 .texascale-hero:not(:has(img)) {
 	text-align: center;
