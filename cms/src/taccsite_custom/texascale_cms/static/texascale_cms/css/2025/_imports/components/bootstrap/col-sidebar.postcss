@@ -1,23 +1,39 @@
 @import url("@tacc/core-styles/src/lib/_imports/tools/media-queries.css");
 
-/* if full-width rules, remove border */
-.col-sidebar[class*="col-12"] { border: none; }
+/* To Control When Sidebar Has Borders */
 
-@media (--xx-narrow-and-below) { .col-sidebar { border: none }}
-@media (--x-narrow-and-above) { .col-sidebar[class*="col-sm-12"] { border: none }}
-@media (--narrow-and-above) { .col-sidebar[class*="col-md-12"] { border: none }}
-@media (--medium-and-above) { .col-sidebar[class*="col-lg-12"] { border: none }}
-@media (--wide-and-above) { .col-sidebar[class*="col-xl-12"] { border: none }}
-@media (--x-wide-and-above) { .col-sidebar[class*="col-xxl-12"] { border: none }}
+/* To remove borders (for when a layout stacks all columns) */
+@define-mixin col-sidebar-del-border {
+    .col-sidebar { border: none }
 
-/* if not full-width, show border only between adjacent columns */
-.col-sidebar:not(:only-child):first-child {
-	border-right: 1px solid var(--tc-black);
+    .col-sidebar:not(:only-child):first-child { border: none }
+    .col-sidebar:not(:only-child):last-child { border: none }
+    .col-sidebar:not(:only-child):not(:first-child):not(:last-child) { border: none }
 }
-.col-sidebar:not(:only-child):last-child {
-	border-left: 1px solid var(--tc-black);
+
+/* To add borders (for whenever column is not visually "full-width") */
+@define-mixin col-sidebar-add-border $cls {
+    .col-sidebar[class~="$cls"] { border: none }
+
+    .col-sidebar:not([class~="$cls"], :only-child):first-child {
+        border-right: 1px solid var(--tacc-black);
+    }
+    .col-sidebar:not([class~="$cls"], :only-child):last-child {
+        border-left: 1px solid var(--tacc-black);
+    }
+    .col-sidebar:not([class~="$cls"], :only-child):not(:first-child, :last-child) {
+        border-left: 1px solid var(--tacc-black);
+        border-right: 1px solid var(--tacc-black);
+    }
 }
-.col-sidebar:not(:only-child, :first-child, :last-child) {
-	border-left: 1px solid var(--tc-black);
-	border-right: 1px solid var(--tc-black);
-}
+
+/* for explicit full-width columns */
+.col-sidebar[class~="col-12"] { border: none; }
+
+/* when media query / breakpoint class overrides explicit full-width columns */
+@media (--xx-narrow-and-below) { @mixin col-sidebar-del-border; }
+@media (--x-narrow-and-above) { @mixin col-sidebar-add-border col-sm-12; }
+@media (--narrow-and-above) { @mixin col-sidebar-add-border col-md-12; }
+@media (--medium-and-above) { @mixin col-sidebar-add-border col-lg-12; }
+@media (--wide-and-above) { @mixin col-sidebar-add-border col-xl-12; }
+@media (--x-wide-and-above) { @mixin col-sidebar-add-border col-xxl-12; }
