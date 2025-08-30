@@ -105,7 +105,7 @@ h4:not(:first-child) {
 /* CORE */
 
 .logos--social {
-	display: grid;
+	display: inline-grid;
 	gap: 0.5rem;
 	grid-auto-flow: column;
 	align-items: center;
@@ -145,8 +145,6 @@ h4:not(:first-child) {
 .logos--social {
 	color: var(--tacc-white);
 	fill: var(--tacc-white);
-
-	padding-bottom: 50px; /* design is inconsistently inconsistent, so I pick */
 }
 /* Hero: Has Image Inside */
 .texascale-hero:has(img)
@@ -168,21 +166,9 @@ h4:not(:first-child) {
 .texascale-hero:not(:has(img)) {
 	text-align: center;
 }
-.texascale-hero:not(:has(img))
-h2 {
-	padding-inline: 100px; /* to make hero content narrower */
-}
-.texascale-hero:not(:has(img))
-.logos--social {
-	margin-right: 65px;
-	justify-content: end;
-}
 /* Hero: Has Image Below */
 .texascale-hero:has(~ .texascale-article > img) {
-	/* to pull image up into hero */
-	--image-vert-offset: 80px;
-	padding-bottom: var(--image-vert-offset);
-	margin-bottom: calc(-1 * var(--image-vert-offset));
+	/* ... */
 }
 
 
