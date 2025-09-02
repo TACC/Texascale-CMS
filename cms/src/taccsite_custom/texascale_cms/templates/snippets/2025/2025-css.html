@@ -1,41 +1,8 @@
 <div id="2025-css">
-
-<!-- SETTINGS -->
-<link rel="stylesheet" href="https://use.typekit.net/liq2uqc.css">
-<style data-design="2025" media="not all">
-/* COLOR: Texascale */
-:root {
-	--texascale-gold: #D0B786;
-	--texascale-bkgd: var(--global-color-background--app);
-	--texascale-kepler: kepler-std, serif;
-}
-/* COLOR: TACC/Core v3 (early) */
-:root {
-	--tacc-blue:  #003049;    /* Prussian Blue */
-	--tacc-white: #FCFDF3;    /* Ivory */
-	--tacc-yellow: #FCBF49;   /* Xanthous */
-	--tacc-orange: #BF5700;   /* Texas Orange */
-	--tacc-beige: #EAE2B7;    /* Vanilla */
-	--tacc-black: #231F1E;    /* Raisin Black */
-}
-</style>
+<!-- NOTE: To not load a `style` on legacy pages, add `media="not all"`. -->
 
 <!-- ELEMENTS -->
 <style data-design="2025" media="not all">
-/* ROOT: html, body */
-body {
-	color: var(--tacc-black);
-
-	font-size: 1.8rem;
-	line-height: 150%;
-	/* letter-spacing: 0.025rem; *//* Core uses 0.025rem */
-
-	/* TODO: Add to Core-Styles */
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-}
-
-
 /* HEADINGS:
 h1 (story titles)
 h2 (story subtitles)
@@ -101,34 +68,11 @@ h4:not(:first-child) {
 </style>
 
 <!-- COMPONENTS -->
-<style data-design="2025" media="not all">
-/* CORE */
-
-.logos--social {
-	display: inline-grid;
-	gap: 0.5rem;
-	grid-auto-flow: column;
-	align-items: center;
-}
-.logos--social svg {
-	height: 1.5rem;
-	display: block;
-}
-.logos--social .logos__text-before {
-	margin-right: 1rem;
-}
-
-
+<style data-design="2025">
+/* TACC/Core */
+/* https://github.com/TACC/Texascale-CMS/blob/feat/2025-css/cms/src/taccsite_custom/texascale_cms/static/texascale_cms/css/2025/_imports/components/tacc */
 
 /* TEXASCALE */
-
-.texascale-byline {
-	color: var(--texascale-gold);
-	text-align: center;
-	font-size: 1.6rem;
-	line-height: normal;
-}
-
 /* Hero */
 .texascale-hero.jumbotron-fluid {
 	padding-block: unset;
@@ -175,29 +119,6 @@ img {
 /* Hero: Has Image Below */
 .texascale-hero:has(~ .texascale-article > img) {
 	/* ... */
-}
-
-
-/* TEXASCALE / BOOTSTRAP */
-
-/* Col Sidebar */
-[data-page-template^="article"]
-.col-sidebar
-h4 {
-	font-size: 3.0rem;
-	font-family: var(--texascale-kepler);
-
-	text-align: center;
-}
-[data-page-template^="article"]
-.col-sidebar
-h5:not(:first-child) {
-	margin-top: 20px;
-}
-[data-page-template^="article"]
-.col-sidebar
-img {
-	display: block; /* to force margin to collapse */
 }
 </style>
 

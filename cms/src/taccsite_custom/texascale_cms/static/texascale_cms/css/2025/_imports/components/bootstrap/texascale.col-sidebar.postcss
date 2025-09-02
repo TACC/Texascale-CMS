@@ -1,0 +1,17 @@
+/* To Customize Sidebar Content */
+
+[data-page-template^="article"]
+.col-sidebar {
+	& h4 {
+		font-size: 3.0rem;
+		font-family: var(--texascale-kepler);
+
+		text-align: center;
+	}
+	& h5:not(:first-child) {
+		margin-top: 20px;
+	}
+	& img {
+		display: block; /* to force margin to collapse */
+	}
+}
