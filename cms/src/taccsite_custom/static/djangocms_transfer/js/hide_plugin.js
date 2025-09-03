@@ -1,14 +1,14 @@
 /** To hide PluginImporter plugin from list for admins editing page */
 
 const itemQuery = '[href="PluginImporter"]';
-const cmsUiWrapper = document.getElementById('cms-top');
+const cmsUiWrap = document.getElementById('cms-top');
 
 function disableItem(item) {
     item.classList.add('js-disabled');
 }
 
 // Hide current items
-const utilPluginMenuItem = cmsUiWrapper.querySelector(itemQuery);
+const utilPluginMenuItem = (cmsUiWrap) && cmsUiWrap.querySelector(itemQuery);
 if (utilPluginMenuItem) disableItem(utilPluginMenuItem);
 
 // Hide future items
@@ -21,4 +21,4 @@ const observer = new MutationObserver((mutations) => {
         });
     });
 });
-observer.observe(cmsUiWrapper, { childList: true, subtree: true });
+observer.observe(cmsUiWrap, { childList: true, subtree: true });
