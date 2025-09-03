@@ -6,8 +6,7 @@
 # TEXASCALE
 ########################
 
-TEXASCALE_PUBLISHED_YEAR = 2025
-
+TEXASCALE_PUBLISHED_YEAR = 2024
 
 ########################
 # DJANGO
