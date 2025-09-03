@@ -1,0 +1,15 @@
+/* To allow movement of placeholders */
+div.cms .cms-structure-content {
+    display: flex;
+    flex-direction: column;
+}
+div.cms .cms-structure-content .cms-dragarea {
+    /* To prevent layout changes after this became a flex item */
+    margin-inline: unset;
+    margin-bottom: unset; /* */
+}
+
+/* To move "Global …" placeholder to bottom */
+div.cms .cms-structure-content .cms-dragarea:has([title^="Global"]) {
+    order: 999;
+}
