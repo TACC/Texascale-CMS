@@ -7,8 +7,9 @@
 # ignore secrets & settings
 ## so dev learns those should not be committed in this repo
 *secrets.py
-*settings_custom.py
 *settings_local.py
+## to remind devs to commit to TACC/Core-Portal-Deployments
+# *settings_custom.py
 
 # no node modules
 node_modules/
