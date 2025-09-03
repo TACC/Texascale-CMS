@@ -71,17 +71,15 @@ h4:not(:first-child) {
 
 <!-- COMPONENTS -->
 <style data-design="2025">
-/* TACC/Core */
-/* https://github.com/TACC/Texascale-CMS/blob/feat/2025-css/cms/src/taccsite_custom/texascale_cms/static/texascale_cms/css/2025/_imports/components/tacc */
-
 /* TEXASCALE */
 /* Hero */
+.texascale-hero {
+	background-color: var(--tacc-blue);
+	overflow: hidden; /* prevent scrollbar caused by giant image */
+}
 .texascale-hero.jumbotron-fluid {
 	padding-block: unset;
 	margin-bottom: unset;
-}
-.texascale-hero {
-	background-color: var(--tacc-blue);
 }
 .texascale-hero
 :is(h1, h2, h3) {
@@ -91,36 +89,6 @@ h4:not(:first-child) {
 .logos--social {
 	color: var(--tacc-white);
 	fill: var(--tacc-white);
-}
-/* Hero: Has Image Inside */
-.texascale-hero:has(img)
-.logos--social {
-	margin-bottom: unset;
-}
-.texascale-hero:has(img) {
-	margin-bottom: unset;
-}
-.texascale-hero:has(img)
-.logos--social {
-	justify-content: start;
-}
-.texascale-hero:has(img)
-~ .texascale-article {
-	border-inline: 100px solid transparent;
-}
-.texascale-hero:has(img)
-img {
-	/* to avoid gap beneath image */
-	object-fit: cover;
-	min-height: 100%;
-}
-/* Hero: Not Image Inside */
-.texascale-hero:not(:has(img)) {
-	text-align: center;
-}
-/* Hero: Has Image Below */
-.texascale-hero:has(~ .texascale-article > img) {
-	/* ... */
 }
 </style>
 
