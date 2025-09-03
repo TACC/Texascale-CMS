@@ -1,0 +1,18 @@
+{% load sekizai_tags %}
+{% addtoblock "css" %}
+<style id="2025-css-hero">
+.texascale-hero {
+	background-color: var(--tacc-blue);
+	overflow: hidden; /* prevent scrollbar caused by giant image */
+}
+.texascale-hero
+:is(h1, h2, h3) {
+	color: var(--tacc-white);
+}
+.texascale-hero
+.logos--social {
+	color: var(--tacc-white);
+	fill: var(--tacc-white);
+}
+</style>
+{% endaddtoblock %}

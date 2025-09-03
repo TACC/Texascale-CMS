@@ -1,19 +1,7 @@
 {% load sekizai_tags %}
 {% addtoblock "css" %}
-<div id="2025-css">
-<!-- NOTE: To not load a `style` on legacy pages, add `media="not all"`. -->
-
-<!-- ELEMENTS -->
-<style data-design="2025" media="not all">
-/* HEADINGS:
-h1 (story titles)
-h2 (story subtitles)
-h3 (in-story header 1st-level)
-h4 (in-story header 2nd-level)
-h5 (in-story header 3rd-level)
-*/
-
-/* Global */
+<style id="2025-css-headings">
+/* GLOBAL */
 h1, h2, h3, h4, h5, h6 {
 	color: var(--tacc-black);
 }
@@ -54,7 +42,13 @@ h6 {
 	margin-bottom: 0;
 }
 
-/* Articles */
+/* ARTICLES:
+	- h1 titles
+	- h2 article subtitles
+	- h3 content header 1st-level
+	- h4 content header 2nd-level
+	- h5 content header 3rd-level
+*/
 [data-page-template^="article"]
 h1, h2 {
 	margin-bottom: 30px;
@@ -68,29 +62,4 @@ h4:not(:first-child) {
 	margin-top: 60px;
 }
 </style>
-
-<!-- COMPONENTS -->
-<style data-design="2025">
-/* TEXASCALE */
-/* Hero */
-.texascale-hero {
-	background-color: var(--tacc-blue);
-	overflow: hidden; /* prevent scrollbar caused by giant image */
-}
-.texascale-hero.jumbotron-fluid {
-	padding-block: unset;
-	margin-bottom: unset;
-}
-.texascale-hero
-:is(h1, h2, h3) {
-	color: var(--tacc-white);
-}
-.texascale-hero
-.logos--social {
-	color: var(--tacc-white);
-	fill: var(--tacc-white);
-}
-</style>
-
-</div>
 {% endaddtoblock %}
