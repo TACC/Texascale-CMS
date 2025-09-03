@@ -31,3 +31,16 @@
     <script type="module" src="{% static 'djangocms_transfer/js/hide_plugin.js' %}"></script>
   {% endaddtoblock %}
 {% endblock assets_custom %}
+
+<!-- Custom Assets (Delayed). -->
+{% block assets_custom_delayed %}
+  {{ block.super }}
+
+  {# To offer "Global Assets" placeholder (not "Footer-Content") for Snippets #}
+  {# IDEA: Suggest this for TACC/Core-CMS #}
+  {% addtoblock "css" %}
+    {# To move `global-assets` placeholder to bottom of Structure #}
+    <link rel="stylesheet" href="{% static 'cms/css/3.11.4/reorder_placeholders.css' %}">
+  {% endaddtoblock %}
+  {% static_placeholder "global-assets" %}
+{% endblock %}
