@@ -38,8 +38,14 @@
 
   {# To offer "Global Assets" placeholder (not "Footer-Content") for Snippets #}
   {# IDEA: Suggest this for TACC/Core-CMS #}
+  {# WARNING: Does NOT load on http://...?structure standalone.
+              To load on that page, add the same thing in —
+              /cms/templates/cms/toolbar/toolbar_javascript.html
+              — plus all the content from the original —
+              https://github.com/django-cms/django-cms/blob/3.11.4/cms/templates/cms/toolbar/toolbar_javascript.html
+              — which must be copy/pasted cuz it offers no blocks #}
   {% addtoblock "css" %}
-    {# To move `global-assets` placeholder to bottom of Structure #}
+    {# To move placeholders around in Structure the panel #}
     <link rel="stylesheet" href="{% static 'cms/css/3.11.4/reorder_placeholders.css' %}">
   {% endaddtoblock %}
   {% static_placeholder "global-assets" %}
