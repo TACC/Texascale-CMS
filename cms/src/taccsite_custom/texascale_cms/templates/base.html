@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load cms_tags static is_design %}
+{% load cms_tags static is_design sekizai_tags %}
 
 {% block assets %}
   {% is_design_legacy as is_legacy %}
@@ -23,4 +23,11 @@
   {% else %}
   <link rel="stylesheet" href="{% static 'texascale_cms/css/2025/cms.css' %}">
   {% endif %}
+
+  {# To disable "ImporterPlugin" on plugin list #}
+  {# IDEA: Suggest this for TACC/Core-CMS #}
+  {% addtoblock "js" %}
+    <link rel="stylesheet" href="{% static 'djangocms_transfer/css/hide_plugin.css' %}">
+    <script type="module" src="{% static 'djangocms_transfer/js/hide_plugin.js' %}"></script>
+  {% endaddtoblock %}
 {% endblock assets_custom %}
