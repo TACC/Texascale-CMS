@@ -145,24 +145,23 @@
 
 /* Emit base classes for all custom spacer sizes first,
    then emit responsive blocks grouped by breakpoint.
-   This ensures source order mimics Bootstrap —
-   base -> sm -> md -> lg -> xl
-   — so larger breakpoints "win". */
+   Use "device-agnostic" media queries (not "mobile-first"),
+   so our breakpoints do not always override Bootstrap's. */
 @mixin spacing-global 6;
 @mixin spacing-global 7;
-@media (--x-narrow-and-above) {
+@media (--x-narrow-to-narrow) {
     @mixin spacing-responsive-6 sm;
     @mixin spacing-responsive-7 sm;
 }
-@media (--narrow-and-above) {
+@media (--narrow-to-medium) {
     @mixin spacing-responsive-6 md;
     @mixin spacing-responsive-7 md;
 }
-@media (--medium-and-above) {
+@media (--medium-to-wide) {
     @mixin spacing-responsive-6 lg;
     @mixin spacing-responsive-7 lg;
 }
-@media (--wide-and-above) {
+@media (--wide-to-x-wide) {
     @mixin spacing-responsive-6 xl;
     @mixin spacing-responsive-7 xl;
 }
