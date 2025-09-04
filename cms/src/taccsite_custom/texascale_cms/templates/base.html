@@ -27,7 +27,14 @@
   {% endif %}
 
   <style>
-    @import "{% static 'texascale_cms/css/bootstrap/extensions.css' %}" layer(foundation.low-specificity);
+    {% comment %}
+    HELP: I tried to use `layer(foundation.allow-override)`,
+          but the specificity of these styles compared to Bootstrap's
+          is unexpected, seemingly unresolvable, and possibly a browser bug.
+    NOTE: Because these extensions should move to Core-Styles,
+          which loads in base layer, loading this in base layer is okay.
+    {% endcomment %}
+    @import "{% static 'texascale_cms/css/bootstrap/extensions.css' %}" layer(base);
   </style>
 
   {# To disable "ImporterPlugin" on plugin list #}
