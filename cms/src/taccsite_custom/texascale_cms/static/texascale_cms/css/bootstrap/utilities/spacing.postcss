@@ -143,14 +143,26 @@
     }
 }
 
+/* Emit base classes for all custom spacer sizes first,
+   then emit responsive blocks grouped by breakpoint.
+   This ensures source order mimics Bootstrap —
+   base -> sm -> md -> lg -> xl
+   — so larger breakpoints "win". */
 @mixin spacing-global 6;
-@media (--x-narrow-and-above) { @mixin spacing-responsive-6 sm; }
-@media (--narrow-and-above)   { @mixin spacing-responsive-6 md; }
-@media (--medium-and-above)   { @mixin spacing-responsive-6 lg; }
-@media (--wide-and-above)     { @mixin spacing-responsive-6 xl; }
-
 @mixin spacing-global 7;
-@media (--x-narrow-and-above) { @mixin spacing-responsive-7 sm; }
-@media (--narrow-and-above)   { @mixin spacing-responsive-7 md; }
-@media (--medium-and-above)   { @mixin spacing-responsive-7 lg; }
-@media (--wide-and-above)     { @mixin spacing-responsive-7 xl; }
+@media (--x-narrow-and-above) {
+    @mixin spacing-responsive-6 sm;
+    @mixin spacing-responsive-7 sm;
+}
+@media (--narrow-and-above) {
+    @mixin spacing-responsive-6 md;
+    @mixin spacing-responsive-7 md;
+}
+@media (--medium-and-above) {
+    @mixin spacing-responsive-6 lg;
+    @mixin spacing-responsive-7 lg;
+}
+@media (--wide-and-above) {
+    @mixin spacing-responsive-6 xl;
+    @mixin spacing-responsive-7 xl;
+}
