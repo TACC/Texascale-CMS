@@ -6,64 +6,79 @@ function getYearFromPath() {
     return m ? Number(m[1]) : null;
 }
 
-function collectEls() {
-    const modernEls = [
+function collectStyles() {
+    const modernStyles = [
         ...(document.querySelectorAll(`
             [data-design]:is(style,link):not([data-design="legacy"])
         `))
     ].filter(el => (/^\d{4}$/.test(el.getAttribute('data-design'))
             && Number(el.getAttribute('data-design')) >= 2025));
-    const legacyEls = [
+    const legacyStyles = [
         ...(document.querySelectorAll('[data-design="legacy"]:is(style,link)'))
     ];
-    return { modernEls, legacyEls };
+    return { modernStyles, legacyStyles };
 }
 
-function inCMSEditorMode() {
+function inEditMode() {
     return Boolean(window.CMS) || Boolean(document.querySelector('.cms-toolbar')) || Boolean(document.querySelector('#cms-toolbar'));
+}
+
+function setMedia(els, media) {
+    els.forEach(e => e.setAttribute('media', media));
+}
+function showMedia(els) { setMedia(els, 'all'); }
+function hideMedia(els) { setMedia(els, 'not all'); }
+
+function enableModernForYear(year, modernStyles, legacyStyles, isEditor) {
+    const targetStyles = [
+        ...(document.querySelectorAll(`[data-design="${year}"]:is(style,link)`))
+    ];
+    const targetSet = new Set(targetStyles);
+    const otherModernStyles = modernStyles.filter(e => !targetSet.has(e));
+
+    showMedia(targetStyles);
+    hideMedia(otherModernStyles);
+    hideMedia(legacyStyles);
+
+    if (targetStyles.length)
+        console.log(`Enabled modern ad-hoc styles for ${year}`);
+    else
+        console.log(`No ad-hoc yearly styles found for ${year}`);
+
+    if (otherModernStyles.length)
+        console.log(`Disabled modern ad-hoc styles for other years`);
+
+    if (legacyStyles.length)
+        console.log(`Disabled legacy ad-hoc styles`);
+}
+function enableLegacy(modernStyles, legacyStyles, year, isEditor) {
+    showMedia(legacyStyles);
+    hideMedia(modernStyles);
+
+    if (legacyStyles.length)
+        console.log(`Enabled legacy ad-hoc styles`);
+    if (modernStyles.length)
+        console.log(`Disabled modern ad-hoc styles`);
+}
+function disableAll(modernStyles, legacyStyles) {
+    hideMedia([...modernStyles, ...legacyStyles]);
+
+    console.log('No year recognized. Ad-hoc yearly styles disabled (if not already)');
 }
 
 function applyYearStyles() {
     const year = getYearFromPath();
     const isModern = Boolean(year) && year >= 2025;
     const isLegacy = Boolean(year) && year <= 2024;
-    const { modernEls, legacyEls } = collectEls();
-    const isCMSEditMode = inCMSEditorMode();
+    const { modernStyles, legacyStyles } = collectStyles();
+    const isEditor = inEditMode();
 
-    // If user is editing CMS:
-    // - on a modern (>=2025) page, enable only the matching modern styles
-    // - on a legacy page, enable only legacy styles
-    if (isCMSEditMode) {
-        if (isModern) {
-            const targetEls = [
-                ...(document.querySelectorAll(`[data-design="${year}"]:is(style,link)`))
-            ];
-            targetEls.forEach(t => t.setAttribute('media', 'all'));
-            modernEls.filter(e => !targetEls.includes(e)).forEach(e => e.setAttribute('media', 'not all'));
-            legacyEls.forEach(e => e.setAttribute('media', 'not all')); // explicitly hide legacy
-            console.log(`Editor: enabled modern ad-hoc styles for ${year}, legacy styles hidden`);
-        } else if (isLegacy) {
-            legacyEls.forEach(e => e.setAttribute('media', 'all'));
-            modernEls.forEach(e => e.setAttribute('media', 'not all'));
-            console.log(`Editor: enabled legacy ad-hoc styles for ${year}, modern styles hidden`);
-        }
+    if (isModern) {
+        enableModernForYear(year, modernStyles, legacyStyles, isEditor);
+    } else if (isLegacy) {
+        enableLegacy(modernStyles, legacyStyles, year, isEditor);
     } else {
-        if (isModern) {
-            const targetEls = [
-                ...(document.querySelectorAll(`[data-design="${year}"]:is(style,link)`))
-            ];
-            targetEls.forEach(t => t.setAttribute('media', 'all'));
-            modernEls.filter(e => !targetEls.includes(e)).forEach(e => e.setAttribute('media', 'not all'));
-            legacyEls.forEach(e => e.setAttribute('media', 'not all'));
-            console.log(targetEls.length ? `Enabled ad-hoc styles for ${year}` : `No ad-hoc yearly styles for ${year}`);
-        } else if (isLegacy) {
-            legacyEls.forEach(e => e.setAttribute('media', 'all'));
-            modernEls.forEach(e => e.setAttribute('media', 'not all'));
-            console.log(`Enabled ad-hoc legacy style for ${year}`);
-        } else {
-            [...modernEls, ...legacyEls].forEach(e => e.setAttribute('media', 'not all'));
-            console.log('No year recognized. Ad-hoc yearly styles disabled (if not already)');
-        }
+        disableAll(modernStyles, legacyStyles);
     }
 }
 
