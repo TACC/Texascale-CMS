@@ -29,7 +29,7 @@ function setMedia(els, media) {
 function showMedia(els) { setMedia(els, 'all'); }
 function hideMedia(els) { setMedia(els, 'not all'); }
 
-function enableModernForYear(year, modernStyles, legacyStyles, isEditor) {
+function enableModernForYear(year, modernStyles, legacyStyles) {
     const targetStyles = [
         ...(document.querySelectorAll(`[data-design="${year}"]:is(style,link)`))
     ];
@@ -51,7 +51,7 @@ function enableModernForYear(year, modernStyles, legacyStyles, isEditor) {
     if (legacyStyles.length)
         console.log(`Disabled legacy ad-hoc styles`);
 }
-function enableLegacy(modernStyles, legacyStyles, year, isEditor) {
+function enableLegacy(modernStyles, legacyStyles, year) {
     showMedia(legacyStyles);
     hideMedia(modernStyles);
 
@@ -71,12 +71,11 @@ function applyYearStyles() {
     const isModern = Boolean(year) && year >= 2025;
     const isLegacy = Boolean(year) && year <= 2024;
     const { modernStyles, legacyStyles } = collectStyles();
-    const isEditor = inEditMode();
 
     if (isModern) {
-        enableModernForYear(year, modernStyles, legacyStyles, isEditor);
+        enableModernForYear(year, modernStyles, legacyStyles);
     } else if (isLegacy) {
-        enableLegacy(modernStyles, legacyStyles, year, isEditor);
+        enableLegacy(modernStyles, legacyStyles, year);
     } else {
         disableAll(modernStyles, legacyStyles);
     }
