@@ -1,0 +1,12 @@
+@use 'sass:map';
+@import 'pkg:bootstrap/scss/functions';
+@import 'pkg:bootstrap/scss/variables';
+$spacers: map.merge(
+  $spacers,
+  (
+    6: $spacer * 4.5,
+    7: $spacer * 6
+  )
+);
+
+@import 'pkg:bootstrap/scss/bootstrap';

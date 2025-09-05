@@ -6,7 +6,7 @@
   {% if is_legacy %}
     {% include 'assets_site.html' %}
   {% else %}
-    {% include 'assets_core.html' %}
+    {% include './assets_core.html' %} {# `./` to load local custom version #}
     {% include 'assets_core_cms.html' %}
   {% endif %}
 {% endblock assets %}
@@ -25,17 +25,6 @@
   <link rel="stylesheet" href="https://use.typekit.net/liq2uqc.css">
   <link rel="stylesheet" href="{% static 'texascale_cms/css/2025/cms.css' %}">
   {% endif %}
-
-  <style>
-    {% comment %}
-    HELP: I tried to use `layer(foundation.allow-override)`,
-          but the specificity of these styles compared to Bootstrap's
-          is unexpected, seemingly unresolvable, and possibly a browser bug.
-    NOTE: Because these extensions should move to Core-Styles,
-          which loads in base layer, loading this in base layer is okay.
-    {% endcomment %}
-    @import "{% static 'texascale_cms/css/bootstrap/extensions.css' %}" layer(base);
-  </style>
 
   {# To disable "ImporterPlugin" on plugin list #}
   {# IDEA: Suggest this for TACC/Core-CMS #}
