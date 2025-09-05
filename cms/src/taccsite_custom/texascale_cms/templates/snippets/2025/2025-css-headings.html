@@ -5,6 +5,7 @@
 /* GLOBAL */
 h1, h2, h3, h4, h5, h6 {
 	color: var(--tacc-black);
+	margin-bottom: 0.25em;
 }
 h1 {
 	font-family: var(--texascale-kepler);
@@ -24,7 +25,6 @@ h3 {
 	font-size: 3.0rem;
 	font-weight: 700;
 	line-height: 150%;
-	margin-bottom: 1.8rem; /* body font-size */
 }
 h4 {
 	font-size: 2.5rem;
@@ -50,16 +50,16 @@ h6 {
 	- h4 content header 2nd-level
 	- h5 content header 3rd-level
 */
-[data-page-template^="article"]
-h1, h2 {
+[data-page-template*="article"]
+:is(h2) {
 	margin-bottom: 30px;
 }
-[data-page-template^="article"]
-h3, h4 {
+[data-page-template*="/article"]
+:is(h3, h4) {
 	margin-bottom: 1.8rem;
 }
-[data-page-template^="article"]
-h4:not(:first-child) {
+[data-page-template*="article"]
+:is(h4):not(:first-child) {
 	margin-top: 60px;
 }
 </style>
