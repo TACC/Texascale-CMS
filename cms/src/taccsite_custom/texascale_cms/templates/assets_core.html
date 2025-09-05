@@ -1,0 +1,13 @@
+{# https://github.com/TACC/Core-CMS/blob/v4.36.3/taccsite_cms/templates/assets_core.html #}
+{% load static %}
+
+<style>
+  {# https://tacc-main.atlassian.net/wiki/x/hRlv #}
+  @layer foundation, base, project;
+
+  /* TODO: Use same version of Bootstrap as TACC/Core-Portal (v5) */
+  {# TACC: (custom Bootstrap v4 to provide larger spacers) #}
+  @import url("{% static 'texascale_cms/css/bootstrap/bootstrap-v4.custom.css' %}") layer(foundation);
+  {# /TACC #}
+  @import url("{% static 'site_cms/css/build/core-styles.base.css' %}") layer(base);
+</style>

@@ -1,6 +1,7 @@
 {% load sekizai_tags %}
 {% addtoblock "css" %}
-<style id="2025-css-tabs">
+{# FAQ: `data-design="2025" media="not all"` protects Legacy pages #}
+<style id="2025-css-tabs" data-design="2025" media="not all">
 /* NAV TABS */
 
 .nav-tabs {
@@ -15,8 +16,8 @@
 
 /* To show tab titles clearly */
 .nav-tabs .nav-link img + span {
-    color: var(--tc-beige);
-    background-color: var(--tc-black);
+    color: var(--texascale-gold);
+    background-color: var(--tacc-black);
 }
 
 
@@ -24,7 +25,7 @@
 /* TAB CONTENT */
 
 .tab-pane {
-    --space-above-title--layout-wide: 255px;
+    --space-above-title--layout-wide: 155px;
     --space-above-title--layout-narrow: 20px;
     --space-after-image--layout-wide: 32px;
     --space-after-image--layout-narrow: 0;
@@ -36,8 +37,8 @@
 
 /* The tab links that are in content, not in `.nav-tabs` */
 .tab-toggle {
-    background-color: var(--tc-black);
-    background-image: url('/static/texascale_cms/img/tab-toggle-arrow-beige.svg');
+    background-color: var(--tacc-black);
+    background-image: url('/static/texascale_cms/img/tab-toggle-arrow-gold.svg');
 
     border-radius: 50%;
     width: 34px;
@@ -46,13 +47,13 @@
     display: inline-block;
     text-align: center;
     box-sizing: content-box;
-    border: 3px solid var(--tx-bkgd);
+    border: 3px solid var(--texascale-bkgd);
 }
 a.tab-toggle:hover {
-    border-color: var(--tc-black);
+    border-color: var(--tacc-black);
 }
 a.tab-toggle:active {
-    background-color: var(--tc-beige);
+    background-color: var(--tacc-beige);
     background-image: url('/static/texascale_cms/img/tab-toggle-arrow-black.svg');
 }
 a.tab-toggle[disabled] {

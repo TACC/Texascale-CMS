@@ -1,0 +1,39 @@
+@import '@tacc/core-styles/src/lib/_imports/tools/media-queries.css';
+
+/* To Control When Sidebar Has Borders */
+
+/* To remove borders (for when a layout stacks all columns) */
+@define-mixin col-sidebar-del-border {
+    .col-sidebar { border: none }
+
+    .col-sidebar:not(:only-child):first-child { border: none }
+    .col-sidebar:not(:only-child):last-child { border: none }
+    .col-sidebar:not(:only-child):not(:first-child):not(:last-child) { border: none }
+}
+
+/* To add borders (for whenever column is not visually "full-width") */
+@define-mixin col-sidebar-add-border $cls {
+    .col-sidebar[class~="$cls"] { border: none }
+
+    .col-sidebar:not([class~="$cls"], :only-child):first-child {
+        border-right: 1px solid var(--tacc-black);
+    }
+    .col-sidebar:not([class~="$cls"], :only-child):last-child {
+        border-left: 1px solid var(--tacc-black);
+    }
+    .col-sidebar:not([class~="$cls"], :only-child):not(:first-child, :last-child) {
+        border-left: 1px solid var(--tacc-black);
+        border-right: 1px solid var(--tacc-black);
+    }
+}
+
+/* for explicit full-width columns */
+.col-sidebar[class~="col-12"] { border: none; }
+
+/* when media query / breakpoint class overrides explicit full-width columns */
+@media (--xx-narrow-and-below) { @mixin col-sidebar-del-border; }
+@media (--x-narrow-and-above) { @mixin col-sidebar-add-border col-sm-12; }
+@media (--narrow-and-above) { @mixin col-sidebar-add-border col-md-12; }
+@media (--medium-and-above) { @mixin col-sidebar-add-border col-lg-12; }
+@media (--wide-and-above) { @mixin col-sidebar-add-border col-xl-12; }
+@media (--x-wide-and-above) { @mixin col-sidebar-add-border col-xxl-12; }

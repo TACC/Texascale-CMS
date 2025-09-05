@@ -6,7 +6,7 @@
   {% if is_legacy %}
     {% include 'assets_site.html' %}
   {% else %}
-    {% include 'assets_core.html' %}
+    {% include './assets_core.html' %} {# `./` to load local custom version #}
     {% include 'assets_core_cms.html' %}
   {% endif %}
 {% endblock assets %}
@@ -21,6 +21,8 @@
   <link rel="stylesheet" href="{% static 'texascale_cms/css/legacy/site.css' %}">
   <link rel="stylesheet" href="{% static 'texascale_cms/css/legacy/site.header.css' %}">
   {% else %}
+  <link rel="preconnect" href="https://use.typekit.net/">
+  <link rel="stylesheet" href="https://use.typekit.net/liq2uqc.css">
   <link rel="stylesheet" href="{% static 'texascale_cms/css/2025/cms.css' %}">
   {% endif %}
 

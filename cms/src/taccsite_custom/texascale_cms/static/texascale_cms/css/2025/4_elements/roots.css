@@ -1,0 +1,12 @@
+/* ROOT: html, body */
+body {
+	color: var(--tacc-black);
+
+	font-size: 1.8rem;
+	line-height: 150%;
+	/* letter-spacing: 0.025rem; *//* TACC/Core uses 0.025rem */
+
+	/* TODO: Add to Core-Styles */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}

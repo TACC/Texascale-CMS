@@ -16,7 +16,9 @@
     "url": "https://github.com/TACC/Texascale-CMS.git"
   },
   "scripts": {
-    "build": "./bin/build-css.js",
+    "build": "npm run build:pcss && npm run build:sass",
+    "build:css": "./bin/build-css.js",
+    "build:sass": "npx sass --pkg-importer=node --quiet-deps ./src/taccsite_custom/texascale_cms/static/texascale_cms/css/bootstrap/bootstrap-v4.custom.scss ./src/taccsite_custom/texascale_cms/static/texascale_cms/css/bootstrap/bootstrap-v4.custom.css --style compressed",
     "build:dev": "npm run build -- --quiet && npm run collectstatic",
     "collectstatic": "docker-compose exec cms python3 manage.py collectstatic --noinput --verbosity=1 2>&1 | grep -v 'Found another file'",
     "watch": "npm-watch"
@@ -26,7 +28,9 @@
     "@tacc/core-styles": "^2.45.0"
   },
   "devDependencies": {
-    "npm-watch": "^0.13.0"
+    "bootstrap": "4.6.x",
+    "npm-watch": "^0.13.0",
+    "sass": "^1.92.0"
   },
   "watch": {
     "build:dev": {

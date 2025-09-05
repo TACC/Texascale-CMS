@@ -1,9 +1,15 @@
-
 /* Import only. Use ITCSS: */
 /* https://tacc-main.atlassian.net/wiki/x/QQhv */
 
-@import url("./_imports/settings/color.css");
+@import './1_settings/colors.css';
 
-@import url("./_imports/components/bootstrap/col-sidebar.postcss") layer(base);
-@import url("./_imports/components/taccsite_bootstrap4_tabs/structure.postcss");
-@import url("./_imports/components/taccsite_bootstrap4_tabs/skin.css");
+@import './4_elements/roots.css';
+
+@import './6_components/bootstrap.col-sidebar.postcss' layer(base);
+@import './6_components/bootstrap.col-sidebar.texascale.postcss';
+@import './6_components/tacc.logos.css';
+@import './6_components/taccsite_bootstrap4_tabs.structure.postcss';
+@import './6_components/taccsite_bootstrap4_tabs.skin.css';
+@import './6_components/texascale-byline.css';
+@import './6_components/texascale-hero.structure.css';
+@import './6_components/texascale-hero.skin.css';

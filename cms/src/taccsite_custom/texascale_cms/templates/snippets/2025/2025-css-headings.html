@@ -1,0 +1,66 @@
+{% load sekizai_tags %}
+{% addtoblock "css" %}
+{# FAQ: `data-design="2025" media="not all"` protects Legacy pages #}
+<style id="2025-css-headings" data-design="2025" media="not all">
+/* GLOBAL */
+h1, h2, h3, h4, h5, h6 {
+	color: var(--tacc-black);
+	margin-bottom: 0.25em;
+}
+h1 {
+	font-family: var(--texascale-kepler);
+	font-size: 5.5rem;
+	font-style: normal;
+	font-weight: 700;
+	line-height: 110%;
+	text-transform: unset;
+}
+h2 {
+	font-size: 4.0rem;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 110%;
+}
+h3 {
+	font-size: 3.0rem;
+	font-weight: 700;
+	line-height: 150%;
+}
+h4 {
+	font-size: 2.5rem;
+	font-weight: 700;
+	line-height: 130%;
+}
+h5 {
+	font-size: 1.8rem; /* final design */
+	/* font-size: 2.0rem; *//* given design */
+	font-weight: var(--bold);
+	margin-bottom: 0;
+}
+h6 {
+	font-size: 1.8rem;
+	font-weight: var(--medium);
+	margin-bottom: 0;
+}
+
+/* ARTICLES:
+	- h1 titles
+	- h2 article subtitles
+	- h3 content header 1st-level
+	- h4 content header 2nd-level
+	- h5 content header 3rd-level
+*/
+[data-page-template*="article"]
+:is(h2) {
+	margin-bottom: 30px;
+}
+[data-page-template*="/article"]
+:is(h3, h4) {
+	margin-bottom: 1.8rem;
+}
+[data-page-template*="article"]
+:is(h4):not(:first-child) {
+	margin-top: 60px;
+}
+</style>
+{% endaddtoblock %}

@@ -1,0 +1,19 @@
+{% load sekizai_tags %}
+{% addtoblock "css" %}
+{# FAQ: `data-design="2025" media="not all"` protects Legacy pages #}
+<style id="2025-css-hero" data-design="2025" media="not all">
+.texascale-hero {
+	background-color: var(--tacc-blue);
+	overflow: hidden; /* prevent scrollbar caused by giant image */
+}
+.texascale-hero
+:is(h1, h2, h3) {
+	color: var(--tacc-white);
+}
+.texascale-hero
+.logos--social {
+	color: var(--tacc-white);
+	fill: var(--tacc-white);
+}
+</style>
+{% endaddtoblock %}
