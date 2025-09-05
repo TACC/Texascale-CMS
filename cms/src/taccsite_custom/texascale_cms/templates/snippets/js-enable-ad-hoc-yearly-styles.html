@@ -1,47 +1,82 @@
 <script id="year-js-toggle-css-per-page" type="module">
-// Minimal year-based toggle using only data-design attributes.
-const yearMatchInURL = window.location.pathname.match(/\/(\d{4})\//);
-const year = yearMatchInURL ? Number(yearMatchInURL[1]) : null;
-const isModern = Boolean(year) && year >= 2025;
-const isLegacy = Boolean(year) && year <= 2024;
+// Utility to enable/disable ad-hoc yearly styles based on URL year segment
 
-const modernEls = [
-    ...(document.querySelectorAll(`
-        [data-design]:is(style,link):not([data-design="legacy"])
-    `))
-].filter(el => {
-    return (/^\d{4}$/.test(el.getAttribute('data-design'))
-            && Number(el.getAttribute('data-design')) >= 2025);
-});
-const legacyEls = [
-    ...(document.querySelectorAll('[data-design="legacy"]:is(style,link)'))
-];
-
-if (isModern) {
-    const targetEls = [
-        ...(document.querySelectorAll(`
-            [data-design="${year}"]:is(style,link)
-        `))
-    ];
-
-    targetEls.forEach(t => t.setAttribute('media', 'all'));
-    modernEls.filter(e => !targetEls.includes(e)).forEach(e => e.setAttribute('media', 'not all'));
-    legacyEls.forEach(e => e.setAttribute('media', 'not all'));
-
-    if (targetEls.length) {
-        console.log(`Enabled any ad-hoc styles for ${year}`, targetEls);
-    } else {
-        console.log(`No ad-hoc yearly styles for ${year}`);
-    }
-} else if (isLegacy) {
-    legacyEls.forEach(e => e.setAttribute('media', 'all'));
-    modernEls.forEach(e => e.setAttribute('media', 'not all'));
-
-    console.log(`Enabled any ad-hoc legacy style for ${year}`, legacyEls);
-} else {
-    [...modernEls, ...legacyEls].forEach(e => e.setAttribute('media', 'not all'));
-
-    console.log('No year recognized.');
-    console.log('Ad-hoc yearly styles disabled (if not already)');
+function getYearFromPath() {
+    const m = window.location.pathname.match(/\/(\d{4})\//);
+    return m ? Number(m[1]) : null;
 }
+
+function collectEls() {
+    const modernEls = [
+        ...(document.querySelectorAll(`
+            [data-design]:is(style,link):not([data-design="legacy"])
+        `))
+    ].filter(el => (/^\d{4}$/.test(el.getAttribute('data-design'))
+            && Number(el.getAttribute('data-design')) >= 2025));
+    const legacyEls = [
+        ...(document.querySelectorAll('[data-design="legacy"]:is(style,link)'))
+    ];
+    return { modernEls, legacyEls };
+}
+
+function inCMSEditorMode() {
+    return Boolean(window.CMS) || Boolean(document.querySelector('.cms-toolbar')) || Boolean(document.querySelector('#cms-toolbar'));
+}
+
+function applyYearStyles() {
+    const year = getYearFromPath();
+    const isModern = Boolean(year) && year >= 2025;
+    const isLegacy = Boolean(year) && year <= 2024;
+    const { modernEls, legacyEls } = collectEls();
+    const isCMSEditMode = inCMSEditorMode();
+
+    // If user is editing CMS:
+    // - on a modern (>=2025) page, enable only the matching modern styles
+    // - on a legacy page, enable only legacy styles
+    if (isCMSEditMode) {
+        if (isModern) {
+            const targetEls = [
+                ...(document.querySelectorAll(`[data-design="${year}"]:is(style,link)`))
+            ];
+            targetEls.forEach(t => t.setAttribute('media', 'all'));
+            modernEls.filter(e => !targetEls.includes(e)).forEach(e => e.setAttribute('media', 'not all'));
+            legacyEls.forEach(e => e.setAttribute('media', 'not all')); // explicitly hide legacy
+            console.log(`Editor: enabled modern ad-hoc styles for ${year}, legacy styles hidden`);
+        } else if (isLegacy) {
+            legacyEls.forEach(e => e.setAttribute('media', 'all'));
+            modernEls.forEach(e => e.setAttribute('media', 'not all'));
+            console.log(`Editor: enabled legacy ad-hoc styles for ${year}, modern styles hidden`);
+        }
+    } else {
+        if (isModern) {
+            const targetEls = [
+                ...(document.querySelectorAll(`[data-design="${year}"]:is(style,link)`))
+            ];
+            targetEls.forEach(t => t.setAttribute('media', 'all'));
+            modernEls.filter(e => !targetEls.includes(e)).forEach(e => e.setAttribute('media', 'not all'));
+            legacyEls.forEach(e => e.setAttribute('media', 'not all'));
+            console.log(targetEls.length ? `Enabled ad-hoc styles for ${year}` : `No ad-hoc yearly styles for ${year}`);
+        } else if (isLegacy) {
+            legacyEls.forEach(e => e.setAttribute('media', 'all'));
+            modernEls.forEach(e => e.setAttribute('media', 'not all'));
+            console.log(`Enabled ad-hoc legacy style for ${year}`);
+        } else {
+            [...modernEls, ...legacyEls].forEach(e => e.setAttribute('media', 'not all'));
+            console.log('No year recognized. Ad-hoc yearly styles disabled (if not already)');
+        }
+    }
+}
+
+// To run when script loads
+applyYearStyles();
+
+// To re-run on DOM changes (Django CMS dynamic partial refreshes)
+const observer = new MutationObserver(() => {
+    applyYearStyles();
+});
+observer.observe(document.body, { childList: true, subtree: true });
+
+// To also watch for toolbar/attribute changes that indicate editor mode toggling
+const attrObserver = new MutationObserver(() => applyYearStyles());
+attrObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['class', 'data-editing'] });
 </script>
