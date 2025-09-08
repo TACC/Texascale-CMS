@@ -11,4 +11,7 @@
 {% endblock assets_custom %}
 
 {# Add class to the <html> #}
-{% block page_type_class %}s-category-page{% endblock page_type_class %}
+{% block page_type_class %}
+  {{ block.super }}
+  s-category-page
+{% endblock page_type_class %}

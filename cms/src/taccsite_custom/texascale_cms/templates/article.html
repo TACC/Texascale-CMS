@@ -28,4 +28,7 @@
 </article>
 {% endblock content %}
 
-{% block page_type_class %}s-article-page{% endblock page_type_class %}
+{% block page_type_class %}
+  {{ block.super }}
+  s-article-page
+{% endblock page_type_class %}
