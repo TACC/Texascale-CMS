@@ -2,6 +2,8 @@
 {% load cms_tags is_design %}
 
 {% block content %}
+  {% block breadcrumbs %}{{ block.super }}{% endblock breadcrumbs %}
+
   <article>{% placeholder "content" %}</article>
 {% endblock content %}
 
