@@ -39,14 +39,10 @@ def is_design_year(context, year_comparison):
             {# condition evaluates to True #}
         {% endif %}
 
-        {# Inline usage for CSS classes #}
+        {# Condensed usage #}
         <div class="{% is_design_year 2025 as is_2025 %}{% if is_2025 %}modern-class{% endif %}">
             Content
         </div>
-
-    Important: Do NOT use colon syntax like {% is_design_year:2025 %} 
-    or {% if is_design:2025 %} - this will cause parser errors.
-    Always use the correct syntax: {% is_design_year 2025 as variable_name %}
     """
     request = context.get('request')
     if not request or not year_comparison:
