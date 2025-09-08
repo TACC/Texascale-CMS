@@ -2,17 +2,14 @@
 {% comment %}
 FAQ: Changes are
 1. NOT disable 2nd-level breadcrumbs
-2. customize class per design
+2. customize markup per design (see `is_2025`)
 {% endcomment %}
 {% load menu_tags cms_tags is_design %}
+{# @var className #}
 
 {% is_design_year 2025 as is_2025 %}
 
-<nav class="
-  s-breadcrumbs
-  {% if is_2025 %}jumbotron{% endif %}"
-  id="cms-breadcrumbs"
->
+<nav class="s-breadcrumbs  {{className}}" id="cms-breadcrumbs">
   <ol
     itemscope itemtype="https://schema.org/BreadcrumbList"
     {% if is_2025 %}class="container"{% endif %}

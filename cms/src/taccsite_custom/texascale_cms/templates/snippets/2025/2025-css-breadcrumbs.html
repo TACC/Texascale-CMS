@@ -1,0 +1,10 @@
+{% load sekizai_tags %}
+{% addtoblock "css" %}
+{# FAQ: `data-design="2025" media="not all"` protects Legacy pages #}
+<style id="2025-css-breadcrumbs" data-design="2025" media="not all">
+[data-page-template*="/article"]
+#cms-breadcrumbs {
+  background-color: var(--tacc-blue);
+}
+</style>
+{% endaddtoblock %}
