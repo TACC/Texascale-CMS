@@ -20,21 +20,33 @@ def is_design_year(context, year_comparison):
     Template inline usage:
         {# Check for year 2025 or above #}
         {# given path '.../2025/...', '.../2026/...', '.../2027/...', etc. #}
-        {% if is_design_year:"2025+" %}
+        {% is_design_year "2025+" as is_2025_plus %}
+        {% if is_2025_plus %}
             {# condition evaluates to True #}
         {% endif %}
 
         {# Check for year 2024 or below #}
         {# given path '.../2024/...', '.../2023/...', '.../2022/...', etc. #}
-        {% if is_design_year:"2024-" %}
+        {% is_design_year "2024-" as is_2024_minus %}
+        {% if is_2024_minus %}
             {# condition evaluates to True #}
         {% endif %}
 
         {# Check for exact year #}
         {# given path '.../2025/...' #}
-        {% if is_design_year:2025 %}
+        {% is_design_year 2025 as is_2025 %}
+        {% if is_2025 %}
             {# condition evaluates to True #}
         {% endif %}
+
+        {# Inline usage for CSS classes #}
+        <div class="{% is_design_year 2025 as is_2025 %}{% if is_2025 %}modern-class{% endif %}">
+            Content
+        </div>
+
+    Important: Do NOT use colon syntax like {% is_design_year:2025 %} 
+    or {% if is_design:2025 %} - this will cause parser errors.
+    Always use the correct syntax: {% is_design_year 2025 as variable_name %}
     """
     request = context.get('request')
     if not request or not year_comparison:
