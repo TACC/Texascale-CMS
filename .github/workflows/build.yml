@@ -2,7 +2,7 @@ name: Build
 on:
   workflow_dispatch:
   push:
-    branches: [main, feat/2025-css]
+    branches: [main, feat/breadcrumbs-on-article-page]
 
 jobs:
   build_commit:
