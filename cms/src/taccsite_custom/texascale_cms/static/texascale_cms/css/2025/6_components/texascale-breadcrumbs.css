@@ -4,3 +4,10 @@
   margin-bottom: unset;
   padding-bottom: var(--global-space--under-breadcrumbs);
 }
+
+/* To hide first link (and first ">") */
+/* HELP: Do this server-side (nav_cms_breadcrumbs.html) */
+.texascale-breadcrumbs li:first-child,
+.texascale-breadcrumbs li:nth-child(2)::before {
+    display: none;
+}
