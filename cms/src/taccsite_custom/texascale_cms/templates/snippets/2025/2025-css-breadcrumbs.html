@@ -1,0 +1,27 @@
+{% load sekizai_tags %}
+{% addtoblock "css" %}
+{# FAQ: `data-design="2025" media="not all"` protects Legacy pages #}
+<style id="2025-css-breadcrumbs" data-design="2025" media="not all">
+/* GLOBAL */
+:root {
+  --global-space--above-breadcrumbs: 20px;
+  --global-space--under-breadcrumbs: 50px;
+}
+.texascale-breadcrumbs ol {
+  font-weight: var(--normal); /* last item becomes bold via Core-Styles */
+
+  padding-bottom: 0.5em;
+  border-bottom: 0.5px solid white;
+}
+
+/* ARTICLES */
+[data-page-template*="/article"]
+.texascale-breadcrumbs {
+  background-color: var(--tacc-blue);
+}
+[data-page-template*="/article"]
+.texascale-breadcrumbs :is(li, a) {
+  color: white;
+}
+</style>
+{% endaddtoblock %}

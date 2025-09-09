@@ -11,6 +11,13 @@
 {% endblock assets_custom %}
 
 {% block content %}
+  {% block breadcrumbs %}
+    {% is_design_legacy as is_legacy %}
+    {% if not is_legacy %}
+      {% include "./breadcrumbs.html" %}
+    {% endif %}
+  {% endblock breadcrumbs %}
+
 <article class="c-page  container-fluid">
   <div class="row">
 
