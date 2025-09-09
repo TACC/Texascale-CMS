@@ -1,0 +1,16 @@
+{# https://github.com/TACC/Core-CMS/blob/v4.36.3/taccsite_cms/templates/nav_cms_breadcrumbs.html #}
+{% comment %}
+FAQ: Changes are
+1. NOT disable 2nd-level breadcrumbs
+2. customize markup per design (see `is_2025`)
+{% endcomment %}
+{% load menu_tags %}
+{# @var className #}
+
+<nav class="s-breadcrumbs  {{className}}" id="cms-breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    {# TEXASCALE: (do not show top-level item) #}
+    {% show_breadcrumb 1 "menu/breadcrumb.html" %}
+    {# /TEXASCALE #}
+  </ol>
+</nav>
