@@ -16,7 +16,7 @@
     "url": "https://github.com/TACC/Texascale-CMS.git"
   },
   "scripts": {
-    "build": "npm run build:pcss && npm run build:sass",
+    "build": "npm run build:css && npm run build:sass",
     "build:css": "./bin/build-css.js",
     "build:sass": "npx sass --pkg-importer=node --quiet-deps ./src/taccsite_custom/texascale_cms/static/texascale_cms/css/bootstrap/bootstrap-v4.custom.scss ./src/taccsite_custom/texascale_cms/static/texascale_cms/css/bootstrap/bootstrap-v4.custom.css --style compressed",
     "build:dev": "npm run build -- --quiet && npm run collectstatic",
