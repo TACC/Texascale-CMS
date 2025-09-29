@@ -37,16 +37,17 @@
 
 /* The tab links that are in content, not in `.nav-tabs` */
 .tab-toggle {
+    --size: 40px;
+
     background-color: var(--tacc-black);
     background-image: url('/static/texascale_cms/img/tab-toggle-arrow-gold.svg');
 
     border-radius: 50%;
-    width: 34px;
-    height: 34px;
+    width: var(--size);
+    height: var(--size);
 
     display: inline-block;
     text-align: center;
-    box-sizing: content-box;
     border: 3px solid var(--texascale-bkgd);
 }
 a.tab-toggle:hover {

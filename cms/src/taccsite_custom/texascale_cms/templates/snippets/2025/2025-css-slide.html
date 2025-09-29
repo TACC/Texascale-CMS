@@ -1,0 +1,60 @@
+{% load sekizai_tags %}
+{% addtoblock "css" %}
+{# FAQ: `data-design="2025" media="not all"` protects Legacy pages #}
+<style id="2025-css-slider" data-design="2025" media="not all">
+/* To style slides */
+.texascale-slide-tabs .nav-tabs {
+	display: none;
+}
+.texascale-slide {
+	background: var(--tacc-blue);
+	color: var(--tacc-white);
+}
+.texascale-slide :not(.tab-toggle, :has(.tab-toggle)) {
+	--tacc-black: #FCFDF3;
+	--tacc-white: #231F1E;
+}
+
+/* To style headings */
+.texascale-slide h3 {
+	font-family: var(--texascale-kepler);
+}
+
+/* To style toggles */
+.texascale-slide .tab-toggle {
+	/* TODO: Consider adding to colors.css */
+	--texascale-glass: color(
+		from var(--tacc-white) srgb r g b / 0.6
+	);
+
+	border-color: transparent;
+	background-color: var(--texascale-glass);
+	background-image: url('https://texascale.org/static/texascale_cms/img/tab-toggle-arrow-black.svg');
+}
+
+/* To remove extra space around toggles (or where toggles had been) */
+.texascale-slide p:has(.tab-toggle) {
+	margin-block: unset;
+}
+
+/* To position tab toggles */
+.texascale-slide:not(:has(.container)),
+.texascale-slide:has(.container) .container {
+	position: relative;
+}
+.texascale-slide .tab-toggle:first-child,
+.texascale-slide .tab-toggle:last-child {
+	--bs4-gutter-x: 15px;
+
+	--offset: calc(-1 * (
+		var(--size) - var(--bs4-gutter-x)
+	));
+
+	position: absolute;
+	top: 50%;
+	translate: 0 -50%;
+}
+.texascale-slide .tab-toggle:first-child { left: var(--offset); }
+.texascale-slide .tab-toggle:last-child { right: var(--offset); }
+</style>
+{% endaddtoblock %}
