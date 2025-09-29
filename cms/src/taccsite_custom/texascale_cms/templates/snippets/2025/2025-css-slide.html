@@ -38,12 +38,17 @@
 }
 
 /* To position tab toggles */
-.texascale-slide {
+.texascale-slide:not(:has(.container)),
+.texascale-slide:has(.container) .container {
 	position: relative;
 }
 .texascale-slide .tab-toggle:first-child,
 .texascale-slide .tab-toggle:last-child {
-	--offset: 100px;
+	--bs4-gutter-x: 15px;
+
+	--offset: calc(-1 * (
+		var(--size) - var(--bs4-gutter-x)
+	));
 
 	position: absolute;
 	top: 50%;
