@@ -39,11 +39,23 @@ Our [production site] is built from a specific commit.
 
 Only appointed team members may release versions.
 
+0. Navigate to `cms/` dir:\
+    `cd cms/`
 1. Update version:\
-    `npm version N.N.N`
-2. Review. Commit. Push.
-3. Create release and tag on GitHub.
-4. [Build & Deploy](../README.md#build--deploy-project) `N.N.N` tag.[^1]
+    `npm version vN.N.N`
+2. Build styles:\
+    `npm run build`
+3. Review. Commit. Push.
+4. Create release and tag, `vN.N.N` on GitHub.
+5. [Build project](https://github.com/TACC/Texascale-CMS/actions/workflows/build.yml) tag `vN.N.N`.
+
+## Build Project
+
+Follow [Core CMS: Build & Deploy Project](https://github.com/TACC/Core-CMS#build--deploy-project).
+
+## Deploy Project
+
+Follow "Deploy" section of [How To Build & Deploy][Deploy Project].
 
 [^1]: So that new CMS image is tagged `latest` and `vN.N.N`.
 
