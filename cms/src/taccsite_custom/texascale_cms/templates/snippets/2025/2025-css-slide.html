@@ -15,6 +15,11 @@
 	--tacc-white: #231F1E;
 }
 
+/* To style headings */
+.texascale-slide h3 {
+	font-family: var(--texascale-kepler);
+}
+
 /* To style toggles */
 .texascale-slide .tab-toggle {
 	/* TODO: Consider adding to colors.css */
@@ -25,6 +30,11 @@
 	border-color: transparent;
 	background-color: var(--texascale-glass);
 	background-image: url('https://texascale.org/static/texascale_cms/img/tab-toggle-arrow-black.svg');
+}
+
+/* To remove extra space around toggles (or where toggles had been) */
+.texascale-slide p:has(.tab-toggle) {
+	margin-block: unset;
 }
 
 /* To position tab toggles */
