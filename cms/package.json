@@ -1,6 +1,6 @@
 {
   "name": "@tacc/texascale-cms",
-  "version": "1.4.1",
+  "version": "1.5.0",
   "license": "MIT",
   "author": "TACC COA CMD <coa-cmd@tacc.utexas.edu>",
   "contributors": [
