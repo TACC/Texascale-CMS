@@ -1,10 +1,12 @@
-/* COLORS: Texascale */
+/* Texascale */
 :root {
 	--texascale-gold: #D0B786;
 	--texascale-bkgd: var(--global-color-background--app);
-	--texascale-kepler: kepler-std, serif;
+	--texascale-glass: color(
+		from var(--tacc-white) srgb r g b / 0.6
+	);
 }
-/* COLORS: TACC/Core v3 (early) */
+/* TACC/Core v3 (early) */
 :root {
 	--tacc-blue:  #003049;    /* Prussian Blue */
 	--tacc-white: #FCFDF3;    /* Ivory */

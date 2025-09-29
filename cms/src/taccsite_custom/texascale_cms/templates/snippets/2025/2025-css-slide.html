@@ -22,11 +22,6 @@
 
 /* To style toggles */
 .texascale-slide .tab-toggle {
-	/* TODO: Consider adding to colors.css */
-	--texascale-glass: color(
-		from var(--tacc-white) srgb r g b / 0.6
-	);
-
 	border-color: transparent;
 	background-color: var(--texascale-glass);
 	background-image: url('https://texascale.org/static/texascale_cms/img/tab-toggle-arrow-black.svg');
@@ -44,8 +39,6 @@
 }
 .texascale-slide .tab-toggle:first-child,
 .texascale-slide .tab-toggle:last-child {
-	--bs4-gutter-x: 15px;
-
 	--offset: calc(-1 * (
 		var(--size) - var(--bs4-gutter-x)
 	));
