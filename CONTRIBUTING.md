@@ -39,11 +39,8 @@ Our [production site] is built from a specific commit.
 
 Only appointed team members may release versions.
 
-1. Update version:\
-    `cd cms && npm version vN.N.N`
-2. Review. Commit. Push.
-3. Create release and tag, `vN.N.N` on GitHub.
-4. [Build project](https://github.com/TACC/Texascale-CMS/actions/workflows/build.yml) tag `vN.N.N`.
+1. [Create release and tag](https://github.com/TACC/Texascale-CMS/releases/new) `vN.N.N`.
+2. [Build project](https://github.com/TACC/Texascale-CMS/actions/workflows/build.yml) from tag `vN.N.N`.
 
 ## Build Project
 
