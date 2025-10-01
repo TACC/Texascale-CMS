@@ -10,6 +10,9 @@
 	background: var(--tacc-blue);
 	color: var(--tacc-white);
 }
+.texascale-slide:has(.tab-toggle) {
+	overflow: hidden; /* to avoid horz. scroll if toggles escape viewport */
+}
 .texascale-slide :not(.tab-toggle, :has(.tab-toggle)) {
 	--tacc-black: #FCFDF3;
 	--tacc-white: #231F1E;
