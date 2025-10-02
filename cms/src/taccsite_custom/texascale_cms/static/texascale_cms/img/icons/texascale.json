@@ -3,6 +3,8 @@
     "spritePath": "texascale_cms/img/icons/texascale.svg",
     "iconClass": "",
     "icons": [
-        "hero-bkgd"
+        "hero-bkgd",
+        "tab-toggle-arrow-black",
+        "tab-toggle-arrow-gold"
     ]
 }
