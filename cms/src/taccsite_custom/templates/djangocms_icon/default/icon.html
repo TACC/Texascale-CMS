@@ -1,0 +1,10 @@
+{# https://github.com/TACC/Core-CMS/blob/v4.36.6/taccsite_cms/templates/djangocms_icon/default/icon.html #}
+{% load cms_tags %}
+
+{% if '-logo' in instance.icon %}
+  {% include 'djangocms_icon/includes/svg.html' with path="site_cms/img/icons/logos.svg" %}
+{% elif 'icon-' in instance.icon %}
+  {% include 'djangocms_icon/includes/icon.html' %}
+{% else %}
+  {% include 'djangocms_icon/includes/svg.html' with path="texascale_cms/img/icons/texascale.svg" %}
+{% endif %}

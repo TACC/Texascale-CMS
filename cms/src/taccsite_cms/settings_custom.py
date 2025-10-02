@@ -2,6 +2,8 @@
 # TACC WMA (SAD) CMS SITE:
 # *.TEXASCALE.TACC.UTEXAS.EDU
 
+import os
+
 ########################
 # TEXASCALE
 ########################
@@ -11,7 +13,7 @@ TEXASCALE_PUBLISHED_YEAR = 2024
 ########################
 # DJANGO
 ########################
-import os
+
 from glob import glob
 
 BASE_DIR = '/code'
@@ -116,3 +118,34 @@ BLOG_AUTO_NAMESPACE = 'News'
 
 # Miscellaneous settings
 BLOG_ENABLE_COMMENTS = False
+
+########################
+# PLUGIN SETTINGS
+########################
+
+from django.utils.translation import gettext_lazy as _
+
+# DJANGOCMS_ICON SETTINGS
+# https://github.com/django-cms/djangocms-icon
+
+ICON_PATH = os.path.join('taccsite_cms', 'static', 'site_cms', 'img', 'icons')
+
+LOGO_ICONFILE = os.path.join(BASE_DIR, ICON_PATH, 'logos.json')
+with open(LOGO_ICONFILE, 'r') as f:
+    LOGO_ICONS = f.read()
+
+CORTAL_ICONFILE = os.path.join(BASE_DIR, ICON_PATH, 'cortal.json')
+with open(CORTAL_ICONFILE, 'r') as f:
+    CORTAL_ICONS = f.read()
+
+TEXASCALE_ICONFILE = os.path.join(BASE_DIR, 'taccsite_custom', 'texascale_cms', 'static', 'texascale_cms', 'img', 'icons', 'texascale.json')
+with open(TEXASCALE_ICONFILE, 'r') as f:
+    TEXASCALE_ICONS = f.read()
+
+DJANGOCMS_ICON_SETS = [
+    # IMPORTANT: Sync properties & Order of sets matters
+    # https://github.com/TACC/Core-CMS/pull/995
+    (TEXASCALE_ICONS, '', _('Texascale Icons')),
+    (LOGO_ICONS, '', _('Logo SVGs')),
+    (CORTAL_ICONS, 'icon', _('TACC "Cortal" Icons')),
+]
