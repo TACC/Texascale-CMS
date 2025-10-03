@@ -6,7 +6,7 @@
 		from var(--tacc-white) srgb r g b / 0.6
 	);
 }
-/* TACC/Core v3 (early) */
+/* TACC/Core v3 (preview) */
 :root {
 	--tacc-blue:  #003049;    /* Prussian Blue */
 	--tacc-white: #FCFDF3;    /* Ivory */
@@ -14,4 +14,8 @@
 	--tacc-orange: #BF5700;   /* Texas Orange */
 	--tacc-beige: #EAE2B7;    /* Vanilla */
 	--tacc-black: #231F1E;    /* Raisin Black */
+}
+/* TACC/Core v2 (stable) */
+:root {
+	--header-bkgd-color: var(--tacc-black);
 }
