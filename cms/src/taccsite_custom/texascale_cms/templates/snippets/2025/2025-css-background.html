@@ -1,0 +1,17 @@
+{% load sekizai_tags %}
+{% addtoblock "css" %}
+{# FAQ: `data-design="2025" media="not all"` protects Legacy pages #}
+<style id="2025-css-background" data-design="2025" media="not all">
+.texascale-background {
+    color: var(--texascale-gold);
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0.2;
+}
+/* To render siblings, that follow the background, atop it */
+.texascale-background ~ * {
+  position: relative;
+}
+</style>
+{% endaddtoblock %}
