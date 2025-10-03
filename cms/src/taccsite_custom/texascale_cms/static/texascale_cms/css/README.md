@@ -38,7 +38,7 @@ Scope global styles.
 > [!WARNING]
 > Do this **only** during development. Styles cannot be as well versioned controlled via a snippet.
 
-Add a snippet to the website that imports the stylesheet from a CDN e.g. `<link id="css-___" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/TACC/Texascale-CMS@123...ABC/texascale/css/___.css" />`.
+Via the CMS, add a snippet that links the stylesheet from a CDN e.g. `<link id="css-___" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/TACC/Texascale-CMS@123...ABC/texascale_cms/css/___.css" />`.
 
 ## When to Build Stylesheets
 
