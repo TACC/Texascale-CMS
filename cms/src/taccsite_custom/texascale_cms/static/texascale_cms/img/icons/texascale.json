@@ -3,6 +3,8 @@
     "spritePath": "texascale_cms/img/icons/texascale.svg",
     "iconClass": "",
     "icons": [
-        "hero-bkgd"
+        "circuits",
+        "circuits-glass",
+        "chevron"
     ]
 }
