@@ -16,7 +16,7 @@
   },
   "scripts": {
     "build": "npm run build:css && npm run build:sass",
-    "build:css": "export BUILD_ID=\"$(git describe --tags)\" && ./bin/build-css.js",
+    "build:css": "export BUILD_ID=\"${BUILD_ID:-$(git describe --tags)}\" && ./bin/build-css.js",
     "build:sass": "npx sass --pkg-importer=node --quiet-deps ./src/taccsite_custom/texascale_cms/static/texascale_cms/css/bootstrap/bootstrap-v4.custom.scss ./src/taccsite_custom/texascale_cms/static/texascale_cms/css/bootstrap/bootstrap-v4.custom.css --style compressed",
     "build:dev": "npm run build -- --quiet && npm run collectstatic",
     "collectstatic": "docker-compose exec cms python3 manage.py collectstatic --noinput --verbosity=1 2>&1 | grep -v 'Found another file'",
