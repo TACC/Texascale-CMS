@@ -16,7 +16,7 @@ const verbose = (!hasVerboseFlag);
 
 const options = {
   verbose,
-  fileExt: '.css',
+  fileExt: '.min.css',
   buildId: BUILD_ID,
   // If custom configuration is desired, then create and pass this file
   // customConfigs: [`${ROOT}/.postcssrc.extra.yml`],

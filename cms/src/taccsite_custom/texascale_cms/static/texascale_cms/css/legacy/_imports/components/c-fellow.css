@@ -31,7 +31,7 @@ li.c-fellow {
 
 /* Add space between all fellows */
 /* FAQ: Space added on children to not overwrite parents' Bootstrap spacing */
-/* WARNING: If `.c-fellows` are wrapped flex children, then first and last elements will hug the edges */
+/* WARNING: If `.c-fellow`s are wrapped flex children, then first and last elements will hug the edges */
 .c-fellow > * {
   margin-left: var(--space-between-each);
   margin-right: var(--space-between-each);

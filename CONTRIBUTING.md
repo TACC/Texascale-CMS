@@ -39,6 +39,7 @@ Our [production site] is built from a specific commit.
 
 Only appointed team members may release versions.
 
+0. Build CSS
 1. [Create release and tag](https://github.com/TACC/Texascale-CMS/releases/new) `vN.N.N`.
 2. [Build project](https://github.com/TACC/Texascale-CMS/actions/workflows/build.yml) from tag `vN.N.N`.
 
