@@ -2,7 +2,7 @@ name: Build
 on:
   workflow_dispatch:
   push:
-    branches: [main, any/branch-you-want]
+    branches: [main, any/branch-you-want, fix/css-version-undefined]
 
 jobs:
   build_commit:
@@ -13,6 +13,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-tags: true
 
       - name: Set shortsha and branch environment variables
         id: vars
