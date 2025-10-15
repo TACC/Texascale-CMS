@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg">
-  <use id="texascale-chevron" width="100%" height="100%" href="./texascale/chevron.svg#root"></use>
-  <use id="texascale-circuits" width="100%" height="100%" href="./texascale/circuits.svg#root"></use>
-  <use id="texascale-circuits-glass" width="100%" height="100%" href="./texascale/circuits.svg#root" fill-opacity="0.2"></use>
+  <use id="texascale-chevron" width="100%" height="100%" href="/static/texascale_cms/img/icons/texascale/chevron.svg#root"></use>
+  <use id="texascale-circuits" width="100%" height="100%" href="/static/texascale_cms/img/icons/texascale/circuits.svg#root"></use>
+  <use id="texascale-circuits-glass" width="100%" height="100%" href="/static/texascale_cms/img/icons/texascale/circuits.svg#root" fill-opacity="0.2"></use>
 </svg>
