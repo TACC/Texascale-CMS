@@ -1,0 +1,47 @@
+{% load sekizai_tags %}
+{% addtoblock "css" %}
+{# FAQ: `data-design="2025" media="not all"` protects Legacy pages #}
+<style id="2025-css-blockquotes" data-design="2025" media="not all">
+blockquote, /* Bootstrap */.blockquote {
+  font-size: 3.0rem;
+  font-family: var(--texascale-kepler);
+  font-weight: var(--bold);
+
+  margin-block: 60px;
+  margin-inline: auto;
+  padding-block: 45px;
+  padding-inline: 65px 90px; /* might change inline per instance */
+  text-align: center;
+
+  background-color: var(--texascale-gold);
+
+  /* undo Core-CMS */
+  color: inherit;
+  line-height: normal;
+  border-left: unset;
+}
+:is(blockquote, /* Bootstrap */.blockquote)::before {
+  content: '“';
+  display: block;
+
+  font-size: 7.0rem;
+  height: 0.75em;
+}
+
+blockquote footer, /* Bootstrap */.blockquote-footer {
+  font-size: 1.6rem;
+  font-family: var(--global-font-family);
+
+  margin-top: 20px;
+  margin-right: -30px;
+  text-align: right;
+
+  /* undo Core-CMS */
+  color: inherit;
+}
+:is(blockquote footer, /* Bootstrap */.blockquote-footer) cite {
+  /* undo browser */
+  font-style: normal;
+}
+</style>
+{% endaddtoblock %}
