@@ -1,4 +1,4 @@
-small, .small {
+small, /* Bootstrap */.small {
   font-size: 0.888888em; /* so 18px becomes 16px */
   font-weight: inherit; /* undo bootstrap */
 }

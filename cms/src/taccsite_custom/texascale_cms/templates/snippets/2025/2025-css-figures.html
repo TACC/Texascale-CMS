@@ -8,17 +8,18 @@ figure > a > img {
 }
 
 figcaption {
-  font-size: inherit;
   font-family: var(--texascale-kepler);
   color: var(--tacc-black);
 
+  /* undo Core-CMS */
+  font-size: inherit;
   line-height: normal;
-
   border-bottom: unset;
   padding-bottom: unset;
   margin-top: unset;
 }
-.figure-caption {
+/* Bootstrap */.figure-caption {
+  /* undo Core-CMS */
   border-top: unset;
   padding-top: unset;
 }
