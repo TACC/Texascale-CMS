@@ -1,0 +1,26 @@
+{% load sekizai_tags %}
+{% addtoblock "css" %}
+{# FAQ: `data-design="2025" media="not all"` protects Legacy pages #}
+<style id="2025-css-figures" data-design="2025" media="not all">
+figure > img,
+figure > a > img {
+  margin-bottom: 20px;
+}
+
+figcaption {
+  font-size: inherit;
+  font-family: var(--texascale-kepler);
+  color: var(--tacc-black);
+
+  line-height: normal;
+
+  border-bottom: unset;
+  padding-bottom: unset;
+  margin-top: unset;
+}
+.figure-caption {
+  border-top: unset;
+  padding-top: unset;
+}
+</style>
+{% endaddtoblock %}
