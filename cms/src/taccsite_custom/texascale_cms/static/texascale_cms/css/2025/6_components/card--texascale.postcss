@@ -1,4 +1,17 @@
 @import url("./card--texascale.selectors.postcss");
+@import url("@tacc/core-styles/src/lib/_imports/components/card.selectors.css");
+
+/* Spacing */
+
+/* To undo core-styles.cms */
+/* https://github.com/TACC/Core-Styles/blob/2fe4867/src/lib/_imports/components/c-card.css#L314-L320 */
+:--c-card--image-top h4 ~ p {
+    margin-bottom: 2rem;
+}
+
+
+
+/* Colors */
 
 :--c-card--tacc-blue,
 :--c-card--tacc-blue h2 /* overrides core-styles.cms */ {
