@@ -1,7 +1,13 @@
 @import url("./card--texascale.selectors.postcss");
 
-:--c-card--tacc-blue {
+:--c-card--tacc-blue,
+:--c-card--tacc-blue h2 /* overrides core-styles.cms */ {
     background-color: var(--tacc-blue);
+    color: var(--tacc-white);
+}
+:--c-card--tacc-black,
+:--c-card--tacc-black h2 /* overrides core-styles.cms */ {
+    background-color: var(--tacc-black);
     color: var(--tacc-white);
 }
 :--c-card--tacc-white {
@@ -15,10 +21,6 @@
 }
 :--c-card--tacc-beige {
     background-color: var(--tacc-beige);
-}
-:--c-card--tacc-black {
-    background-color: var(--tacc-black);
-    color: var(--tacc-white);
 }
 
 :--c-card--texascale-gold {
