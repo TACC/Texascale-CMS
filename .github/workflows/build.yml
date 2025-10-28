@@ -2,7 +2,7 @@ name: Build
 on:
   workflow_dispatch:
   push:
-    branches: [main, any/branch-you-want]
+    branches: [main, any/branch-you-want, feat/card-colors]
 
 jobs:
   build_commit:
