@@ -126,18 +126,6 @@ BLOG_ENABLE_COMMENTS = False
 # https://github.com/django-cms/djangocms-bootstrap4
 ########################
 
-# # Add ".container-padded" to container options
-# # TODO: Integrate into Core-CMS
-# DJANGOCMS_BOOTSTRAP4_GRID_CONTAINERS = [
-#     ('container', _('Container')),
-#     ('container-fluid', _('Fluid container')),
-#     ('container-padded', _('Padded container')),
-#     ('_', _('None')),
-# ]
-
-# WARNING: Fails on deploy to remote server —
-#          taccsite_cms._settings.djangocms_plugins
-#          — not found
 # Add ".container-padded" to container options
 # TODO: Integrate into Core-CMS
 def get_custom_grid_containers():
