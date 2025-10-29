@@ -1,0 +1,19 @@
+@import url("@tacc/core-styles/src/lib/_imports/components/c-card.selectors.css");
+
+:--c-card:is(
+  .container,
+  [class*="container-"]
+) {
+  margin-bottom: unset;
+}
+
+/* To stretch image tall to fill card */
+:--c-card--image-left,
+:--c-card--image-right {
+    overflow: hidden;
+}
+:--c-card--image-left img,
+:--c-card--image-right img {
+    height: calc(100% + var(--global-space--pattern-pad) * 2);
+    object-fit: cover;
+}
