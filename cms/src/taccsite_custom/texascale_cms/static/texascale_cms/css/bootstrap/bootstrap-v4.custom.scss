@@ -15,6 +15,7 @@ $spacers: map.merge(
 
 /* To add a container with background-color across page (or parent) */
 /* FAQ: This builds custom container that uses padding instead of margin */
+/* TODO: Integrate into Core-CMS */
 .container-padded {
   width: 100%;
   padding-left: calc($grid-gutter-width / 2);
