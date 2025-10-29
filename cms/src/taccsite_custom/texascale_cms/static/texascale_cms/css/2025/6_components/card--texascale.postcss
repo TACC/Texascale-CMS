@@ -14,7 +14,10 @@
 
 /* Colors */
 
-:--c-card--plain { background-color: var(--texascale-bkgd); }
+:--c-card--plain {
+    background-color: var(--texascale-bkgd);
+    box-shadow: none; /* to undo core-styles.cms */
+}
 
 :--c-card--tacc-blue { background-color: var(--tacc-blue); }
 :--c-card--tacc-black { background-color: var(--tacc-black); }
