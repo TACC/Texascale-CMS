@@ -2,12 +2,21 @@
 {% addtoblock "css" %}
 {# FAQ: `data-design="2025" media="not all"` protects Legacy pages #}
 <style id="2025-css-card--texascale" data-design="2025" media="not all">
+/* GLOBAL */
 [class*="card--"] :where(
   h3, h4
 ) {
   font-size: 2.5rem;
   margin-bottom: 5px;
   line-height: 130%;
+}
+
+/* HOMEPAGE */
+#page-home
+[class*="card--"]
+h3 {
+  font-size: 3.0rem;
+  margin-bottom: 20px;
 }
 </style>
 {% endaddtoblock %}
