@@ -1,6 +1,8 @@
 @use 'sass:map';
 @import 'pkg:bootstrap/scss/functions';
 @import 'pkg:bootstrap/scss/variables';
+
+/* To add `-6` and `-7` to `mb-`, `px-…`, et cetera */
 $spacers: map.merge(
   $spacers,
   (
@@ -10,3 +12,31 @@ $spacers: map.merge(
 );
 
 @import 'pkg:bootstrap/scss/bootstrap';
+
+/* To add a container with background-color across page (or parent) */
+/* FAQ: This builds custom container that uses padding instead of margin */
+.container-padded {
+  width: 100%;
+  padding-left: calc($grid-gutter-width / 2);
+  padding-right: calc($grid-gutter-width / 2);
+
+  @include media-breakpoint-up(sm) {
+    padding-left: max(calc((100vw - map.get($container-max-widths, sm)) / 2), calc($grid-gutter-width / 2));
+    padding-right: max(calc((100vw - map.get($container-max-widths, sm)) / 2), calc($grid-gutter-width / 2));
+  }
+
+  @include media-breakpoint-up(md) {
+    padding-left: max(calc((100vw - map.get($container-max-widths, md)) / 2), calc($grid-gutter-width / 2));
+    padding-right: max(calc((100vw - map.get($container-max-widths, md)) / 2), calc($grid-gutter-width / 2));
+  }
+
+  @include media-breakpoint-up(lg) {
+    padding-left: max(calc((100vw - map.get($container-max-widths, lg)) / 2), calc($grid-gutter-width / 2));
+    padding-right: max(calc((100vw - map.get($container-max-widths, lg)) / 2), calc($grid-gutter-width / 2));
+  }
+
+  @include media-breakpoint-up(xl) {
+    padding-left: max(calc((100vw - map.get($container-max-widths, xl)) / 2), calc($grid-gutter-width / 2));
+    padding-right: max(calc((100vw - map.get($container-max-widths, xl)) / 2), calc($grid-gutter-width / 2));
+  }
+}
