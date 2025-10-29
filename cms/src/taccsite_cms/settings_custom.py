@@ -128,20 +128,32 @@ BLOG_ENABLE_COMMENTS = False
 
 # Add ".container-padded" to container options
 # TODO: Integrate into Core-CMS
-def get_custom_grid_containers():
-    from taccsite_cms._settings.djangocms_plugins import DJANGOCMS_BOOTSTRAP4_GRID_CONTAINERS as CONTAINERS
+DJANGOCMS_BOOTSTRAP4_GRID_CONTAINERS = [
+    ('container', _('Container')),
+    ('container-fluid', _('Fluid container')),
+    ('container-padded', _('Padded container')),
+    ('_', _('None')),
+]
 
-    fluid_container_index = CONTAINERS.index(('container-fluid', _('Fluid container')))
-    padded_container_index = fluid_container_index + 1
+# WARNING: Fails on deploy to remote server —
+#          taccsite_cms._settings.djangocms_plugins
+#          — not found
+# # Add ".container-padded" to container options
+# # TODO: Integrate into Core-CMS
+# def get_custom_grid_containers():
+#     from ._settings.djangocms_plugins import DJANGOCMS_BOOTSTRAP4_GRID_CONTAINERS as CONTAINERS
 
-    return [
-        *CONTAINERS[:padded_container_index],
-        ('container-padded', _('Padded container')),
-        *CONTAINERS[padded_container_index:],
-    ]
+#     fluid_container_index = CONTAINERS.index(('container-fluid', _('Fluid container')))
+#     padded_container_index = fluid_container_index + 1
 
-from django.utils.functional import lazy
-DJANGOCMS_BOOTSTRAP4_GRID_CONTAINERS = lazy(get_custom_grid_containers, list)()
+#     return [
+#         *CONTAINERS[:padded_container_index],
+#         ('container-padded', _('Padded container')),
+#         *CONTAINERS[padded_container_index:],
+#     ]
+
+# from django.utils.functional import lazy
+# DJANGOCMS_BOOTSTRAP4_GRID_CONTAINERS = lazy(get_custom_grid_containers, list)()
 
 ########################
 # DJANGOCMS_ICON
