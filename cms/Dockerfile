@@ -1,5 +1,4 @@
-# v4.36.9-1-g445e4574
-FROM taccwma/core-cms:445e4574
+FROM taccwma/core-cms:v4.36.10
 
 WORKDIR /code
 
