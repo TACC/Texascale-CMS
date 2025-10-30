@@ -11,6 +11,26 @@ $spacers: map.merge(
   )
 );
 
+/* To add larger breakpoints (Bootstrap v5 + custom) */
+/* CAVEAT: Core-Styles ALSO does this BUT ONLY for `.container` */
+/* https://github.com/TACC/Core-Styles/blob/v2.47.3/src/lib/_imports/components/bootstrap.container.css */
+/* https://github.com/TACC/Core-Styles/blob/v2.47.3/src/lib/_imports/settings/max-width.css */
+/* https://github.com/TACC/Core-Styles/blob/v2.47.3/src/lib/_imports/tools/media-queries.css */
+$grid-breakpoints: map.merge(
+  $grid-breakpoints,
+  (
+    xxl: 1400px,
+    3xl: 1680px
+  )
+);
+$container-max-widths: map.merge(
+  $container-max-widths,
+  (
+    xxl: 1320px,
+    3xl: 1580px
+  )
+);
+
 @import 'pkg:bootstrap/scss/bootstrap';
 
 /* To add a container with background-color across page (or parent) */
@@ -39,5 +59,15 @@ $spacers: map.merge(
   @include media-breakpoint-up(xl) {
     padding-left: max(calc((100vw - map.get($container-max-widths, xl)) / 2), calc($grid-gutter-width / 2));
     padding-right: max(calc((100vw - map.get($container-max-widths, xl)) / 2), calc($grid-gutter-width / 2));
+  }
+
+  @include media-breakpoint-up(xxl) {
+    padding-left: max(calc((100vw - map.get($container-max-widths, xxl)) / 2), calc($grid-gutter-width / 2));
+    padding-right: max(calc((100vw - map.get($container-max-widths, xxl)) / 2), calc($grid-gutter-width / 2));
+  }
+
+  @include media-breakpoint-up(3xl) {
+    padding-left: max(calc((100vw - map.get($container-max-widths, 3xl)) / 2), calc($grid-gutter-width / 2));
+    padding-right: max(calc((100vw - map.get($container-max-widths, 3xl)) / 2), calc($grid-gutter-width / 2));
   }
 }
