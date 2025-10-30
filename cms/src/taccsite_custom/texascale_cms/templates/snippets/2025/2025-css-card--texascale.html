@@ -2,12 +2,13 @@
 {% addtoblock "css" %}
 {# FAQ: `data-design="2025" media="not all"` protects Legacy pages #}
 <style id="2025-css-card--texascale" data-design="2025" media="not all">
-/* SPACE ABOVE/BELOW */
+/* SPACING */
 
 /* to remove space unless card has card after it */
 [class*="card--"]:not(:has(+ [class*="card--"])) {
   margin-bottom: unset; /* to undo core-styles.cms */
 }
+
 
 /* HEADINGS */
 
@@ -15,37 +16,6 @@
 h4 {
   font-size: 2.5rem;
   margin-bottom: 5px;
-}
-
-/* PLAIN */
-
-/* to align text content with card edge */
-[class*="card--plain"] {
-  --global-space--pattern-pad: 0;
-  --revive-space--pattern-pad: 30px; /* old --global-space--pattern-pad value */
-}
-[class*="card--plain"] :last-child {
-  margin-bottom: unset;
-}
-[class*="card--plain"]:where(
-  [class*="card--image-top"],
-  [class*="card--image-bottom"]
-) {
-  --revive-space--pattern-pad: 15px; /* old --global-space--pattern-pad value */
-}
-
-/* to restore --global-space--pattern-pad where still needed */
-[class*="card--plain"]:where(
-  [class*="card--image-left"],
-  [class*="card--image-right"]
-) {
-  grid-column-gap: var(--revive-space--pattern-pad);
-}
-[class*="card--plain"]:where(
-  [class*="card--image-top"],
-  [class*="card--image-bottom"]
-) img {
-  margin-bottom: 15px; /* old --global-space--pattern-pad value */
 }
 </style>
 {% endaddtoblock %}
