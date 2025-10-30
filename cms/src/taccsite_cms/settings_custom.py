@@ -4,6 +4,8 @@
 
 import os
 
+from django.utils.translation import gettext_lazy as _
+
 ########################
 # TEXASCALE
 ########################
@@ -120,13 +122,31 @@ BLOG_AUTO_NAMESPACE = 'News'
 BLOG_ENABLE_COMMENTS = False
 
 ########################
-# PLUGIN SETTINGS
+# DJANGOCMS_BOOTSTRAP
+# https://github.com/django-cms/djangocms-bootstrap4
 ########################
 
-from django.utils.translation import gettext_lazy as _
+# Add ".container-padded" to container options
+# TODO: Integrate into Core-CMS
+def get_custom_grid_containers():
+    from ._settings.djangocms_plugins import DJANGOCMS_BOOTSTRAP4_GRID_CONTAINERS as CONTAINERS
 
-# DJANGOCMS_ICON SETTINGS
+    fluid_container_index = CONTAINERS.index(('container-fluid', _('Fluid container')))
+    padded_container_index = fluid_container_index + 1
+
+    return [
+        *CONTAINERS[:padded_container_index],
+        ('container-padded', _('Padded container')),
+        *CONTAINERS[padded_container_index:],
+    ]
+
+from django.utils.functional import lazy
+DJANGOCMS_BOOTSTRAP4_GRID_CONTAINERS = lazy(get_custom_grid_containers, list)()
+
+########################
+# DJANGOCMS_ICON
 # https://github.com/django-cms/djangocms-icon
+########################
 
 ICON_PATH = os.path.join('taccsite_cms', 'static', 'site_cms', 'img', 'icons')
 

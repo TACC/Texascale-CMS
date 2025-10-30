@@ -1,3 +1,6 @@
+/* for :--c-card--tacc-plain */
+@import url("@tacc/core-styles/src/lib/_imports/components/c-card.selectors.css");
+
 @custom-selector :--c-card--tacc-blue
     .c-card--tacc-blue,
     .card--blue;
@@ -23,3 +26,15 @@
 @custom-selector :--c-card--texascale-glass
     .c-card--texascale-glass,
     .card--glass;
+
+@custom-selector :--c-card--dark
+    :--c-card--tacc-blue,
+    :--c-card--tacc-black;
+@custom-selector :--c-card--light
+    :--c-card--plain,
+    :--c-card--tacc-white,
+    :--c-card--tacc-yellow,
+    :--c-card--tacc-orange,
+    :--c-card--tacc-beige,
+    :--c-card--texascale-gold,
+    :--c-card--texascale-glass;

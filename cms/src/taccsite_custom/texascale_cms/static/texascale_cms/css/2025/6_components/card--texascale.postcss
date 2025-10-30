@@ -1,31 +1,78 @@
 @import url("./card--texascale.selectors.postcss");
+@import url("@tacc/core-styles/src/lib/_imports/components/c-card.selectors.css");
+@import url("@tacc/core-styles/src/lib/_imports/tools/selectors.common.css");
 
-:--c-card--tacc-blue,
-:--c-card--tacc-blue h2 /* overrides core-styles.cms */ {
-    background-color: var(--tacc-blue);
+
+/* COLORS */
+
+/* Other */
+
+:--c-card--tacc-blue { background-color: var(--tacc-blue); }
+:--c-card--tacc-black { background-color: var(--tacc-black); }
+:--c-card--tacc-white { background-color: var(--tacc-white); }
+:--c-card--tacc-yellow { background-color: var(--tacc-yellow); }
+:--c-card--tacc-orange { background-color: var(--tacc-orange); }
+:--c-card--tacc-beige { background-color: var(--tacc-beige); }
+
+:--c-card--texascale-gold { background-color: var(--texascale-gold); }
+:--c-card--texascale-glass { background-color: var(--texascale-glass); }
+
+:--c-card--dark,
+:--c-card--dark h2 /* overrides core-styles.cms */,
+:--c-card--dark :--heading a /* overrides core-styles.base */ {
     color: var(--tacc-white);
 }
-:--c-card--tacc-black,
-:--c-card--tacc-black h2 /* overrides core-styles.cms */ {
-    background-color: var(--tacc-black);
-    color: var(--tacc-white);
-}
-:--c-card--tacc-white {
-    background-color: var(--tacc-white);
-}
-:--c-card--tacc-yellow {
-    background-color: var(--tacc-yellow);
-}
-:--c-card--tacc-orange {
-    background-color: var(--tacc-orange);
-}
-:--c-card--tacc-beige {
-    background-color: var(--tacc-beige);
+:--c-card--light,
+:--c-card--light h2 /* overrides core-styles.cms */,
+:--c-card--light :--heading a /* overrides core-styles.base */ {
+    color: var(--tacc-black);
 }
 
-:--c-card--texascale-gold {
-    background-color: var(--texascale-gold);
+/* Plain */
+
+:--c-card--plain {
+    background-color: transparent;
+    box-shadow: none; /* to undo core-styles.cms */
 }
-:--c-card--texascale-glass {
-    background-color: var(--texascale-glass);
+
+
+/* SPACING */
+
+/* Other */
+
+/* To undo core-styles.cms */
+/* https://github.com/TACC/Core-Styles/blob/2fe4867/src/lib/_imports/components/c-card.css#L314-L320 */
+:--c-card--image-top h4 ~ p {
+    margin-bottom: 2rem;
+}
+
+/* Plain */
+
+/* to align text content with card edge */
+[class*="card--plain"] {
+  --global-space--pattern-pad: 0;
+  --revive-space--pattern-pad: 30px; /* old --global-space--pattern-pad value */
+}
+[class*="card--plain"] :last-child {
+  margin-bottom: unset;
+}
+[class*="card--plain"]:where(
+  [class*="card--image-top"],
+  [class*="card--image-bottom"]
+) {
+  --revive-space--pattern-pad: 15px; /* old --global-space--pattern-pad value */
+}
+
+/* to restore --global-space--pattern-pad where still needed */
+[class*="card--plain"]:where(
+  [class*="card--image-left"],
+  [class*="card--image-right"]
+) {
+  grid-column-gap: var(--revive-space--pattern-pad);
+}
+[class*="card--plain"]:where(
+  [class*="card--image-top"],
+  [class*="card--image-bottom"]
+) img {
+  margin-bottom: 15px; /* old --global-space--pattern-pad value */
 }

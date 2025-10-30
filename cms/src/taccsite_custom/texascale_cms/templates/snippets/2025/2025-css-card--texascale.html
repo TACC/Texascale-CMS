@@ -1,0 +1,21 @@
+{% load sekizai_tags %}
+{% addtoblock "css" %}
+{# FAQ: `data-design="2025" media="not all"` protects Legacy pages #}
+<style id="2025-css-card--texascale" data-design="2025" media="not all">
+/* SPACING */
+
+/* to remove space unless card has card after it */
+[class*="card--"]:not(:has(+ [class*="card--"])) {
+  margin-bottom: unset; /* to undo core-styles.cms */
+}
+
+
+/* HEADINGS */
+
+[class*="card--"]
+h4 {
+  font-size: 2.5rem;
+  margin-bottom: 5px;
+}
+</style>
+{% endaddtoblock %}

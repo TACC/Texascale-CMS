@@ -23,7 +23,7 @@ h2 {
 h3 {
 	font-size: 3.0rem;
 	font-weight: 700;
-	line-height: 150%;
+	line-height: 130%;
 }
 h4 {
 	font-size: 2.5rem;
@@ -50,15 +50,15 @@ h6 {
 	- h5 content header 3rd-level
 */
 [data-page-template*="article"]
-:is(h2) {
+:where(h2):not(:first-child) {
 	margin-bottom: 30px;
 }
 [data-page-template*="/article"]
-:is(h3, h4) {
+:where(h3, h4):not(:first-child) {
 	margin-bottom: 1.8rem;
 }
 [data-page-template*="article"]
-:is(h4):not(:first-child) {
+:where(h4):not(:first-child) {
 	margin-top: 60px;
 }
 </style>
