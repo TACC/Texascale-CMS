@@ -65,8 +65,8 @@ CMS_PLACEHOLDER_CONF = {
 
 PORTAL_LOGO = {
     "is_remote": False,
-    "img_file_src": "texascale_cms/img/org_logos/texascale-wordmark.png",
-    "img_class": "",  # additional class names
+    "img_file_src": "texascale_cms/img/logo.svg",
+    "img_class": "",
     "link_href": "/",
     "link_target": "_self",
     "img_alt_text": "Texascale Logo",
