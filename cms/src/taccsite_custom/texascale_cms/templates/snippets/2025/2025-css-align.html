@@ -2,8 +2,13 @@
 {% addtoblock "css" %}
 {# FAQ: `data-design="2025" media="not all"` protects Legacy pages #}
 <style id="2025-css-align" data-design="2025" media="not all">
-.align-left, .align-right {
-  max-width: 50%;
+/* For wide image at Bootstrap's narrowest breakpoint, use 576px */
+/* For wide image at the next-to-narrowest breakpoint, use 768px */
+/* https://getbootstrap.com/docs/5.0/layout/breakpoints/#available-breakpoints */
+@media (min-width: 768px) {
+    .align-left, .align-right {
+        max-width: 50%;
+    }
 }
 </style>
 {% endaddtoblock %}
