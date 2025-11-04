@@ -2,7 +2,7 @@ name: Build
 on:
   workflow_dispatch:
   push:
-    branches: [main, any/branch-you-want, feat/card-styles]
+    branches: [main, any/branch-you-want, feat/bootstrap-btn]
 
 jobs:
   build_commit:
