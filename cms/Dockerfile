@@ -1,4 +1,5 @@
-FROM taccwma/core-cms:deps-corestyles-v4-28
+# TODO: Load branch like deps-corestyles-v4-28 but off of main
+FROM taccwma/core-cms:v4.36.10
 
 WORKDIR /code
 
