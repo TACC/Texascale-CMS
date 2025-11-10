@@ -34,6 +34,25 @@
   {% endaddtoblock %}
 {% endblock assets_custom %}
 
+<!-- Ad Hoc Styles. -->
+{% block css %}
+  {{ block.super }}
+
+  {# To support year-specific snippets; add years as needed e.g. #}
+  {% comment %}
+    {% load sekizai_tags %}
+    {% addtoblock "css-2025" %}
+    <style …>
+      /* this will only appear in 2025 */
+    </style>
+    {% endaddtoblock %}
+  {% endcomment %}
+  {% is_design_year 2025 as is_2025 %}
+  {% if is_2025 %}
+    {% render_block "css-2025" %}
+  {% endif %}
+{% endblock %}
+
 <!-- Custom Assets (Delayed). -->
 {% block assets_custom_delayed %}
   {{ block.super }}
