@@ -1,3 +1,4 @@
-:root {
+/* To opt out of dark mode until supported */
+:root.cms-ready {
   color-scheme: only light;
 }
