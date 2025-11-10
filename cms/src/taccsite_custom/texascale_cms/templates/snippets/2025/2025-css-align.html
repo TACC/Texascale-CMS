@@ -10,8 +10,7 @@
     .align-right {
         max-width: 50%;
     }
-}
-@media (min-width: 768px) {
+    /* To mimic image alignment for Bootstrap Blockquote and Figure */
     .blockquote.text-left,
     .blockquote.text-right,
     .figure:has(.figure-caption.text-left),
@@ -19,7 +18,25 @@
         max-width: 50%;
     }
 }
+
+/* To mimic image alignment for Bootstrap Blockquote and Figure */
+/* https://github.com/TACC/Core-Styles/blob/v2.48.1/src/lib/_imports/components/align.css */
+.blockquote.text-right {
+    float: right;
+    margin-left: var(--global-space--grid-gap);
+}
+.blockquote.text-left {
+    float: left;
+    margin-right: var(--global-space--grid-gap);
+}
+.blockquote.text-center {
+    margin-inline: auto;
+}
 @layer foundation {
+    .blockquote {
+        /* To override djangocms-bootstrap4 blockquote alignment */
+        text-align: center !important;
+    }
     .figure-caption.text-left,
     .figure-caption.text-right {
         text-align: unset !important;
