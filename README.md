@@ -26,7 +26,7 @@ To publish a new year online:
 > [!IMPORTANT]
 > **If neglected**, then homepage[^1] might have **incorrect styles**.
 
-[^1]: And other pages with no URL in their path.
+[^1]: And other pages with no year in their path.
 
 ### Styles
 
