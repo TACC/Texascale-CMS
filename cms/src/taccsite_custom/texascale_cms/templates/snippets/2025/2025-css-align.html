@@ -6,8 +6,23 @@
 /* For wide image at the next-to-narrowest breakpoint, use 768px */
 /* https://getbootstrap.com/docs/5.0/layout/breakpoints/#available-breakpoints */
 @media (min-width: 768px) {
-    .align-left, .align-right {
+    .align-left,
+    .align-right {
         max-width: 50%;
+    }
+}
+@media (min-width: 768px) {
+    .blockquote.text-left,
+    .blockquote.text-right,
+    .figure:has(.figure-caption.text-left),
+    .figure:has(.figure-caption.text-right) {
+        max-width: 50%;
+    }
+}
+@layer foundation {
+    .figure-caption.text-left,
+    .figure-caption.text-right {
+        text-align: unset !important;
     }
 }
 </style>
