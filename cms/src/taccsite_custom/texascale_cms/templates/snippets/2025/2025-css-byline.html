@@ -1,7 +1,8 @@
-{% load sekizai_tags %}
+{% load is_design sekizai_tags %}
+{% is_design_year 2025 as is_2025 %}
+{% if is_2025 %}
 {% addtoblock "css" %}
-{# FAQ: `data-design="2025" media="not all"` protects Legacy pages #}
-<style id="2025-css-byline" data-design="2025" media="not all">
+<style id="2025-css-byline">
 .texascale-byline {
 	color: var(--texascale-gold);
 	font-size: 1.6rem;
@@ -9,3 +10,4 @@
 }
 </style>
 {% endaddtoblock %}
+{% endif %}

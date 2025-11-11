@@ -1,7 +1,8 @@
-{% load sekizai_tags %}
+{% load is_design sekizai_tags %}
+{% is_design_year 2025 as is_2025 %}
+{% if is_2025 %}
 {% addtoblock "css" %}
-{# FAQ: `data-design="2025" media="not all"` protects Legacy pages #}
-<style id="2025-css-blockquotes" data-design="2025" media="not all">
+<style id="2025-css-blockquotes">
 blockquote, /* Bootstrap */.blockquote {
   font-size: 3.0rem;
   font-family: var(--texascale-kepler);
@@ -45,3 +46,4 @@ blockquote footer, /* Bootstrap */.blockquote-footer {
 }
 </style>
 {% endaddtoblock %}
+{% endif %}
