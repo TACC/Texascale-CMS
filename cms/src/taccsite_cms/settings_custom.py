@@ -150,7 +150,7 @@ DJANGOCMS_BOOTSTRAP4_COLOR_STYLE_CHOICES = (
     ('danger', _('Danger / White')),
     ('warning', _('Warning / White')),
     ('info', _('Info / White')),
-    ('light', _('Light / White')),
+    ('light', _('Light / Gray')),
     ('dark', _('Dark / Blue')),
 )
 
