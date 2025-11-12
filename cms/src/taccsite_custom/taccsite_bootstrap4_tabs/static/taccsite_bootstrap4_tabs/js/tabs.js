@@ -70,8 +70,8 @@ function handleA11y() {
             return isActive || isAriaSelected;
         }) || tabs[0];
 
-    // updateTabindexes expects (tablist, activeTab)
-    updateTabindexes(tablist, initialTab);
+        // updateTabindexes expects (tablist, activeTab)
+        updateTabindexes(tablist, initialTab);
     }
 
     document.querySelectorAll('[role="tablist"]').forEach(tablist => {
