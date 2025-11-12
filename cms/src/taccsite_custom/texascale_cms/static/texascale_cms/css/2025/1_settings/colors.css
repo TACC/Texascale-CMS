@@ -1,3 +1,5 @@
+@import url("https://cdn.jsdelivr.net/gh/TACC/Core-Styles@v2/dist/settings/color--cms.auto.css");
+
 /* Texascale */
 :root {
 	--texascale-gold: #D0B786;
@@ -18,4 +20,7 @@
 /* TACC/Core v2 (stable) */
 :root {
 	--header-bkgd-color: var(--tacc-black);
+
+	/* TACC/Core-Styles (Auto-Assign) */
+	--tc-color-1: #003049;
 }

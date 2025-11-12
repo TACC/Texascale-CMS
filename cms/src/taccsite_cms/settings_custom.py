@@ -143,6 +143,17 @@ def get_custom_grid_containers():
 from django.utils.functional import lazy
 DJANGOCMS_BOOTSTRAP4_GRID_CONTAINERS = lazy(get_custom_grid_containers, list)()
 
+DJANGOCMS_BOOTSTRAP4_COLOR_STYLE_CHOICES = (
+    ('primary', _('Primary / Blue')),
+    ('secondary', _('Secondary / Gray')),
+    ('success', _('Success / White')),
+    ('danger', _('Danger / White')),
+    ('warning', _('Warning / White')),
+    ('info', _('Info / White')),
+    ('light', _('Light / White')),
+    ('dark', _('Dark / Blue')),
+)
+
 ########################
 # DJANGOCMS_ICON
 # https://github.com/django-cms/djangocms-icon
