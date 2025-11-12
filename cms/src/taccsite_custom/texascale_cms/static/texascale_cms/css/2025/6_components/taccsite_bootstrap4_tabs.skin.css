@@ -8,7 +8,6 @@
 /* To use icon for tab toggles */
 .tab-toggle {
     font-size: 0;
-    background-size: 11px 18px;
     background-image: url('/static/texascale_cms/img/tab-toggle-arrow.svg');
     background-position: center;
     background-repeat: no-repeat;
