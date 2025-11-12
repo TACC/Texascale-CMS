@@ -1,1 +1,18 @@
-/*! styles in snippets/2025/ so designer can tweak in situ */
+/* To remove Bootstrap styles */
+.nav-tabs,
+.nav-links,
+.tab-pane {
+    border: unset;
+}
+
+/* To use icon for tab toggles */
+.tab-toggle {
+    font-size: 0;
+    background-size: 11px 18px;
+    background-image: url('/static/texascale_cms/img/tab-toggle-arrow.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.tab-toggle:nth-of-type(2) {
+    scale: -1;
+}
