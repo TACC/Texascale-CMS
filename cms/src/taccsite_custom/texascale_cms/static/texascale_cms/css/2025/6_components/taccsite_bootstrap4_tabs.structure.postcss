@@ -1,13 +1,41 @@
+@import '@tacc/core-styles/src/lib/_imports/tools/media-queries.css';
+
+
+
+
+/* WRAPPER */
+/* (custom Bootstrap-esque class) */
+
+.tabs {
+    display: grid;
+
+    @media (--narrow-and-below) {
+        grid-template-areas:
+            'panes';
+    }
+    @media (--narrow-and-above) {
+        grid-template-areas:
+            'panes'
+            'links';
+    }
+}
+.tabs .nav-tabs { grid-area: links }
+.tabs .tab-content { grid-area: panes }
+
+
+
+
 /* TAB LINKS */
 
 /* To layout tabs in a row */
 .nav-tabs {
-    --min-tab-width: 0;
+    --tab-min-width: 0;
 
     display: grid;
     grid-auto-flow: column;
-    grid-auto-columns: minmax(var(--min-tab-width), 1fr);
+    grid-auto-columns: minmax(var(--tab-min-width), 1fr);
     overflow-x: auto;
+    gap: var(--tab-gap, 0);
 }
 .nav-tabs .nav-item {
     min-width: 0; /* to shrink items */
