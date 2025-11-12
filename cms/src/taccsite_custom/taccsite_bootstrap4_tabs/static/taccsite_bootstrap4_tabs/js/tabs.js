@@ -29,11 +29,11 @@ function handleTabsFromURL() {
         const id = (window.location.hash || '').replace(/^#tab-/, '');
         if (!id) return;
 
-        const trigger = document.getElementById(`tab-label-${id}`);
-        if (!trigger) return console.info('Tab trigger not found:', id);
+        const tab = document.getElementById(`tab-label-${id}`);
+        if (!tab) return console.info('Tab not found:', id);
 
-        trigger.focus();
-        trigger.click();
+        tab.focus();
+        tab.click();
     };
 
     showFromHash();
