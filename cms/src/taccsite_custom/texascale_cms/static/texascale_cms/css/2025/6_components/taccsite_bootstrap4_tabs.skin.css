@@ -1,6 +1,6 @@
 /* To remove Bootstrap styles */
 .nav-tabs,
-.nav-links,
+.nav-link,
 .tab-pane {
     border: unset;
 }
