@@ -6,8 +6,14 @@
 .section--dark {
 	--color--bkgd: var(--tacc-blue);
 }
+.section--muted {
+	--color--bkgd: var(--tacc-beige);
+}
 .container-padded {
 	padding-block: 50px;
+}
+:is(.u-image-zoom,[class*=image-zoom--]) {
+  --scale: 1.25;
 }
 </style>
 {% endaddtoblock %}
