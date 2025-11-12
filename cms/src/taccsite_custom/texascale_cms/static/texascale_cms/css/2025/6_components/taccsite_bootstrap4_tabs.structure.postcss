@@ -30,9 +30,9 @@
 /* To layout tabs in a row */
 .nav-tabs {
     display: grid;
-    grid-auto-flow: column;
-    grid-auto-columns: minmax(var(--tab-min-width), 1fr);
-    overflow-x: auto;
+    grid-template-columns: repeat(auto-fit,
+        minmax( var(--tab-min-width), 1fr )
+    );
     gap: var(--tab-gap);
 }
 .nav-tabs .nav-item {
