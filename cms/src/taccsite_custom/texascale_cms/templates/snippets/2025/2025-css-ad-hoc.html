@@ -3,7 +3,12 @@
 {% if is_2025 %}
 {% addtoblock "css" %}
 <style id="2025-css-ad-hoc">
-	/* … */
+.section--dark {
+	--color--bkgd: var(--tacc-blue);
+}
+.container-padded {
+	padding-block: 50px;
+}
 </style>
 {% endaddtoblock %}
 {% endif %}
