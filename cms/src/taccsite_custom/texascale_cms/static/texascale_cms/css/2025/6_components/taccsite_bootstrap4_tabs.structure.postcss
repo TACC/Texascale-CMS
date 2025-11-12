@@ -7,6 +7,9 @@
 /* (custom Bootstrap-esque class) */
 
 .tabs {
+    --tab-min-width: 0;
+    --tab-gap: 0;
+
     display: grid;
 
     @media (--narrow-and-below) {
@@ -29,13 +32,11 @@
 
 /* To layout tabs in a row */
 .nav-tabs {
-    --tab-min-width: 0;
-
     display: grid;
     grid-auto-flow: column;
     grid-auto-columns: minmax(var(--tab-min-width), 1fr);
     overflow-x: auto;
-    gap: var(--tab-gap, 0);
+    gap: var(--tab-gap);
 }
 .nav-tabs .nav-item {
     min-width: 0; /* to shrink items */

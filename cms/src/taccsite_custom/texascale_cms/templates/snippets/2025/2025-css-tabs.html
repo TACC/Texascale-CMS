@@ -3,6 +3,12 @@
 {% if is_2025 %}
 {% addtoblock "css" %}
 <style id="2025-css-tabs">
+/* WRAPPER */
+.tabs {
+    --tab-toggle-size: 4rem;
+}
+
+
 /* TAB LINKS */
 
 /* To highlight active tab */
@@ -17,13 +23,10 @@
 }
 
 
-
 /* TAB TOGGLE */
 
 /* The tab links that are in the tab panes, not in `.nav-tabs` */
 .tab-toggle {
-    --tab-toggle-size: 4rem;
-
     background-color: var(--tacc-black);
     background-image: url('/static/texascale_cms/img/tab-toggle-arrow-gold.svg');
 
