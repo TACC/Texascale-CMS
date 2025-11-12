@@ -52,6 +52,24 @@
     padding: unset;
 }
 
+/* To put tab text atop tab image */
+.nav-tabs .nav-link {
+    position: relative; /* so we can position text */
+    overflow: hidden;   /* so user can see when label is too large */
+}
+.nav-tabs .nav-link img {
+    display: block;
+}
+.nav-tabs .nav-link img + span {
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+    bottom: 0;
+
+    padding-block: 0.25lh;
+    text-align: center;
+}
+
 
 
 /* TAB PANES */
