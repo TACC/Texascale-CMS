@@ -8,3 +8,8 @@
 .tab-pane:target {
     animation: unset;
 }
+
+.nav-tabs,
+.tab-pane {
+    --buffer: 0;
+}
