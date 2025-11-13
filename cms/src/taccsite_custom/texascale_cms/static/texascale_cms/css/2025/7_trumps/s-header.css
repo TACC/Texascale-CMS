@@ -1,0 +1,5 @@
+.s-header {
+    font-weight: normal;
+    font-family: var(--global-font-family--sans--cms);
+    font-size: 16px; /* NO-R/EM: See TACC/Core-Styles `font--cms.css` */
+}
