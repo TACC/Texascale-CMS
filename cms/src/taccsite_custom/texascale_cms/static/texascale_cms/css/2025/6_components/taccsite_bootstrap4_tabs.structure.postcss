@@ -19,7 +19,14 @@
 .tabs .tab-content { grid-area: panes }
 
 @media (--medium-and-below) {
-    .tabs .nav-tabs { display: none; }
+    .tab-content > .tab-pane {
+        display: block; /* to show all tab content */
+    }
+    .tabs .nav-tabs,
+    p:has(.tab-toggle),
+    .tab-toggle:not(p *) {
+        display: none; /* to hide tab thumbnails */
+    }
 }
 
 
