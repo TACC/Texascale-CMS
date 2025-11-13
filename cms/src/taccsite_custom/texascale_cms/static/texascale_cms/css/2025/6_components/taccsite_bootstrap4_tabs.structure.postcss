@@ -23,50 +23,54 @@
 
 /* TAB LINKS */
 
-/* To layout tabs in a row */
-.nav-tabs {
-    display: grid;
-    grid-template-columns: repeat(auto-fit,
-        minmax( var(--tab-min-width), 1fr )
-    );
-    gap: var(--tab-gap);
-}
-.nav-tabs .nav-item {
-    min-width: 0; /* to shrink items */
-}
+.tabs {
+    /* To layout tabs in a row */
+    .nav-tabs {
+        display: grid;
+        grid-template-columns: repeat(auto-fit,
+            minmax( var(--tab-min-width), 1fr )
+        );
+        gap: var(--tab-gap);
+    }
+    .nav-tabs .nav-item {
+        min-width: 0; /* to shrink items */
+    }
 
-/* To size tabs */
-.nav-tabs .nav-link {
-    /* To make square tabs */
-    aspect-ratio: 1 / 1;
+    /* To size tabs */
+    .nav-tabs .nav-link {
+        /* To make square tabs */
+        aspect-ratio: 1 / 1;
 
-    /* To remove space around tab content */
-    margin: unset;
-    padding: unset;
-}
+        /* To remove space around tab content */
+        margin: unset;
+        padding: unset;
+    }
 
-/* To put tab text atop tab image */
-.nav-tabs .nav-link {
-    position: relative; /* so we can position text */
-    overflow: hidden;   /* so user can see when label is too large */
-}
-.nav-tabs .nav-link img {
-    display: block;
-}
-.nav-tabs .nav-link img + span {
-    position: absolute;
-    width: 100%;
-    z-index: 1;
-    bottom: 0;
+    /* To put tab text atop tab image */
+    .nav-tabs .nav-link {
+        position: relative; /* so we can position text */
+        overflow: hidden;   /* so user can see when label is too large */
+    }
+    .nav-tabs .nav-link img {
+        display: block;
+    }
+    .nav-tabs .nav-link img + span {
+        position: absolute;
+        width: 100%;
+        z-index: 1;
+        bottom: 0;
 
-    padding-block: 0.25lh;
-    text-align: center;
+        padding-block: 0.25lh;
+        text-align: center;
+    }
 }
 
 
 
 /* TAB PANES */
 
-.tab-pane {
-    padding: unset;
+.tabs {
+    .tab-pane {
+        padding: unset;
+    }
 }
