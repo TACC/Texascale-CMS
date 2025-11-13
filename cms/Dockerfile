@@ -1,4 +1,5 @@
-FROM taccwma/core-cms:fix-link-wrapped-image-ignores-box-model
+# v4.36.11-1-g70141acc
+FROM taccwma/core-cms:70141acc
 
 WORKDIR /code
 
