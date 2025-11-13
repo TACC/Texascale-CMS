@@ -9,6 +9,28 @@
     --tab-toggle-icon-size: auto 50%;
 }
 
+/* To show/hide content at specific breakpoint */
+{% comment %}
+/* FAQ: In snippet, so we can sync media query change without redeploy */
+/* IDEA:
+    Offer class names (like W.B. had before)
+    https://github.com/TACC/Texascale-CMS/commit/8f8b093c
+    `.tabs-xs`, `.tabs-sm`, `.tabs-md`, `.tabs-lg`, `.tabs-xl`
+    css/2025/6_components/taccsite_bootstrap4_tabs.structure.postcss */
+{% endcomment %}
+@media (max-width: 991px) {
+    /* To SHOW all tab content */
+    .tab-content > .tab-pane {
+        display: block;
+    }
+    /* To HIDE tab thumbnails */
+    .tabs .nav-tabs,
+    p:has(.tab-toggle) /* 2025 HTML */,
+    .tab-toggle:not(p *) /* alt. HTML */ {
+        display: none;
+    }
+}
+
 
 /* TAB LINKS */
 
