@@ -3,12 +3,36 @@
 {% if is_2025 %}
 {% addtoblock "css" %}
 <style id="2025-css-tabs">
-/* NAV TABS */
-
-.nav-tabs {
-    gap: 20px;
-    margin-bottom: 40px;
+/* WRAPPER */
+.tabs {
+    --tab-toggle-size: 4rem;
+    --tab-toggle-icon-size: auto 50%;
 }
+
+/* To show/hide content at specific breakpoint */
+{% comment %}
+/* FAQ: In snippet, so we can sync media query change without redeploy */
+/* IDEA:
+    Offer class names (like W.B. had before)
+    https://github.com/TACC/Texascale-CMS/commit/8f8b093c
+    `.tabs-xs`, `.tabs-sm`, `.tabs-md`, `.tabs-lg`, `.tabs-xl`
+    css/2025/6_components/taccsite_bootstrap4_tabs.structure.postcss */
+{% endcomment %}
+@media (max-width: 991px) {
+    /* To SHOW all tab content */
+    .tab-content > .tab-pane {
+        display: block;
+    }
+    /* To HIDE tab thumbnails */
+    .tabs .nav-tabs,
+    p:has(.tab-toggle) /* 2025 HTML */,
+    .tab-toggle:not(p *) /* alt. HTML */ {
+        display: none;
+    }
+}
+
+
+/* TAB LINKS */
 
 /* To highlight active tab */
 .nav-tabs .nav-link:not(.active) {
@@ -22,30 +46,17 @@
 }
 
 
-
-/* TAB CONTENT */
-
-.tab-pane {
-    --space-above-title--layout-wide: 155px;
-    --space-above-title--layout-narrow: 20px;
-    --space-after-image--layout-wide: 32px;
-    --space-after-image--layout-narrow: 0;
-}
-
-
-
 /* TAB TOGGLE */
 
-/* The tab links that are in content, not in `.nav-tabs` */
+/* The tab links that are in the tab panes, not in `.nav-tabs` */
 .tab-toggle {
-    --size: 40px;
-
+    background-size: var(--tab-toggle-icon-size);
     background-color: var(--tacc-black);
     background-image: url('/static/texascale_cms/img/tab-toggle-arrow-gold.svg');
 
     border-radius: 50%;
-    width: var(--size);
-    height: var(--size);
+    width: var(--tab-toggle-size);
+    height: var(--tab-toggle-size);
 
     display: inline-block;
     text-align: center;
