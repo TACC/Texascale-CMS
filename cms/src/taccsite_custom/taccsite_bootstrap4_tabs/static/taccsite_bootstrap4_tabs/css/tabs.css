@@ -1,15 +1,19 @@
-/* To fill link with image */
-.nav-tabs .nav-link img {
-    max-width: 100%;
-    max-height: 100%;
-}
+.tabs {
 
-/* To prevent Core-CMS animations on tab content show */
-.tab-pane:target {
-    animation: unset;
-}
+    /* To fill link with image */
+    .nav-tabs .nav-link img {
+        max-width: 100%;
+        max-height: 100%;
+    }
 
-.nav-tabs,
-.tab-pane {
-    --buffer: 0;
+    /* To prevent Core-CMS animations on tab content show */
+    .tab-pane:target {
+        animation: unset;
+    }
+
+    .nav-tabs,
+    .tab-pane {
+        --buffer: 0;
+    }
+
 }
