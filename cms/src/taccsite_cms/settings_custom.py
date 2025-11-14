@@ -94,7 +94,7 @@ TACC_CORE_STYLES_VERSION = 2
 # TACC: SOCIAL MEDIA
 ########################
 
-PORTAL_SOCIAL_SHARE_PLATFORMS = ['facebook', 'linkedin', 'email']
+PORTAL_SOCIAL_SHARE_PLATFORMS = ['linkedin', 'bluesky', 'facebook', 'email']
 
 ########################
 # DJANGOCMS_BLOG

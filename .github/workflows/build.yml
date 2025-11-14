@@ -2,7 +2,7 @@ name: Build
 on:
   workflow_dispatch:
   push:
-    branches: [main, any/branch-you-want, fix/link-wrapped-image-ignores-box-model]
+    branches: [main, any/branch-you-want, feat/social-media-icons]
 
 jobs:
   build_commit:
