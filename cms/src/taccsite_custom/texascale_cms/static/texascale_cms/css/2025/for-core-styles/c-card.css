@@ -1,19 +1,33 @@
 @import url("@tacc/core-styles/src/lib/_imports/components/c-card.selectors.css");
 
-:--c-card:is(
-  .container,
-  [class*="container-"]
-) {
-  margin-bottom: unset;
+@layer base {
+  :--c-card:is(
+    .container,
+    [class*="container-"]
+  ) {
+    margin-bottom: unset;
+  }
+
+  /* To stretch image tall to fill card */
+  /* SEE: @layer project instance of related code */
+  :--c-card--image-left,
+  :--c-card--image-right {
+      overflow: hidden;
+  }
+  :--c-card--image-left img,
+  :--c-card--image-right img {
+      height: calc(100% + var(--global-space--pattern-pad) * 2);
+      object-fit: cover;
+  }
 }
 
-/* To stretch image tall to fill card */
-:--c-card--image-left,
-:--c-card--image-right {
-    overflow: hidden;
-}
-:--c-card--image-left img,
-:--c-card--image-right img {
-    height: calc(100% + var(--global-space--pattern-pad) * 2);
-    object-fit: cover;
+/* To undo Core-CMS `.editor-img-wrap:is(figure,a).img-fluid img` */
+/* TODO: Fix this (somehow) in Core-CMS, not here */
+@layer project {
+  /* To stretch image tall to fill card */
+  /* SEE: @layer base instance of related code */
+    [class*="card--image-left"] .img-fluid img,
+    [class*="card--image-right"] .img-fluid img {
+        height: revert-layer !important;
+    }
 }
