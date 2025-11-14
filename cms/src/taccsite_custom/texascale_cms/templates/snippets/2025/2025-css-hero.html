@@ -3,33 +3,38 @@
 {% if is_2025 %}
 {% addtoblock "css" %}
 <style id="2025-css-hero">
+/* BLOCK */
 .texascale-hero {
 	background-color: var(--tacc-blue);
 	overflow: hidden; /* prevent scrollbar caused by giant image */
 }
+
+/* HEADINGS */
 .texascale-hero
 :is(h1, h2, h3) {
 	color: var(--tacc-white);
 }
+@media (width < 768px) {
+	.texascale-hero h1 { font-size: 4.8rem; }
+}
+
+/* SOCIALS */
 .texascale-hero
 .logos--social {
 	color: var(--tacc-white);
 	fill: var(--tacc-white);
-	gap: .5rem;
-}
-.texascale-hero
-.logos--social svg {
-    height: 2rem;
-}
-.texascale-hero
-.logos--social .logos__text-before {
-    margin-right: unset;
-}
 
-@media (width < 768px) {
-	.texascale-hero h1 { font-size: 4.8rem; }
-	/* 2025-11-12: H.P. Said "Bigger or maybe no resize" */
-	/*.texascale-hero h2 { font-size: 1.6rem; }*/
+	display: inline-grid;
+	grid-auto-flow: column;
+	align-items: center;
+	@media (pointer: coarse) {
+		gap: 1.0em;
+		font-size: 3rem;
+	}
+	@media not (pointer: coarse) {
+		gap: 0.5em;
+		font-size: 2rem;
+	}
 }
 </style>
 {% endaddtoblock %}
