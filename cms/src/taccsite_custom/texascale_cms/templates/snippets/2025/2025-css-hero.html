@@ -20,19 +20,26 @@
 
 /* SOCIALS */
 .texascale-hero
-.logos--social {
+.logos--social,
+.texascale-hero
+.logos--social a {
 	color: var(--tacc-white);
-	fill: var(--tacc-white);
-
+}
+.texascale-hero
+.logos--social a:hover {
+    color: var(--global-color-secondary--normal);
+}
+.texascale-hero
+.logos--social {
 	display: inline-grid;
 	grid-auto-flow: column;
 	align-items: center;
 	@media (pointer: coarse) {
-		gap: 1.0em;
+		gap: 0.5em;
 		font-size: 3rem;
 	}
 	@media not (pointer: coarse) {
-		gap: 0.5em;
+		gap: 0.25em;
 		font-size: 2rem;
 	}
 }
