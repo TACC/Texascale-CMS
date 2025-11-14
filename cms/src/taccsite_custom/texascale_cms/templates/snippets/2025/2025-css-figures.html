@@ -3,9 +3,15 @@
 {% if is_2025 %}
 {% addtoblock "css" %}
 <style id="2025-css-figures">
+/* captioned images */
 figure > img,
 figure > a > img,
-main img:not(figure img, .jumbotron img) /* un-captioned images */ {
+/* un-captioned images */
+main img:not(
+  figure img,
+  .jumbotron img,
+  [class*="card--"] img
+) {
   margin-bottom: 10px;
 }
 
