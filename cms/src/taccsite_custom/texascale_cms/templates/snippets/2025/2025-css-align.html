@@ -23,16 +23,18 @@
 
 /* To mimic image alignment for Bootstrap Blockquote and Figure */
 /* https://github.com/TACC/Core-Styles/blob/v2.48.1/src/lib/_imports/components/align.css */
-.blockquote.text-right {
-    float: right;
-    margin-left: 40px;
-}
-.blockquote.text-left {
-    float: left;
-    margin-right: 40px;
-}
-.blockquote.text-center {
-    margin-inline: auto;
+@media (min-width: 768px) {
+    .blockquote.text-right {
+        float: right;
+        margin-left: 40px;
+    }
+    .blockquote.text-left {
+        float: left;
+        margin-right: 40px;
+    }
+    .blockquote.text-center {
+        margin-inline: auto;
+    }
 }
 @layer foundation {
     .blockquote {
