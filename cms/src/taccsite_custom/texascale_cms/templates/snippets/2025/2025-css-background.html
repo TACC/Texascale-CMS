@@ -10,6 +10,11 @@
     left: 0;
     opacity: 0.2;
 }
+/* So overflow (e.g. on mobile CMS nav) does not prevent click */
+html:not(.cms-structure-mode-content) /* i.e. if not editing content */
+.texascale-background {
+    pointer-events: none;
+}
 /* To render siblings, that follow the background, atop it */
 .texascale-background ~ * {
   position: relative;
