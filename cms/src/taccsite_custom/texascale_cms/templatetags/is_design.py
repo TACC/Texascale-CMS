@@ -87,13 +87,21 @@ def is_design_legacy(context):
 
     Logic:
         - Returns True if TACC_CORE_STYLES_VERSION == 0 (force legacy)
+        - Returns True for specific paths (no year in URL) e.g. /past-issues/
         - Returns True if URL year is 2024 or earlier
         - Returns False otherwise (modern design)
     """
+    request = context.get('request')
     core_styles_version = getattr(settings, 'TACC_CORE_STYLES_VERSION', 1)
+    modern_style_pages = getattr(settings, 'TEXASCALE_MODERN_STYLE_PAGES', [])
 
     if core_styles_version == 0:
         return True
+
+    if request:
+        if any(request.path.startswith(path) for path in modern_style_pages):
+            return False
+
     if core_styles_version >= 1:
         return is_design_year(context, f"{LAST_LEGACY_YEAR}-")
 

@@ -11,6 +11,7 @@ from django.utils.translation import gettext_lazy as _
 ########################
 
 TEXASCALE_PUBLISHED_YEAR = 2024
+TEXASCALE_MODERN_STYLE_PAGES = ['/past-issues/']
 
 ########################
 # DJANGO
