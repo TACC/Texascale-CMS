@@ -1,6 +1,6 @@
 {% load is_design sekizai_tags %}
-{% is_design_year 2025 as is_2025 %}
-{% if is_2025 %}
+{% is_design_legacy as is_legacy %}
+{% if not is_legacy %}
 {% addtoblock "css" %}
 <style id="2025-css-byline">
 .texascale-byline {
