@@ -21,11 +21,14 @@
     opacity: 0.1;
 }
 
-/* Categoriies */
-html:not([id*="page-home"])
-main:not(:has(.texascale-article))
+/* Categories & Other */
+main:has(.texascale-breadcrumbs)
 .texascale-background {
-    top: 0;
+    top: 0px;
+}
+html#page-past-issues
+.texascale-background {
+    top: 45px;
 }
 
 /* Articles */
