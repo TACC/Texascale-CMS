@@ -3,16 +3,26 @@
 {% if not is_legacy %}
 {% addtoblock "css" %}
 <style id="2025-css-align">
-/* For wide image at Bootstrap's narrowest breakpoint, use 576px */
-/* For wide image at the next-to-narrowest breakpoint, use 768px */
+/* FAQ: Bootstrap breakpoints: small, 576px; medium, 768px */
 /* https://getbootstrap.com/docs/5.0/layout/breakpoints/#available-breakpoints */
+
+/* To align left and right only on wide screen */
 @media (min-width: 768px) {
     .align-left,
     .align-right {
         max-width: 50%;
         margin-top: 5px; /* to align with paragrph text (H.P. request) */
     }
+    /* To match Texascale blockquotes */
+    /* 2025-css-blockquotes */
+    .align-left {
+        margin-right: 40px;
+    }
+    .align-right {
+        margin-left: 40px;
+    }
     /* To mimic image alignment for Bootstrap Blockquote and Figure */
+    /* IDEA: Change `.text-` to `.align-` by extending `bootstrap4_content` */
     .blockquote.text-left,
     .blockquote.text-right,
     .figure:has(.figure-caption.text-left),
@@ -20,19 +30,37 @@
         max-width: 50%;
     }
 }
+/* To undo Core-CMS align left and right always having effect */
+/* TODO: Update Core-CMS if you can support many breakpoints e.g. `align-md` */
+@media (max-width: 768px) {
+    .align-right {
+        float: unset;
+        margin-left: unset;
+    }
+    .align-left {
+        float: unset;
+        margin-right: unset;
+    }
+    .align-center {
+        margin-inline: unset;
+    }
+}
 
 /* To mimic image alignment for Bootstrap Blockquote and Figure */
 /* https://github.com/TACC/Core-Styles/blob/v2.48.1/src/lib/_imports/components/align.css */
-.blockquote.text-right {
-    float: right;
-    margin-left: var(--global-space--grid-gap);
-}
-.blockquote.text-left {
-    float: left;
-    margin-right: var(--global-space--grid-gap);
-}
-.blockquote.text-center {
-    margin-inline: auto;
+/* IDEA: Change `.text-` to `.align-` by extending `bootstrap4_content` */
+@media (min-width: 768px) {
+    .blockquote.text-right {
+        float: right;
+        margin-left: 40px;
+    }
+    .blockquote.text-left {
+        float: left;
+        margin-right: 40px;
+    }
+    .blockquote.text-center {
+        margin-inline: auto;
+    }
 }
 @layer foundation {
     .blockquote {

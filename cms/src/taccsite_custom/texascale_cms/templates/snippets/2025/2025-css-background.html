@@ -3,16 +3,45 @@
 {% if not is_legacy %}
 {% addtoblock "css" %}
 <style id="2025-css-background">
+/* To ensure consitent vertical position of image */
+.texascale-hero:has(.texascale-background),
+/* FAQ: To prevent layering issue (where article image goes behind hero) */
+.texascale-hero:has(.texascale-background) + .texascale-article {
+    position: relative;
+}
+
+/* All */
 .texascale-background {
     color: var(--texascale-gold);
     position: absolute;
+    left: -70px;
+    width: 450px; /* original 300px */
+    height: 225px; /* original 150px */
+
+    opacity: 0.1;
+}
+
+/* Categoriies */
+html:not([id*="page-home"])
+main:not(:has(.texascale-article))
+.texascale-background {
     top: 0;
-    left: 0;
-    opacity: 0.2;
+}
+
+/* Articles */
+main:has(.texascale-article)
+.texascale-background {
+    top: 95px; /* height of .texascale-breadcrumbs */
+}
+
+/* So overflow (e.g. on mobile CMS nav) does not prevent click */
+html:not(.cms-structure-mode-content) /* i.e. if not editing content */
+.texascale-background {
+    pointer-events: none;
 }
 /* To render siblings, that follow the background, atop it */
 .texascale-background ~ * {
-  position: relative;
+    position: relative;
 }
 </style>
 {% endaddtoblock %}
