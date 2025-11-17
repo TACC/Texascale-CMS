@@ -16,18 +16,6 @@ https://texascale.org/
 
 To contribute, first read [How to Contirbute][Contributing].
 
-### Publish New Magazine Each Year
-
-To publish a new year online:
-
-1. In [Texascale Custom Settings], set `TEXASCALE_PUBLISHED_YEAR` to the current year.
-2. [Deploy](https://tacc-main.atlassian.net/wiki/x/cwVv) that setting change.
-
-> [!IMPORTANT]
-> **If neglected**, then homepage[^1] might have **incorrect styles**.
-
-[^1]: And other pages with no year in their path.
-
 ### Styles
 
 Learn about [Texascale Stylesheets](./cms/src/taccsite_custom/texascale_cms/static/texascale_cms/css/README.md).
