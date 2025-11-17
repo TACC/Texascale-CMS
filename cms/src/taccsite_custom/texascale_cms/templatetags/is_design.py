@@ -4,9 +4,6 @@ from django.conf import settings
 
 register = template.Library()
 
-YEAR_PATTERN = re.compile(r"/(\d{4})/")
-LAST_LEGACY_YEAR = 2024
-
 @register.simple_tag(takes_context=True)
 def is_design_year(context, year_comparison):
     """
@@ -48,11 +45,14 @@ def is_design_year(context, year_comparison):
     if not request or not year_comparison:
         return False
 
-    year_search = YEAR_PATTERN.search(request.path)
-    year_match = year_search.group(1) if year_search else False
+    year_pattern = re.compile(r"/(\d{4})/")
+    year_search = year_pattern.search(request.path)
+    year_match = year_search.group(1) if year_search else None
 
-    published_year = getattr(settings, 'TEXASCALE_PUBLISHED_YEAR', LAST_LEGACY_YEAR)
-    page_year = int(year_match) if year_match else published_year
+    if not year_match:
+        return False
+
+    page_year = int(year_match)
 
     try:
         year_comparison_str = str(year_comparison)
@@ -87,22 +87,16 @@ def is_design_legacy(context):
 
     Logic:
         - Returns True if TACC_CORE_STYLES_VERSION == 0 (force legacy)
-        - Returns True for specific paths (no year in URL) e.g. /past-issues/
-        - Returns True if URL year is 2024 or earlier
+        - Returns True if URL has year 2024 or earlier
         - Returns False otherwise (modern design)
     """
-    request = context.get('request')
     core_styles_version = getattr(settings, 'TACC_CORE_STYLES_VERSION', 1)
-    modern_style_pages = getattr(settings, 'TEXASCALE_MODERN_STYLE_PAGES', [])
+    last_legacy_year = 2024
 
     if core_styles_version == 0:
         return True
 
-    if request:
-        if any(request.path.startswith(path) for path in modern_style_pages):
-            return False
-
     if core_styles_version >= 1:
-        return is_design_year(context, f"{LAST_LEGACY_YEAR}-")
+        return is_design_year(context, f"{last_legacy_year}-")
 
     return False
