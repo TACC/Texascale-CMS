@@ -2,7 +2,7 @@ name: Build
 on:
   workflow_dispatch:
   push:
-    branches: [main, any/branch-you-want, feat/social-media-icons]
+    branches: [main, any/branch-you-want, feat/do-not-load-legacy-styles-on-specific-non-year-paths]
 
 jobs:
   build_commit:
