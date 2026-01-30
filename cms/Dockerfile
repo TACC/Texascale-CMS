@@ -1,4 +1,4 @@
-FROM taccwma/core-cms:fix-core-cms-template-gh-18
+FROM taccwma/core-cms:fix-core-cms-template-gh-18--v4-36
 
 WORKDIR /code
 
