@@ -1,34 +1,46 @@
 #!/usr/bin/env node
 
+/** Build CSS using the Core-Styles API */
+
 const buildStylesheets = require('@tacc/core-styles').buildStylesheets;
+const minimist = require('minimist');
+const gitDescribe = require('./git-describe');
 
-const ROOT = __dirname + '/../';
-const BUILD_ID = process.env.BUILD_ID || process.env.npm_package_version;
-const ASSET_PATH = ROOT + 'src/taccsite_custom/texascale_cms/static/texascale_cms/';
+const ROOT = __dirname + '/..';
+const ARGS = minimist( process.argv.slice( 2 ) );
+const BUILD_ID = ARGS['build-id'] || gitDescribe();
 
-const argv = process.argv.slice(2);
+/** Build stylesheets */
+(() => {
+  const stylePath = 'src/taccsite_custom/texascale_cms/static/texascale_cms/css';
+  const options = {
+    verbose: _shouldBeVerbose(),
+    buildId: BUILD_ID,
+    fileExt: '.min.css',
+    // If custom configuration is desired, then create and pass this file
+    // customConfigs: [`${ROOT}/.postcssrc.extra.yml`],
+  }
 
-const supportedVerboseFlags = [
-  '--quiet', '--silent', '--no-verbose'
-];
-const hasVerboseFlag = argv.some(flag => supportedVerboseFlags.includes(flag));
-const verbose = (!hasVerboseFlag);
+  // Build styles
+  buildStylesheets(
+    `${ROOT}/${stylePath}/legacy/*.postcss`,
+    `${ROOT}/${stylePath}/legacy`,
+    options
+  );
+  buildStylesheets(
+    `${ROOT}/${stylePath}/2025/*.postcss`,
+    `${ROOT}/${stylePath}/2025`,
+    options
+  );
+})();
 
-const options = {
-  verbose,
-  fileExt: '.min.css',
-  buildId: BUILD_ID,
-  // If custom configuration is desired, then create and pass this file
-  // customConfigs: [`${ROOT}/.postcssrc.extra.yml`],
-};
+/**
+ * Whether to log verbose output
+ * @return {boolean}
+ */
+function _shouldBeVerbose() {
+  const supressionFlags = ['quiet', 'silent', 'no-verbose'];
+  const hasSupressionFlag = supressionFlags.some(flag => ARGS[flag]);
 
-buildStylesheets(
-  `${ASSET_PATH}css/legacy/*.postcss`,
-  `${ASSET_PATH}css/legacy`,
-  options
-);
-buildStylesheets(
-  `${ASSET_PATH}css/2025/*.postcss`,
-  `${ASSET_PATH}css/2025`,
-  options
-);
+  return !hasSupressionFlag;
+}
