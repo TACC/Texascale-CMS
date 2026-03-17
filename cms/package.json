@@ -24,7 +24,8 @@
   },
   "homepage": "https://texascale.org",
   "dependencies": {
-    "@tacc/core-styles": "^2.45.0"
+    "@tacc/core-styles": "^2.53.3",
+    "minimist": "^1.2.8"
   },
   "devDependencies": {
     "bootstrap": "4.6.x",
