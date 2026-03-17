@@ -1,5 +1,4 @@
-# v4.36.23 plus main/v4.38.5
-FROM taccwma/core-cms:release-v4.36.X
+FROM taccwma/core-cms:v4.36.24
 
 WORKDIR /code
 
