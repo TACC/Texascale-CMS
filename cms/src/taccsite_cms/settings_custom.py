@@ -88,6 +88,7 @@ TACC_CORE_STYLES_VERSION = 2
 # TACC: SOCIAL MEDIA
 ########################
 
+# TODO: Delete after project uses Core-CMS version with TACC/Core-CMS#1155
 PORTAL_SOCIAL_SHARE_PLATFORMS = ['linkedin', 'bluesky', 'facebook', 'email']
 
 ########################
