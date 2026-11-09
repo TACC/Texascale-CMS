@@ -1,4 +1,4 @@
-FROM taccwma/core-cms:fix-new-window-a11y-desc-v4.36
+FROM taccwma/core-cms:v4.36.25
 
 WORKDIR /code
 
